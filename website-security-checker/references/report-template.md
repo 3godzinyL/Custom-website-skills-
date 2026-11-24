@@ -1,71 +1,129 @@
-# Report template
+# Report template (long audit)
 
-Write the report in the user's language (default Polish). Use this structure.
+The report is the product of the audit. Write it in the user's language (default
+Polish), complete and long: every endpoint, every scenario, every finding, every gap.
+Do not reduce it to highlights. If it gets very large, split it into
+`RAPORT-BEZPIECZENSTWA-<domena>-<data>.md` (sections 1–12) and
+`ZALACZNIKI-<domena>-<data>.md` (section 13). In the chat give: section 1, the findings
+table from section 4, the top findings in full, and the file paths.
 
-```markdown
-# Raport bezpieczeństwa — <domena / projekt>
+````markdown
+# Raport z audytu bezpieczeństwa i jakości — <domena / projekt>
 
-Data: <RRRR-MM-DD> · Tryb: <white-box / black-box / grey-box> · Środowisko: <produkcja / staging / lokalnie>
-Zakres: <domeny, subdomeny, repozytorium> · Poza zakresem: <co i dlaczego>
+Data: <RRRR-MM-DD> · Wersja: <commit / data wdrożenia> · Tryb: <white / black / grey-box>
+Środowiska: <produkcja / staging / lokalnie> · Konta testowe: <role>
+Zakres: <domeny, subdomeny, repo, API> · Poza zakresem: <co i dlaczego>
+Narzędzia: <passive-scan, map-routes, endpoint-matrix, MCP: …, npm audit, Semgrep …>
 
 ## 1. Podsumowanie dla właściciela
 Ogólny poziom ryzyka: <Krytyczny / Wysoki / Średni / Niski>
-<3–5 zdań bez żargonu: co jest najgroźniejsze i co się stanie, jeśli tego nie naprawić.>
+Liczba problemów: Krytyczne <n> · Wysokie <n> · Średnie <n> · Niskie <n> · Informacyjne <n>
+Błędy logiczne i funkcjonalne: <n> · Rozbieżności front↔back: <n>
 
-**Do naprawy najpierw:**
-1. <problem> — <skutek dla biznesu w jednym zdaniu>
-2. ...
+<5–10 zdań bez żargonu: co grozi biznesowi (pieniądze, dane klientów, reputacja), co działa dobrze, co zrobić najpierw.>
 
-**Co jest zrobione dobrze:** <konkretne rzeczy, np. płatności przez stronę operatora, HTTPS z HSTS>
+**Napraw najpierw:**
+1. <problem> — <skutek dla biznesu>
+2. …
 
-## 2. Mapa strony (inwentaryzacja)
-<tabela z fazy 1>
+**Co jest zrobione dobrze:** <konkretnie>
 
-## 3. Znalezione problemy
-| # | Ważność | Problem | Miejsce | Status |
+## 2. Zakres i metoda
+<fazy 0–8, co wykonano w każdej, ile żądań, jakie konta, jakie ograniczenia>
+
+## 3. Mapa strony (inwentaryzacja)
+<tabela z fazy 1 + architektura w 3–6 zdaniach: jak płyną dane między frontem, backendem, bazą i usługami zewnętrznymi>
+
+## 4. Wszystkie problemy
+| # | Ważność | Typ | Problem | Miejsce | Status |
+|---|---|---|---|---|---|
+| S1 | Krytyczne | Bezpieczeństwo | … | … | Otwarte |
+| B1 | Średnie | Błąd logiczny | … | … | Otwarte |
+| M1 | Niskie | Rozbieżność front↔back | … | … | Otwarte |
+
+Typy: Bezpieczeństwo (S) · Błąd logiczny/kodu (B) · Rozbieżność front↔back (M) · Przepływ biznesowy (F) · Konfiguracja (C)
+
+## 5. Połączenia i endpointy
+Podsumowanie: <n> połączeń w katalogu · <n> przetestowanych w pełni · <n> wzorcem · <n> nietestowanych (powód).
+Najważniejsze wnioski: <…>
+(pełny katalog z wynikami → Załącznik A)
+
+## 6. Front oczami atakującego
+<wyniki z frontend-attack-surface: co dało się zrobić w przeglądarce, co serwer zablokował>
+
+## 7. Scenariusze ataków
+| # | Scenariusz | Atakujący | Wynik | Problem # |
 |---|---|---|---|---|
-| 1 | Krytyczne | ... | ... | Otwarte |
 
-### [1] <Tytuł problemu> — <Ważność>
+## 8. Przegląd kodu
+### 8.1 Bezpieczeństwo kodu
+### 8.2 Błędy logiczne i ogólne
+### 8.3 Testy, typy, lint, zależności (wyniki uruchomień)
+
+## 9. Zgodność frontu i backendu
+| # | Funkcja | Front | Backend | Rozbieżność | Skutek | Problem # |
+|---|---|---|---|---|---|---|
+
+## 10. Płatności, triale, subskrypcje i inne przepływy
+| Przepływ | Podłączone | Logiczne | Bezpieczne | Jak sprawdzono | Problemy |
+|---|---|---|---|---|---|
+
+## 11. Szczegóły problemów
+### [S1] <Tytuł> — <Ważność>
 - **Gdzie:** <URL / endpoint / plik:linia>
-- **Kategoria:** <np. Kontrola dostępu (OWASP A01)>
-- **Na czym polega:** <opis techniczny, 2–4 zdania>
-- **Skutek dla biznesu:** <prostym językiem>
-- **Dowód:** <fragment żądania/odpowiedzi, zrzut, z zamaskowanymi danymi>
+- **Typ i kategoria:** <np. Bezpieczeństwo · Kontrola dostępu (OWASP A01)>
+- **Na czym polega:** <2–5 zdań technicznie>
+- **Skutek dla biznesu:** <prosto: co się stanie, komu, ile może kosztować>
+- **Dowód:** <żądanie/odpowiedź, zrzut, fragment kodu — dane zamaskowane>
 - **Jak odtworzyć (bezpiecznie):** <kroki>
-- **Jak naprawić:** <konkretna zmiana + fragment kodu/konfiguracji dla ich technologii>
-- **Jak sprawdzić naprawę:** <test do powtórzenia>
+- **Jak naprawić:** <konkretny kod/konfiguracja w technologii projektu>
+- **Jak sprawdzić naprawę:** <test do powtórzenia, najlepiej automatyczny>
+- **Powiązane:** <inne problemy z tą samą przyczyną>
 
-## 4. Pokrycie testów
+<powtórz dla każdego problemu, od najważniejszego>
+
+## 12. Pokrycie, plan naprawy i ponowny test
+### 12.1 Pokrycie
 | Obszar | Status | Uwagi |
 |---|---|---|
-| Nagłówki i TLS | Sprawdzone | |
-| Kontrola dostępu między użytkownikami | Nie sprawdzone | brak dwóch kont testowych |
+| Inwentaryzacja | Pełna | |
+| Połączenia (<n>) | <n>/<n> | <wzorcem: …> |
+| Kontrola dostępu między użytkownikami | Częściowa | brak drugiego konta admina |
+| Przegląd kodu | <pliki/moduły> | <co pominięto> |
+| Przepływy płatności | Sandbox | produkcji nie testowano |
 
-## 5. Plan naprawy
-- **Dziś:** ...
-- **W tym tygodniu:** ...
-- **Później / utrzymanie:** aktualizacje, monitoring, kopie zapasowe, cykliczny audyt
+### 12.2 Plan naprawy
+- **Dziś:** …
+- **W tym tygodniu:** …
+- **W tym miesiącu:** …
+- **Stale:** aktualizacje, monitoring, kopie zapasowe, testy automatyczne dla znalezionych błędów, audyt po większych zmianach
 
-## 6. Załączniki
-<wynik passive-scan, lista endpointów, wersje komponentów>
-```
+### 12.3 Plan ponownego testu
+<lista testów do powtórzenia po poprawkach, kto i jak>
+
+## 13. Załączniki
+- A. Pełny katalog połączeń z wynikiem dla każdego wiersza
+- B. Wynik passive-scan
+- C. Mapa tras z map-routes (trasy bez wywołań, wywołania bez tras)
+- D. Wyniki endpoint-matrix
+- E. Wersje komponentów i wyniki audytu zależności
+- F. Lista sprawdzonych nagłówków, ciasteczek, rekordów DNS
+````
 
 ## Severity guide
 
-Judge by exploitability on this site × impact on this business.
+Judge exploitability on this site × impact on this business.
 
 | Ważność | Typical examples |
 |---|---|
-| **Krytyczne** | price/total tampering accepted; order marked paid without verified webhook; secret/service key in frontend (Stripe secret, Supabase service_role, DB password, AI API key with billing); BaaS tables readable/writable by anyone; admin API without auth; SQL/command/template injection; exposed `.env`/`.git`/DB dump; stored XSS firing in admin panel |
-| **Wysokie** | IDOR exposing other customers' orders/invoices/personal data; stored XSS for visitors; account takeover via reset flow; CORS reflecting origin with credentials; no brute-force protection on admin login; upload allowing executable/HTML files on the same origin; known exploited CVE in CMS plugin |
-| **Średnie** | reflected/DOM XSS needing user interaction; CSRF on non-critical actions; missing rate limit on forms (spam, mail bombing); account enumeration; verbose stack traces; missing SPF/DMARC; marketing cookies before consent; private pages cached by CDN |
-| **Niskie** | missing secondary headers (Permissions-Policy, Referrer-Policy) on low-risk pages; version disclosure; minor info leaks; weak but non-exploitable configs |
-| **Informacyjne** | hardening suggestions, good practices, things to monitor |
+| **Krytyczne** | price/total tampering accepted; order paid without verified webhook; secret/service key in frontend (Stripe secret, Supabase service_role, DB password, AI key with billing); BaaS tables readable/writable by anyone; admin API without auth; SQL/command/template injection; exposed `.env`/`.git`/DB dump; stored XSS in admin panel; logic bug that charges wrong amounts at scale |
+| **Wysokie** | IDOR exposing other customers' orders/invoices/personal data; stored XSS for visitors; account takeover via reset; CORS reflecting origin with credentials; no brute-force protection on admin login; trial/coupon abuse with real revenue impact; access kept after cancellation/refund; known exploited CVE in a plugin |
+| **Średnie** | reflected/DOM XSS needing interaction; CSRF on non-critical actions; missing rate limits on forms; account enumeration; verbose errors; missing SPF/DMARC; pixels before consent; private pages cached; front↔back mismatch causing wrong data or broken flow for some users |
+| **Niskie** | missing secondary headers on low-risk pages; version disclosure; cosmetic mismatches; minor info leaks |
+| **Informacyjne** | hardening, good practices, tests worth adding, monitoring ideas |
 
 Rules:
 - One root cause = one finding (list all affected places inside it).
-- Do not inflate: a scanner warning without a realistic attack path is Low/Info.
-- Do not deflate: anything that loses money or exposes customer data is at least High.
-- Mark findings you could not fully confirm as "Do potwierdzenia" and say what is needed
-  to confirm them.
+- Don't inflate scanner noise; don't deflate anything that loses money or exposes data.
+- Unconfirmed findings are marked "Do potwierdzenia" with what is needed to confirm.
+- Never claim full coverage when something was sampled or skipped.

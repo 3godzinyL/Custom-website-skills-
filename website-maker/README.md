@@ -51,6 +51,31 @@ wymagania, potem daje do wyboru 4 warianty i dopiero po wyborze projektuje i bud
    dostępność, Core Web Vitals, SEO, działające formularze i płatności w sandboxie,
    a na koniec przegląd pod kątem AI slopu.
 
+## Współpraca z innymi skillami
+
+| Skąd → dokąd | Jak to działa |
+|---|---|
+| 🧭 **strategist → maker** | strategist po rozmowie i lekkim audycie przygotowuje `SITE-BRIEF.md`: wymagania, trendy z dowodami, propozycje, rekomendowaną opcję i specyfikację kluczowych stron. Maker czyta go jako brief, nie pyta drugi raz o to samo i wypełnia z niego 4 opcje. Bez briefu może użyć strategista do researchu rynku |
+| 🎨 **design ↔ maker** | wspólne tokeny i pliki (`DESIGN-SYSTEM.md`, `tokens.css`). W fazie designu maker korzysta z dem HTML ze skilla design, a bez niego robi 2–3 dema sam. Wybrany wygląd od razu pasuje do budowanej strony |
+| 🛡️ **maker → security** | przy opcjach 2–4 audyt bezpieczeństwa przed publikacją |
+| 🧭 **maker → strategist** | miesiąc po starcie audyt rozwoju na prawdziwych danych |
+
+## Co jeszcze potrafi
+
+- **`SITE-PLAN.md`, czyli pamięć projektu:** zakres, mapa strony z postępem, decyzje,
+  lista placeholderów i otwarte pytania. Dzięki temu budowa może trwać kilka sesji
+  i nic się nie gubi.
+- **MCP do budowy:** po wyborze opcji proponuje w jednej wiadomości narzędzia, które
+  przyspieszą pracę i zaoszczędzą tokeny. Playwright pozwala samemu obejrzeć stronę na
+  telefonie i komputerze, Context7 daje aktualną dokumentację frameworków, Stripe
+  i Supabase są dostępne w trybie testowym, do tego Figma, shadcn, Vercel i Netlify.
+  Nic nie instaluje samodzielnie.
+- **Pakiet treści dla właściciela:** lista tekstów i danych do dostarczenia oraz
+  **lista zdjęć do zrobienia** (co, w jakim kadrze, ile sztuk).
+- **Checklista publikacji:** domena, SSL, przekierowania 301 ze starej strony, Search
+  Console, Google Business Profile, analityka ze zgodą, kopie zapasowe, 2FA, SPF/DMARC,
+  przełączenie płatności na produkcję i monitoring.
+
 ## Plusy
 
 - **Nie zapomina o niczym ważnym.** Must-have dla każdej strony i dla każdego typu jest
@@ -84,7 +109,10 @@ website-maker/
     ├── site-types.md             # 20 typów stron: must-have + trendy
     ├── tiers.md                  # 4 opcje szczegółowo, technologie, przykłady
     ├── design-playbook.md        # proces designu, anty-slop, typografia, kolor, ruch, QA
-    └── inspiration.md            # styliści, studia, galerie, najlepsze sklepy
+    ├── inspiration.md            # styliści, studia, galerie, najlepsze sklepy
+    ├── design-tokens-contract.md # wspólne tokeny z website-design
+    ├── mcp-toolkit.md            # MCP przydatne przy budowie
+    └── launch-checklist.md       # checklista publikacji
 ```
 
 > 💡 Przy opcjach 2–4 przed publikacją warto puścić **website-security-checker**.

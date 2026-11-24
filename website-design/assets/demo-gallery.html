@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dema wyglądu — porównanie</title>
+<style>
+  /* Comparison page for website-design demos. Fill the DEMOS array below. */
+  :root {
+    --bg: #f4f2ee; --surface: #ffffff; --text: #1d1f22; --muted: #555a61; --border: #dcd7ce;
+    --accent: #1d1f22; --focus: #1a5fb4; --radius: 12px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17181a; --surface: #202225; --text: #ecebe8; --muted: #a9a7a2; --border: #34363a; --accent: #ecebe8; --focus: #7aa2ff; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .bar { max-width: 1600px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  h1 { font-size: 1.15rem; margin: 0; font-weight: 650; }
+  .hint { color: var(--muted); font-size: .9rem; margin: 2px 0 0; }
+  .toggle { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; background: var(--surface); }
+  .toggle button { border: 0; background: transparent; color: var(--text); font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  main { max-width: 1600px; margin: 0 auto; padding: 20px; display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min, 520px)), 1fr)); }
+  main[data-mode="mobile"] { --card-min: 300px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .meta { padding: 14px 16px 12px; display: grid; gap: 6px; }
+  .meta h2 { margin: 0; font-size: 1.05rem; }
+  .meta p { margin: 0; color: var(--muted); font-size: .92rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: .85rem; color: var(--muted); }
+  .swatches { display: inline-flex; gap: 4px; }
+  .swatches span { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgb(0 0 0 / .12); }
+  .open { margin-left: auto; color: var(--text); font-size: .9rem; font-weight: 600; }
+  .viewport { position: relative; overflow: hidden; border-top: 1px solid var(--border); background: #fff; }
+  main[data-mode="mobile"] .viewport { background: var(--bg); display: flex; justify-content: center; }
+  .viewport iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
+  main[data-mode="mobile"] .viewport iframe { position: absolute; left: 50%; }
+  .empty { padding: 40px 20px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div>
+      <h1 id="title">Dema wyglądu</h1>
+      <p class="hint">Porównaj kierunki. Kliknij „Otwórz”, żeby zobaczyć demo w pełnym oknie.</p>
+    </div>
+    <div class="toggle" role="group" aria-label="Widok">
+      <button type="button" data-mode="desktop" aria-pressed="true">Komputer</button>
+      <button type="button" data-mode="mobile" aria-pressed="false">Telefon</button>
+    </div>
+  </div>
+</header>
+<main id="grid" data-mode="desktop"></main>
+<script>
+  // Fill this array: one object per demo file in the same folder.
+  const SITE = 'Nazwa strony';
+  const DEMOS = [
+    { file: 'demo-1-przyklad.html', name: '1 · Nazwa kierunku', idea: 'Jedno zdanie: idea i nastrój.', palette: ['#f3efe8', '#23262a', '#b4532a'], fonts: 'Archivo + IBM Plex Sans' },
+  ];
+
+  const VIEW = { desktop: { w: 1440, h: 900 }, mobile: { w: 390, h: 844 } };
+  const grid = document.getElementById('grid');
+  document.getElementById('title').textContent = `Dema wyglądu — ${SITE}`;
+  document.title = `Dema wyglądu — ${SITE}`;
+
+  function render() {
+    grid.innerHTML = '';
+    if (!DEMOS.length) { grid.innerHTML = '<p class="empty">Brak dem — uzupełnij tablicę DEMOS.</p>'; return; }
+    for (const d of DEMOS) {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      const h = document.createElement('h2'); h.textContent = d.name;
+      const p = document.createElement('p'); p.textContent = d.idea || '';
+      const row = document.createElement('div'); row.className = 'row';
+      const sw = document.createElement('span'); sw.className = 'swatches';
+      for (const c of d.palette || []) { const s = document.createElement('span'); s.style.background = c; s.title = c; sw.append(s); }
+      const f = document.createElement('span'); f.textContent = d.fonts || '';
+      const a = document.createElement('a'); a.className = 'open'; a.href = d.file; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Otwórz ↗';
+      row.append(sw, f, a);
+      meta.append(h, p, row);
+      const vp = document.createElement('div'); vp.className = 'viewport';
+      const fr = document.createElement('iframe'); fr.src = d.file; fr.title = d.name; fr.loading = 'lazy';
+      vp.append(fr);
+      card.append(meta, vp);
+      grid.append(card);
+    }
+    fit();
+  }
+
+  function fit() {
+    const mode = grid.dataset.mode;
+    const { w, h } = VIEW[mode];
+    for (const vp of grid.querySelectorAll('.viewport')) {
+      const fr = vp.querySelector('iframe');
+      const avail = vp.clientWidth;
+      const scale = mode === 'mobile' ? Math.min(1, (avail - 24) / w, 0.8) : avail / w;
+      fr.style.width = w + 'px';
+      fr.style.height = h + 'px';
+      fr.style.transform = mode === 'mobile' ? `translateX(-50%) scale(${scale})` : `scale(${scale})`;
+      fr.style.transformOrigin = mode === 'mobile' ? '50% 0' : '0 0';
+      if (mode === 'mobile') fr.style.left = '50%'; else fr.style.left = '0';
+      vp.style.height = Math.round(h * scale) + 'px';
+    }
+  }
+
+  for (const b of document.querySelectorAll('.toggle button')) {
+    b.addEventListener('click', () => {
+      grid.dataset.mode = b.dataset.mode;
+      for (const x of document.querySelectorAll('.toggle button')) x.setAttribute('aria-pressed', String(x === b));
+      requestAnimationFrame(fit);
+    });
+  }
+  new ResizeObserver(() => fit()).observe(grid);
+  render();
+</script>
+</body>
+</html>

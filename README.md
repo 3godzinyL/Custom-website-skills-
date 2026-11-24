@@ -1,111 +1,112 @@
 # Skille do budowy stron 🧰
 
-Cztery skille dla Claude (i innych AI), które pomagają przy stronie na każdym etapie:
-od pomysłu, przez projekt i budowę, po rozwój i bezpieczeństwo.
+Cztery skille dla Claude (i innych AI), które **współpracują ze sobą** przy całym życiu
+strony: od rozmowy o pomysł, przez projekt wyglądu i budowę, po rozwój
+i bezpieczeństwo.
 
 **Instrukcje są po angielsku**, bo modele wykonują je wtedy najdokładniej. **Rozmowa
 i wyniki są po polsku:** skille rozumieją polskie polecenia (także pisane potocznie
 albo dyktowane), odpowiadają po polsku i budują strony z polskimi treściami
-i działającymi polskimi znakami. Uruchamiają się też na polskie hasła, np. „zrób
-stronę”, „sprawdź bezpieczeństwo”, „czego brakuje na mojej stronie”.
+i działającymi polskimi znakami. Uruchamiają się na polskie hasła, np. „zrób stronę”,
+„sprawdź bezpieczeństwo”, „czego brakuje na mojej stronie”, „zmień wygląd strony”.
 
 ---
 
 ## Co jest w paczce
 
-| Skill | W skrócie | Kiedy użyć |
-|---|---|---|
-| 🛡️ [**website-security-checker**](website-security-checker/) | robi mapę całej strony i sprawdza bezpieczeństwo wszystkiego, co na niej znalazł | przed publikacją, po zmianach, przy sklepie i płatnościach |
-| 🏗️ [**website-maker**](website-maker/) | analizuje wymagania, proponuje 4 coraz większe warianty, a po wyborze projektuje i buduje stronę | gdy chcesz nową stronę albo sklep |
-| 🧭 [**website-strategist**](website-strategist/) | robi audyt rozwoju na tle branży albo po rozmowie pisze długi prompt dla innego AI | gdy pytasz „czego brakuje?” albo potrzebujesz briefu |
-| 🎨 [**website-design**](website-design/) *(v0.1, roboczy)* | kierunek wizualny, ocena designu, redesign | gdy chodzi o wygląd, kolory, fonty i animacje |
+| Skill | W skrócie |
+|---|---|
+| 🛡️ [**website-security-checker**](website-security-checker/) | audyt bezpieczeństwa i jakości: mapa strony, **test każdego połączenia**, front oczami atakującego, sugerowane ataki, pełny przegląd kodu (bezpieczeństwo, logika, błędy), rozbieżności front↔backend, płatności i triale, **długi raport** |
+| 🏗️ [**website-maker**](website-maker/) | analiza wymagań i bestsellerów branży, **4 opcje** do wyboru, dema wyglądu, budowa sekcja po sekcji, weryfikacja, checklista publikacji |
+| 🧭 [**website-strategist**](website-strategist/) | audyt rozwoju na tle branży i trendów albo rozmowa, lekki audyt i **`SITE-BRIEF.md` dla makera** lub długi prompt dla innego AI |
+| 🎨 [**website-design**](website-design/) | temat strony, potem **3–4 dema HTML** do porównania, wybór i **podmiana całego frontu**, spójnego na komputerze i telefonie |
+
+## Jak współpracują
+
+```
+                ┌──────────── rozmowa, lekki audyt, trendy ────────────┐
+ pomysł ──► 🧭 strategist ──► SITE-BRIEF.md ──► 🏗️ maker (4 opcje) ──► budowa ──► 🛡️ security ──► start
+                                                     │      ▲
+                                    wspólne tokeny ──┘      │ dema HTML, wybór wyglądu
+                                                     🎨 design
+ istniejąca strona ──► 🧭 audyt rozwoju ──► SITE-BRIEF ──► 🏗️ maker / 🎨 redesign ──► 🛡️ ponowny test
+```
+
+- **strategist → maker:** brief w stałym formacie. Maker nie pyta drugi raz o to samo
+  i wypełnia z niego swoje 4 opcje.
+- **design ↔ maker:** te same tokeny i pliki (`DESIGN-SYSTEM.md`, `tokens.css`), więc
+  wybrany wygląd od razu pasuje do budowanej strony.
+- **maker → security:** audyt przed publikacją przy opcjach z backendem i płatnościami.
+- **po starcie → strategist:** audyt rozwoju na prawdziwych danych.
 
 ---
 
 ## 🛡️ Website Security Checker
 
-**Najpierw sprawdza, co jest na stronie, a dopiero potem to testuje.** Skill robi
-inwentaryzację: serwer, hosting, front, API, formularze, logowanie, sklep, płatności,
-webhooki, CMS, skrypty zewnętrzne, subdomeny, chatboty. Potem dobiera testy do tego,
-co znalazł: XSS, injection, wycieki danych i kluczy, dostęp do cudzych zamówień (IDOR),
-podmianę ceny w koszyku, weryfikację płatności (Przelewy24, PayU, Tpay, Stripe, BLIK),
-czy treści i ceny pochodzą z backendu, Supabase/Firebase, CORS, CSRF, nagłówki,
-ciasteczka, SPF/DMARC, RODO i AI.
+Pracuje jak pentester i code reviewer w jednym, w stałej kolejności:
 
-**Plusy:**
-- trafia w funkcje, które strona naprawdę ma, zamiast przechodzić listę na ślepo,
-- wyłapuje typowe błędy stron „robionych z AI”,
-- w zestawie pasywny skaner w czystym Node (`passive-scan.mjs`), bez instalacji,
-- działa bezpiecznie: bez DoS, prawdziwych zamówień i pobierania cudzych danych,
-- raport po polsku z podsumowaniem dla właściciela, gotowymi poprawkami w kodzie
-  i tabelą tego, co sprawdzono, a czego nie.
+1. **Mapa strony**, czyli wszystko, co na niej jest.
+2. **Każde połączenie**, niezależnie od liczby: endpointy, WebSockety, webhooki, crony
+   i usługi zewnętrzne. Każde przechodzi macierz testów: logowanie, role, dostęp do
+   cudzych danych, walidacja, injection, wycieki, CORS, CSRF, limity.
+3. **Front oczami atakującego:** co odwiedzający zrobi w swojej przeglądarce.
+4. **Sugerowane ataki** dobrane do tej strony.
+5. **Bezpieczeństwo kodu**, a potem **pełny przegląd kodu**: błędy logiczne
+   i zwykłe błędy (pieniądze na floatach, strefy czasowe, wyścigi, nieobsłużone błędy).
+6. **Rozbieżności między frontem a backendem** w kodzie i na żywej stronie.
+7. **Płatności, triale, subskrypcje i rabaty:** czy są podłączone, czy działają
+   logicznie i czy są bezpieczne.
+8. **Długi raport** z dowodami, gotowymi poprawkami, tabelą pokrycia i planem
+   naprawy.
+
+W zestawie są 3 skrypty Node bez instalowania paczek: pasywny skan strony, mapa tras
+z kodu (wywołania bez tras, trasy bez wywołań) i macierz zapytań z perspektywy różnych
+ról (wykrywa IDOR i otwarty panel admina). Skill proponuje też MCP (Playwright, Semgrep,
+Supabase, Stripe, GitHub i inne), które oszczędzają tokeny.
 
 ## 🏗️ Website Maker
 
-**Od opisu do gotowej strony, w której nie brakuje niczego ważnego.** Skill analizuje
-to, o co prosisz, must-have każdej strony, must-have Twojego typu strony (20 typów)
-i to, co mają liderzy branży. Na samej górze pokazuje **🔥 Propozycje spoza Twojej
-listy**, a pod nimi **4 opcje**:
-
-1. **Front:** header, oferta, opinie, galeria, FAQ, kontakt, animacje, ikony, SEO
-2. **Front + backend:** treści i ceny z serwera, zapisywane formularze, kalkulator, blog
-3. **Panel admina + płatności:** BLIK, P24, PayU, Stripe, zamówienia, faktury, rabaty
-4. **Tryb ostateczny:** wszystko, co ma lider branży, np. wiele języków, AI, integracje, automatyzacje, PWA
-
-Wybierasz numer, np. „2 + BLIK”. Skill przygotowuje spójny system designu z konceptem
-wziętym z Twojego biznesu i buduje stronę sekcja po sekcji.
-
-**Plusy:**
-- nie zapomina o rzeczach obowiązkowych, takich jak RODO, Omnibus, regulamin czy
-  dostępność,
-- działa przeciw AI slopowi: ma listę zakazanych wzorców i fraz, także polskich,
-- korzysta ze wzorców od najlepszych (Rams, Refactoring UI, Baymard, Apple, Aesop,
-  Bellroy…),
-- nie wymyśla opinii ani liczb, a placeholdery są oznaczone,
-- przed oddaniem sprawdza: 4 szerokości ekranu, dostępność, Core Web Vitals,
-  działające formularze.
+Analizuje wymagania z czterech źródeł: Twój opis, must-have każdej strony, must-have
+typu strony (20 typów) i bestsellery branży. Może też wziąć gotowy `SITE-BRIEF.md`
+od strategista. **Na górze pokazuje 🔥 Propozycje spoza Twojej listy**, a pod nimi
+4 opcje: **Front**, **+ backend**, **+ panel admina i płatności**, **tryb ostateczny**.
+Do każdej możesz coś dopisać. Potem przychodzi faza designu (dema HTML), budowa
+sekcja po sekcji, sprawdzenie w przeglądarce i checklista publikacji. Postęp zapisuje
+w `SITE-PLAN.md`, więc praca może trwać wiele sesji. Proponuje MCP przydatne przy
+budowie.
 
 ## 🧭 Website Strategist
 
-**Strateg, który najpierw rozumie Twoją branżę, a potem ocenia stronę.**
+- **Audyt rozwoju:** ustala niszę, porównuje stronę z liderami i trendami, sprawdza
+  wymagania nieodłączne i **warunkowe** („masz promocje, więc potrzebujesz najniższej
+  ceny z 30 dni”). Wynik to plan z priorytetami ICE.
+- **Rozmowa → brief:** pytania w rundach, **lekki audyt** (Twojej strony albo
+  konkurencji), analiza typu strony z **trendami 2026** (sprawdzone, rosnące, moda),
+  a na końcu **`SITE-BRIEF.md` dla website-makera** albo długi prompt sekcja po
+  sekcji dla innego AI.
+- Proponuje MCP do researchu (Firecrawl, Exa, Playwright, dane SEO, Google Analytics).
 
-- **Tryb A, audyt rozwoju.** Spisuje wszystko, co jest na stronie, ustala niszę
-  i model biznesowy, porównuje stronę z liderami i bestsellerami, sprawdza wymagania
-  nieodłączne i **warunkowe** (np. „masz promocje, więc potrzebujesz najniższej ceny
-  z 30 dni”). Dostajesz ocenę 10 obszarów, braki, szanse, szybkie wygrane i plan
-  z priorytetami.
-- **Tryb B, rozmowa i prompt.** Rozmawiacie w rundach o tym, czego potrzebujesz.
-  Skill analizuje, co musi mieć ten typ strony, i pisze **bardzo długi prompt** dla
-  innego AI: design z wartościami, mapę strony, specyfikację sekcja po sekcji
-  (położenie na każdym ekranie, teksty, animacje, kryteria akceptacji), funkcje,
-  SEO, prawo i QA.
+## 🎨 Website Design
 
-**Plusy:** każda rada ma uzasadnienie (konkurencja, badania, zasada UX). Ma ponad
-25 reguł warunkowych i 15 nisz w zestawie, a prompt jest na poziomie specyfikacji
-agencyjnej.
-
-## 🎨 Website Design (v0.1)
-
-**Art director w jednym skillu.** Proponuje 3 różne kierunki wizualne, przygotowuje
-tokeny, komponenty i animacje, ocenia design w 10 kryteriach ze skanem AI slopu
-i robi redesign bez ruszania treści.
-
-**Plusy:** 11 kierunków stylu ze sprawdzonym kontrastem, gotowe animacje
-z `prefers-reduced-motion`, polska typografia. To wersja robocza, którą łatwo
-rozbudować.
+Bierze tematykę strony i robi **3–4 dema HTML na prawdziwych treściach**: bliskie
+obecnej marce, najlepiej dopasowane do branży i odważniejsze. **Otwiera je obok siebie**
+z przełącznikiem Komputer / Telefon. Po wyborze **podmienia cały front** w kolejności:
+tokeny, komponenty, sekcje, każda strona i każdy stan. Na koniec sprawdza spójność
+skryptem i robi zrzuty przed i po. Korzysta z zasad najlepszych frontendowców
+(Refactoring UI, Josh Comeau, Emil Kowalski, Rauno Freiberg i Vercel, Every Layout,
+Utopia, Defensive CSS…), ma system responsywny, wskazówki dla 17 typów stron,
+11 kierunków stylu i skan AI slopu.
 
 ---
 
-## Jak skille współpracują
+## MCP: pomocnicze narzędzia
 
-```
- pomysł ──► 🧭 strategist (rozmowa → prompt) ──► 🏗️ maker (4 opcje → budowa) ──► 🛡️ security-checker
-                                                     ▲                               │
-                                         🎨 design ──┘                               ▼
- istniejąca strona ──► 🧭 strategist (audyt rozwoju) ──► poprawki ──► 🛡️ ponowny test
-```
-
----
+Każdy skill wie, kiedy MCP przyspieszy pracę i zaoszczędzi tokeny. Przykłady:
+Supabase MCP sprawdza RLS wszystkich tabel w jednym wywołaniu, Playwright robi zrzuty
+na telefonie i komputerze, a Semgrep skanuje całe repo. Skill **proponuje** wtedy
+konkretne MCP w jednej wiadomości: z uzasadnieniem, komendą instalacji i bezpieczną
+konfiguracją (tylko odczyt, klucze testowe). **Nic nie instaluje samodzielnie.** Gdy
+odmówisz, pracuje innymi metodami.
 
 ## Instalacja
 
@@ -118,31 +119,30 @@ Copy-Item -Recurse website-* "$env:USERPROFILE\.claude\skills\"
 ```
 
 **Claude.ai / aplikacja Claude.** Spakuj każdy folder skilla osobno do ZIP-a (w środku
-ma być folder z `SKILL.md`) i dodaj go w *Settings → Capabilities → Skills*.
+ma być folder z `SKILL.md`) i dodaj go w *Settings → Capabilities → Skills*. MCP
+dodajesz w *Settings → Connectors*.
 
-**Inne AI (ChatGPT, Gemini, Codex itd.).** Wklej treść `SKILL.md` jako instrukcję
-systemową albo pierwszą wiadomość. Pliki z `references/` dołącz jako załączniki albo
-wklej, gdy AI ich potrzebuje.
+**Inne AI.** Wklej treść `SKILL.md` jako instrukcję, a pliki z `references/` dołącz
+wtedy, gdy AI ich potrzebuje.
 
-Po instalacji wystarczy pisać normalnie po polsku, np. *„Sprawdź bezpieczeństwo mojej
-strony https://…”*. Skill uruchomi się sam. Możesz też wywołać go po nazwie, np.
-`/website-maker`.
+Po instalacji wystarczy pisać normalnie po polsku. Możesz też wywołać skill po nazwie,
+np. `/website-design`.
 
 ## Wymagania
 
-- Do budowy stron i skanera: **Node.js 18+**
-- Opcjonalnie: dostęp do internetu (research konkurencji, trendy, testy na żywo)
-  i narzędzie przeglądarki (zrzuty ekranu, sprawdzanie wyglądu)
+- **Node.js 18+** dla skryptów i budowy stron
+- Opcjonalnie: dostęp do internetu (research, testy na żywo), narzędzie przeglądarki
+  albo Playwright MCP (zrzuty i sprawdzanie wyglądu)
 
-## Struktura repozytorium
+## Struktura
 
 ```
 skille/
 ├── README.md
-├── website-security-checker/   SKILL.md · README.md · references/ · scripts/passive-scan.mjs
-├── website-maker/              SKILL.md · README.md · references/
-├── website-strategist/         SKILL.md · README.md · references/
-└── website-design/             SKILL.md · README.md · references/
+├── website-security-checker/   SKILL.md · README.md · references/ (11) · scripts/ (3)
+├── website-maker/              SKILL.md · README.md · references/ (8)
+├── website-strategist/         SKILL.md · README.md · references/ (8)
+└── website-design/             SKILL.md · README.md · references/ (11) · assets/ · scripts/
 ```
 
 > ⚠️ Website Security Checker używaj tylko na stronach, które są Twoje albo na których

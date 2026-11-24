@@ -25,13 +25,24 @@ Nie zajmuje się zabezpieczeniami. Od tego jest website-security-checker.
    uzasadnienie), szybkie wygrane i plan „Teraz / Następnie / Później” z priorytetami
    ICE.
 
-### Tryb B: rozmowa i prompt dla innego AI
+### Tryb B: rozmowa, lekki audyt i prompt albo brief dla website-makera
 
 1. **Rozmowa w rundach:** biznes i cel, pozycjonowanie i konkurencja, treści i marka,
    funkcje, ograniczenia. Po każdej rundzie podsumowuje, jak zrozumiał odpowiedzi.
-2. **Analiza typu strony, a nie Twojej strony:** co ten typ musi mieć, co wyzwalają
-   planowane funkcje, co mają bestsellery, jaka kolejność sekcji sprzedaje i dlaczego.
-3. **Długi prompt (zwykle 3–8 tys. słów)**, w którym jest:
+   Na początku pyta, czy wynik ma być dla website-makera, dla innego AI, czy dla obu.
+2. **Lekki audyt:** jeśli masz już stronę, wypisuje jej 5–10 największych braków
+   i mocnych stron. Jeśli nie masz, porównuje 3–5 stron konkurencji w krótkiej tabeli
+   (co mają wszyscy, czym wyróżniają się najlepsi, gdzie mają słabe punkty).
+3. **Analiza typu strony, a nie Twojej strony:** co ten typ musi mieć, co wyzwalają
+   planowane funkcje, co mają bestsellery, **co jest teraz w trendach** (z oceną:
+   sprawdzone, rosnące albo chwilowa moda), jaka kolejność sekcji sprzedaje i dlaczego.
+4. **`SITE-BRIEF.md` dla website-makera.** Ma stały układ, który maker rozumie:
+   biznes, rekomendowana opcja 1–4 z uzasadnieniem, lekki audyt, wymagania, trendy
+   z dowodami, propozycje spoza listy, mapa strony, specyfikacja kluczowych stron
+   sekcja po sekcji, kierunek designu (z którego skill design zrobi dema), funkcje,
+   lista treści i zdjęć, prawo, SEO, MCP przydatne przy budowie, założenia. Potem
+   wystarczy napisać: „Uruchom website-maker i wskaż SITE-BRIEF.md”.
+5. **Albo długi prompt dla dowolnego AI (zwykle 3–8 tys. słów)**, w którym jest:
    - rola i zasady pracy dla AI wykonawcy,
    - kierunek designu z kolorami w hex, parami kontrastu, fontami z polskimi znakami,
      skalą odstępów i zasadami ruchu,
@@ -42,8 +53,16 @@ Nie zajmuje się zabezpieczeniami. Od tego jest website-security-checker.
    - funkcje, model danych, integracje, SEO, dostępność, wydajność, minimum
      bezpieczeństwa, prawo, analityka,
    - checklista QA, kolejność pracy z punktami kontrolnymi, założenia i pytania otwarte.
-4. Cały prompt dostajesz **w czacie, gotowy do skopiowania**, a dodatkowo zapisany
-   jako `PROMPT-<nazwa>.md`.
+6. Cały dokument dostajesz **w czacie, gotowy do skopiowania**, a dodatkowo zapisany
+   jako `SITE-BRIEF.md` albo `PROMPT-<nazwa>.md`.
+
+### MCP do researchu
+
+Gdy analiza wymaga faktów, skill proponuje narzędzia: Firecrawl albo Exa (przejrzenie
+wielu stron konkurencji), Playwright (zrzuty na telefonie i komputerze), Chrome
+DevTools (wydajność), DataForSEO, Ahrefs albo Semrush (prawdziwe dane o wyszukiwaniach)
+i Google Analytics (ruch na Twojej stronie). Nic nie instaluje samodzielnie. Bez tych
+narzędzi korzysta z wbudowanego wyszukiwania i mówi, na jak dużej próbce oparł analizę.
 
 ## Plusy
 
@@ -76,7 +95,11 @@ website-strategist/
     ├── niche-benchmarks.md          # 15 nisz: must-have, wyróżniki, trendy, KPI
     ├── conditional-requirements.md  # reguły „jeśli X, to musi być Y”
     ├── discovery-interview.md       # pytania do rozmowy w rundach
-    └── build-prompt-template.md     # szablon promptu + przykład szczegółowości
+    ├── trends-2026.md               # trendy według obszarów: sprawdzone / rosnące / moda
+    ├── maker-handoff.md             # format SITE-BRIEF.md dla website-maker
+    ├── build-prompt-template.md     # szablon promptu + przykład szczegółowości
+    └── mcp-toolkit.md               # MCP do researchu i analityki
 ```
 
-> 💡 Prompt z trybu B możesz dać innemu AI albo od razu skillowi **website-maker**.
+> 💡 `SITE-BRIEF.md` z trybu B przekazujesz skillowi **website-maker**, a prompt
+> dowolnemu AI.

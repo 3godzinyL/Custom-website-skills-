@@ -1,6 +1,6 @@
 ---
 name: website-maker
-description: Builds complete, professionally designed websites and online shops from a user's brief. First analyses requirements in depth — what the user asked for, what every website needs, what this specific type of site needs, and what the best-selling, mainstream sites in this niche currently have — then proposes four build options of growing scope (1 front-only with reviews and animations, 2 connected backend, 3 admin panel and payment gateway, 4 ultimate everything), with extra trending features the user did not mention shown at the top. After the user picks 1–4 (and adds or removes items), it creates a coherent, non-generic design system and builds the site section by section with no AI slop. Use this skill whenever the user wants to make, build, create or design a website, landing page, online shop, portfolio, booking site or business page — also in Polish ("zrób stronę", "zbuduj stronę", "stwórz sklep internetowy", "strona dla firmy", "landing page", "strona wizytówka", "potrzebuję strony dla…").
+description: Builds complete, professionally designed websites and online shops from a brief or from a SITE-BRIEF/prompt prepared by the website-strategist skill. First analyses requirements — what the user asked for, what every site needs, what this type of site needs, what best-selling sites in the niche have — then proposes four options of growing scope (1 front with reviews and animations, 2 backend, 3 admin panel and payments, 4 ultimate), with trending extras the user did not mention shown at the top. After the user picks 1–4 (with own changes), it runs a design phase (HTML design demos, shared design tokens with website-design), suggests useful MCP servers, and builds and verifies the site section by section with no AI slop. Use it whenever the user wants to make, build or create a website, landing page, shop, portfolio, booking site or business page — also in Polish ("zrób stronę", "zbuduj stronę", "stwórz sklep internetowy", "strona dla firmy", "landing page", "strona wizytówka", "potrzebuję strony dla…").
 ---
 
 # Website Maker
@@ -9,24 +9,45 @@ You turn a brief into a finished website in two parts:
 
 - **Part A — Requirements and proposal.** Understand the business, research what this
   type of site needs, and present four build options. Stop and let the user choose.
-- **Part B — Design and build.** Create a coherent design system and build the chosen
-  option section by section, then verify it.
+- **Part B — Design and build.** Agree a design, then build the chosen option section by
+  section and verify it.
 
-The reason for this split: users describe a site by the few things they are thinking
-about ("strona z cennikiem i galerią"). A site that sells needs much more (trust,
-clear offer, contact path, legal basics, speed, SEO). Part A closes that gap before any
-code is written, so the build is done once and done right.
+Users describe a site by the few things they are thinking about ("strona z cennikiem
+i galerią"). A site that sells needs much more (trust, clear offer, contact path, legal
+basics, speed, SEO). Part A closes that gap before any code is written.
 
 ## Language
 
-The user usually writes in Polish. Understand Polish input fully (including informal
-speech and dictation mistakes), talk to the user in their language, and write all site
-copy in the target audience's language (default Polish, with Polish diacritics working
-everywhere — choose fonts that support Polish characters). Keep these instructions'
-English terms out of the user-facing text unless they are standard (SEO, CMS, checkout).
+Understand Polish input fully (informal speech, dictation mistakes), talk to the user in
+their language, and write all site copy in the audience's language (default Polish, with
+fonts that support Polish characters). Use gender-neutral phrasing toward the user
+("Propozycje spoza Twojej listy", not "o których nie wspomniałeś").
 
-Use gender-neutral phrasing toward the user in Polish when you don't know their gender
-(e.g. "Propozycje spoza Twojej listy" rather than "o których nie wspomniałeś").
+## Working with the other skills
+
+This skill is one part of a set. Use the others when they are installed; when they are
+not, the built-in references cover the same ground in lighter form.
+
+- **website-strategist → maker.** If the user gives a `SITE-BRIEF.md` or a build prompt
+  from website-strategist (or one exists in the project), treat it as the brief: don't
+  re-ask what it answers, adopt its requirements, conditional rules, trends (with their
+  evidence), recommended option and proposals, and say in one line what came from it.
+  You still present the four options (pre-filled from the brief) and let the user choose.
+  If there is no brief but the strategist skill is available, use it for the research
+  step (A2) when the niche is unfamiliar or competitive, or suggest the user starts with
+  it for a deeper analysis.
+- **maker ↔ website-design.** Both follow `references/design-tokens-contract.md`
+  (same files, same token names). If website-design is available, use its demo flow in
+  B2 (3–4 HTML design demos to choose from). If the project already has a
+  `DESIGN-SYSTEM.md` from it, build with that system and don't invent a new one.
+- **maker → website-security-checker.** Options 2–4 get a security pass before launch.
+
+## Project memory: SITE-PLAN.md
+
+Builds often span several sessions. Keep `SITE-PLAN.md` in the project root and update it
+after every milestone: chosen option and changes, sitemap with section checklist and
+status, stack, decisions, placeholders list, content still needed from the owner, MCPs in
+use, open questions. On a new session, read it first and continue from it.
 
 ---
 
@@ -34,52 +55,36 @@ Use gender-neutral phrasing toward the user in Polish when you don't know their 
 
 ## A1. Read the brief
 
-Extract and write down (briefly) what you know:
-- business / topic, offer (products, services, prices if given)
-- type of site (see `references/site-types.md`), business model: leads, sales,
-  bookings, subscriptions, content, portfolio
-- audience and market (city/region/country, B2C/B2B, price level)
-- goal: what action a visitor should take (call, form, buy, book, sign up)
-- assets: logo, photos, texts, brand colours, domain, existing site
-- constraints: tech stack, hosting, budget, deadline, who will edit content later
-- features explicitly requested
+Extract briefly: business and offer (with prices if given); site type
+(`references/site-types.md`) and business model (leads, sales, bookings, subscriptions,
+content, portfolio); audience and market (city/region/country, B2C/B2B, price level);
+the main action a visitor should take; assets (logo, photos, texts, colours, domain,
+existing site); constraints (stack, hosting, budget, deadline, who edits content); and
+features explicitly requested.
 
-If something critical is missing (what the business sells, or who the site is for),
-ask up to 5 short questions in one message. For everything else, make reasonable
-assumptions and state them — don't block the user with a questionnaire.
+If something critical is missing (what is sold, or for whom), ask up to 5 short questions
+in one message. Otherwise make reasonable assumptions and state them.
 
 ## A2. Requirements analysis
 
-Build the requirement list from four sources, and keep them separate because they serve
-different purposes in the proposal:
+Build the requirement list from four sources and keep them separate:
 
-1. **User's explicit wishes** — everything they asked for.
-2. **Universal must-haves** — what every professional website needs
-   (`references/requirements.md` → Universal must-haves). Includes legal basics for
-   the target market (for Poland/EU: RODO/GDPR, cookies, consumer law, Omnibus,
-   accessibility).
-3. **Type-specific must-haves** — what this type of site cannot work without
-   (`references/site-types.md`). A restaurant without a menu and opening hours, or a
-   shop without delivery costs and returns info, loses customers regardless of design.
-4. **Market research — bestsellers and mainstream.** What successful sites in this
-   niche have right now. If web search/fetch tools are available, do real research:
-   - find 5–10 leading sites for this niche and market (local leaders for local
-     businesses, category leaders for shops, plus 1–2 international benchmarks),
-   - note features they all share (table stakes) and features the best ones use to
-     stand out (differentiators), and current trends that actually convert,
-   - prefer evidence (what you saw on the sites, research like Baymard/NN/g) over
-     trend-blog hype.
-   If no web access, use `references/site-types.md` (trending features per type) and
-   say the list is based on built-in knowledge, not today's research.
+1. **User's explicit wishes.**
+2. **Universal must-haves** (`references/requirements.md`), including legal basics for
+   the market (Poland/EU: RODO, cookies, consumer law, Omnibus, accessibility).
+3. **Type-specific must-haves** (`references/site-types.md`).
+4. **Market research — bestsellers and mainstream.** With web tools (or the strategist
+   skill, or a research MCP), study 5–10 leading sites for this niche and market, build a
+   feature matrix, separate table stakes from differentiators, keep only trends that
+   help this audience. Without web access, use the references and say so.
 
-From sources 3–4, pick the **extra proposals**: valuable features the user did not
-mention. Each needs a reason ("8 z 10 liderów w Trójmieście ma kalkulator wyceny";
-"skraca drogę do zamówienia"), a suggested option (1–4) and effort.
+From 3–4 pick the **extra proposals**: valuable features the user did not mention, each
+with a reason, a suggested option and effort.
 
 ## A3. The proposal
 
-Present it in this exact order. The extra proposals go first, because they are what
-the user could not have thought of; the options follow.
+Present it in this order. Extra proposals go first because the user could not have
+thought of them.
 
 ```markdown
 ## 🔥 Propozycje spoza Twojej listy
@@ -87,147 +92,124 @@ Rzeczy, które ma większość najlepszych stron tego typu, a których nie było
 
 | Propozycja | Dlaczego warto | Pasuje do opcji | Nakład |
 |---|---|---|---|
-| ... | ... | od 1 / od 2 ... | mały / średni / duży |
 
 Napisz, które dodać (np. „dodaj 1, 3 i 4 do wybranej opcji”).
 
 ## Jak rozumiem projekt
-<3–6 punktów: biznes, odbiorca, cel strony, założenia przyjęte bez pytania>
+<3–6 punktów: biznes, odbiorca, cel strony, założenia przyjęte bez pytania; źródło: opis / SITE-BRIEF>
 
 ## Fundament każdej opcji
-<lista must-have: uniwersalne + dla tego typu strony; każda z 4 opcji to zawiera>
+<must-have: uniwersalne + dla tego typu strony; każda opcja to zawiera>
 
-## Opcja 1 — <nazwa, np. „Wizytówka premium”>
-**Dla kogo:** ...
-**Co dostajesz:** strony/sekcje i funkcje (konkretnie dla tego biznesu, nie ogólnie)
-**Technologia:** ...
-**Czego potrzebuję od Ciebie:** ...
-**Ograniczenia:** czego ta opcja nie robi
-**Skala pracy:** ...
+## Opcja 1 — <nazwa>
+**Dla kogo:** … **Co dostajesz:** … **Technologia:** … **Czego potrzebuję od Ciebie:** …
+**Ograniczenia:** … **Skala pracy:** …
 
 ## Opcja 2 — <nazwa> (wszystko z opcji 1 +)
-...
 ## Opcja 3 — <nazwa> (wszystko z opcji 2 +)
-...
 ## Opcja 4 — <nazwa> (tryb ostateczny: wszystko z opcji 3 +)
-...
 
 ## Jak wybrać
 Wybierz numer 1–4. Do każdej opcji możesz dopisać lub usunąć elementy, np.:
 „2 + płatności BLIK”, „3 bez kont klientów”, „1 + propozycje 2 i 5”.
 ```
 
-What each option means (details, stacks and per-type examples in `references/tiers.md`):
+What each option means (details, stacks and worked examples in `references/tiers.md`):
+1. **Front**: polished front-end with header, hero, offer, reviews, gallery, FAQ,
+   contact, animations, one icon set, SEO, responsive; no database or logins.
+2. **Front + backend**: server and database, content and prices from the backend,
+   stored and e-mailed forms, quotes or bookings, blog, newsletter, analytics, basic
+   protection.
+3. **Admin panel + payments**: admin with roles, payment gateway (PL: BLIK, Przelewy24,
+   PayU, Tpay or Stripe), checkout, order statuses, transactional e-mails, invoices,
+   discount codes, customer accounts where useful.
+4. **Ultimate**: everything a niche leader has, e.g. multi-language, search and filters,
+   recommendations, loyalty or subscriptions, AI assistant, integrations (Allegro,
+   Google Merchant, InPost, KSeF, CRM), automations, A/B tests, PWA, monitoring, CI/CD.
 
-1. **Front** — a polished, fast front-end: header, hero, offer, reviews/testimonials,
-   gallery, FAQ, contact, animations, consistent icons, SEO, responsive. Content in
-   files; contact form via a simple endpoint or form service. No database, no logins.
-2. **Front + backend** — a real server and database: content, offer and prices served
-   from the backend (editable without touching code, e.g. JSON/DB + simple CMS),
-   forms stored and e-mailed, booking/quote requests saved, blog, newsletter, analytics,
-   basic protection (validation, rate limits, spam filtering).
-3. **Admin panel + payments** — an admin panel with roles (content, products/services,
-   orders, leads, bookings), payment gateway (for PL: BLIK, Przelewy24, PayU, Tpay or
-   Stripe), checkout, order statuses, transactional e-mails, invoices, discount codes,
-   customer accounts where they make sense.
-4. **Ultimate** — everything a market leader in this niche would have: multi-language,
-   advanced search and filters, recommendations, loyalty/subscriptions, AI assistant,
-   integrations (Allegro, Google Merchant, InPost, accounting/KSeF, CRM), automation
-   (abandoned cart, review requests), A/B tests, dashboards, PWA, performance and
-   security hardening, monitoring, backups, tests, CI/CD.
-
-Make every option concrete for this business (name the actual sections and features
-for a paving-cleaning company, a bakery, a clothing shop…), not a generic feature list.
-Each option must be a complete, sensible product on its own.
-
-Then **stop and wait for the user's choice.** Do not start building before it.
+Make every option concrete for this business and complete on its own. Then **stop and
+wait for the user's choice.**
 
 ---
 
 # Part B — Design and build
 
-## B1. Confirm scope
+## B1. Confirm scope and set up
 
-Restate the chosen option with additions/removals as a short checklist and the
-sitemap (pages and their sections). Proceed unless the user objects.
+Restate the chosen option with additions/removals as a checklist plus the sitemap
+(pages → sections). Create `SITE-PLAN.md`. Suggest the MCP servers this option needs,
+in one message (`references/mcp-toolkit.md`): typically Playwright for visual QA,
+Context7 for framework docs, Stripe/Supabase in test mode for options 3–4. Never install
+them yourself; continue without them if declined.
 
-## B2. Design system first
+## B2. Design phase
 
-Read `references/design-playbook.md` (process, anti-AI-slop rules, typography, colour,
-layout, motion, icons, imagery) and `references/inspiration.md` (designers, galleries
-and best-designed shops to learn from). If the `website-design` skill is installed,
-you may use it for a deeper design pass.
+Read `references/design-playbook.md` and `references/inspiration.md`.
+- **Existing `DESIGN-SYSTEM.md`** (from website-design): use it.
+- **website-design available**: run its demo flow (3–4 short HTML demos with real
+  content, the user picks or mixes), then continue here with the chosen system.
+- **Otherwise**: write the concept (2–3 sentences from the business), then build 2–3
+  compact HTML demos yourself (header, hero, one content section, review block, CTA,
+  footer; real copy; mobile-ready) in `design-demos/`, open them for the user, and let
+  them choose.
 
-Produce, before building pages:
-1. **Design concept** in 2–3 sentences derived from the business itself (its material,
-   place, craft, audience), not from a generic "modern & clean" template.
-2. **Design tokens** as CSS custom properties: colours (with contrast-checked text
-   pairs), font families and type scale, spacing scale, radii, shadows, motion
-   durations and easings, breakpoints.
-3. **Component set**: header/nav (desktop + mobile), buttons (primary/secondary/
-   ghost, all states), cards, form fields with validation states, review/testimonial,
-   section heading pattern, footer. One icon library, one stroke style.
-4. **Section rhythm**: plan which sections are wide/narrow, light/dark, image-led/
-   text-led, so the page does not repeat the same block shape top to bottom.
-
-Show the concept, palette and type pairing to the user in a few lines; continue unless
-they want changes.
+Then write `DESIGN-SYSTEM.md` and the token file per `references/design-tokens-contract.md`,
+plus the component set (header/nav desktop+mobile, buttons with all states, cards, form
+fields, review block, section header, footer) and the section rhythm.
 
 ## B3. Content
 
-- Write real, specific copy in the audience's language: concrete offer, prices or
-  price ranges, area, time, guarantees, process steps. Avoid the generic AI phrases
-  listed in the playbook.
-- Never invent reviews, ratings, client logos, statistics, certificates or awards and
-  present them as real — that misleads customers and, in the EU, fake reviews are
-  illegal (Omnibus). If the user has none, build the review component and fill it with
-  clearly marked placeholders (`[PRZYKŁADOWA OPINIA — podmień na prawdziwą]`) or connect
-  real Google reviews. The same for photos and phone numbers: mark placeholders.
-- Keep a list of every placeholder for the handoff.
+- Real, specific copy in the audience's language; avoid the generic phrases listed in
+  the playbook.
+- Never invent reviews, ratings, client logos, statistics, certificates or awards as
+  real. Use clearly marked placeholders (`[PRZYKŁADOWA OPINIA — podmień na prawdziwą]`)
+  or connect real Google reviews. Same for photos and phone numbers.
+- Give the owner a **content kit**: list of texts and data you need, plus a **photo shot
+  list** (what to photograph, orientation, how many; e.g. "3 zdjęcia przed/po z tego
+  samego kąta, poziomo").
+- Track every placeholder in `SITE-PLAN.md`.
 
 ## B4. Build
 
-- Use the user's existing stack if there is one; otherwise follow the stack in
-  `references/tiers.md` for the chosen option (default: Node.js; plain HTML/CSS/JS or
-  Astro for option 1).
-- Build section by section, mobile-first, semantic HTML, design tokens only (no
-  random hex values or one-off spacing in components).
-- Animations: purposeful, fast, `prefers-reduced-motion` respected; see the motion
-  section of the playbook.
-- Backend (options 2–4): validate everything on the server; prices, totals and roles
-  are decided by the server; secrets only in environment variables; payment status
-  only from verified provider webhooks; rate-limit forms and logins.
+- Existing stack first; otherwise the stack in `references/tiers.md` (default Node.js;
+  plain HTML/CSS/JS or Astro for option 1).
+- Section by section, mobile-first, semantic HTML, tokens only.
+- Animations purposeful and fast, `prefers-reduced-motion` respected.
+- Backend (2–4): server-side validation; prices, totals and roles decided by the server;
+  secrets in env; payment status only from verified webhooks; rate-limited forms and
+  logins; isolated state for any local test server, stopped when done.
+- Update `SITE-PLAN.md` after each page.
 
 ## B5. Verify
 
-Before calling it done, check:
 - Layout at 360, 768, 1280 and 1920 px; no horizontal scroll; tap targets ≥ 44 px.
-- With a browser/screenshot tool available, actually look at every page and fix what
-  looks off — a passing build is not proof that it looks right.
-- Accessibility: contrast (WCAG AA), keyboard navigation, focus visible, alt texts,
-  labels on form fields, heading order.
-- Performance: optimized images (AVIF/WebP, sizes), fonts subset + `font-display`,
-  no render-blocking junk; aim for LCP < 2.5 s, INP < 200 ms, CLS < 0.1.
-- SEO: unique titles/descriptions, Open Graph, sitemap, robots, schema.org for the
-  type (LocalBusiness, Product, Restaurant, FAQPage…).
-- Forms and flows actually work end to end (submit, e-mail, saved record, payment in
-  sandbox).
-- Anti-slop review: go through the checklist in the playbook and fix every hit.
+- Look at every page in a browser (browser tool or Playwright MCP) and fix what looks
+  off; a passing build is not proof it looks right.
+- Accessibility (WCAG AA contrast, keyboard, visible focus, alt, labels, headings).
+- Performance (optimized images and fonts; LCP < 2.5 s, INP < 200 ms, CLS < 0.1).
+- SEO (titles, descriptions, Open Graph, sitemap, robots, schema.org for the type).
+- Every form and flow end to end (submit, e-mail, saved record, sandbox payment).
+- Anti-slop checklist from the playbook; if website-design is available, run its
+  `scripts/consistency-audit.mjs` on the styles.
 
-## B6. Handoff
+## B6. Launch and handoff
 
-Tell the user, in their language: how to run and deploy it, how to edit content,
-the list of placeholders to replace, what was verified and what wasn't, and next
-steps. For options 2–4 recommend a security pass with the `website-security-checker`
-skill before going live.
+Go through `references/launch-checklist.md` with the user. Then tell them, in their
+language: how to run, deploy and edit content; the placeholder list; what was verified
+and what wasn't; next steps. For options 2–4 recommend the website-security-checker
+skill before going live, and the website-strategist audit about a month after launch,
+when there is real traffic data.
 
 ## Reference files
 
 - `references/requirements.md` — discovery questions, universal must-haves, legal
-  checklist for Poland/EU.
-- `references/site-types.md` — must-haves and trending extras per site type.
-- `references/tiers.md` — the four options in detail, stacks, per-type examples.
-- `references/design-playbook.md` — design process, anti-AI-slop rules, tokens,
-  typography, colour, layout, motion, icons, QA checklist.
-- `references/inspiration.md` — designers, studios, galleries and best-designed shops
-  with what to learn from each.
+  checklist (PL/EU), market research procedure.
+- `references/site-types.md` — must-haves and trending extras for 20 site types.
+- `references/tiers.md` — the four options in detail, stacks, worked examples.
+- `references/design-playbook.md` — design process, anti-AI-slop rules, typography,
+  colour, layout, motion, tokens, QA.
+- `references/inspiration.md` — designers, studios, galleries, best-designed shops.
+- `references/design-tokens-contract.md` — shared token names and files (with website-design).
+- `references/mcp-toolkit.md` — MCP servers useful while building, when and how.
+- `references/launch-checklist.md` — domain, SSL, redirects, analytics, Search Console,
+  Google Business Profile, backups, legal pages, monitoring.

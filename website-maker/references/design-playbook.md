@@ -211,7 +211,7 @@ Button feedback:
 .btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
 ```
 
-## 9. Design tokens template
+## 9. Design tokens template (full required list: `design-tokens-contract.md`)
 
 ```css
 :root {
