@@ -1,0 +1,15 @@
+{
+  "name": "ogarnij-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ogarnij — landing page fikcyjnego startupu: lista oczekujących, polecenia, przedsprzedaż, panel właściciela.",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
+    "backup": "node scripts/backup.js",
+    "e2e": "node scripts/e2e.mjs"
+  }
+}
