@@ -12,9 +12,8 @@ i działającymi polskimi znakami. Uruchamiają się na polskie hasła, np. „z
 
 
 ---
-Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie) 
-https://www.youtube.com/watch?v=mE5L9HQcvWk
-Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie) 
+Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie): https://www.youtube.com/watch?v=mE5L9HQcvWk
+
 
 ---
 
