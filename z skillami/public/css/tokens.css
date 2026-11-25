@@ -1,0 +1,68 @@
+/* Ogarnij — tokeny designu (kontrakt website-design ↔ website-maker). Kierunek: 1 · Nocny plan. */
+:root {
+  color-scheme: dark;
+  /* kolory */
+  --color-bg: #0f0e17;
+  --color-surface: #191823;
+  --color-surface-2: #23212f;
+  --color-text: #f4f1ea;          /* na bg 16,9:1 */
+  --color-text-muted: #aaa6b8;    /* na bg 8,1:1, na surface 7,3:1 */
+  --color-border: #2f2d3d;
+  --color-primary: #ff6b4a;       /* na bg 6,8:1 */
+  --color-primary-hover: #ff8466;
+  --color-primary-contrast: #0f0e17; /* na primary 6,8:1 */
+  --color-accent: #7fe0c2;        /* na bg 12:1 */
+  --color-dark: #08070d;
+  --color-on-dark: #f4f1ea;
+  --color-success: #7fe0c2;
+  --color-warning: #ffc861;
+  --color-error: #ff7a7a;         /* na bg 7,2:1 */
+  --color-focus: #ffc861;
+  /* role pomocnicze */
+  --color-header-bg: rgb(15 14 23 / .94);
+  --color-border-strong: #46435a;
+  --color-device-edge: #34323f;
+  --color-text-soft: #d9d5e2;     /* tekst artykułów na bg 13,3:1 */
+  --color-on-primary-field: #fffaf4; /* pole formularza na koralowym tle */
+  --color-on-primary-muted: #57536a; /* placeholder na tym polu 7,4:1 */
+  --color-on-primary-error: #5a0d00; /* błąd na koralu 6,1:1 */
+  --color-dark-hover: #24222f;
+
+  /* typografia */
+  --font-heading: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+  --step--1: clamp(0.83rem, 0.81rem + 0.12vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.32vw, 1.41rem);
+  --step-2: clamp(1.44rem, 1.33rem + 0.52vw, 1.76rem);
+  --step-3: clamp(1.73rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-4: clamp(2.07rem, 1.6rem + 2.2vw, 3.4rem);
+  --step-5: clamp(2.5rem, 1.7rem + 3.8vw, 5rem);
+  --leading-tight: 1.02;
+  --leading-body: 1.6;
+  --tracking-tight: -0.03em;
+  --tracking-wide: 0.08em;
+
+  /* odstępy */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --section-y: clamp(4rem, 2.4rem + 6vw, 8rem);
+  --container: 1200px;
+  --container-narrow: 760px;
+  --gutter: clamp(16px, 4vw, 32px);
+
+  /* kształt i głębia */
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 24px; --radius-xl: 42px; --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .4), 0 4px 12px rgb(0 0 0 / .25);
+  --shadow-2: 0 2px 4px rgb(0 0 0 / .35), 0 24px 60px rgb(0 0 0 / .45);
+  --border-width: 1px;
+
+  /* ruch */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms; --dur-base: 300ms; --dur-slow: 600ms;
+
+  /* warstwy */
+  --z-header: 50; --z-overlay: 80; --z-modal: 90; --z-toast: 100;
+}
