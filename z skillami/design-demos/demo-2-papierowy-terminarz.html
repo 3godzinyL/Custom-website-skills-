@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 · Papierowy terminarz</title>
+<meta name="description" content="Jasny, redakcyjny: papier, atrament i czerwony długopis; strona wygląda jak dobrze prowadzony terminarz, a telefony są w ciemnym motywie jako kontrast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-bg: #f4efe6; --color-surface: #fbf8f2; --color-surface-2: #ebe4d7;
+  --color-text: #18171c; --color-text-muted: #5c5866; --color-border: #d8cfbf;
+  --color-primary: #b8341d; --color-primary-hover: #9c2a16; --color-primary-contrast: #ffffff;
+  --color-accent: #e5482f; --color-dark: #18171c; --color-on-dark: #f4efe6;
+  --color-success: #2f6b4f; --color-warning: #8a5a00; --color-error: #b8341d; --color-focus: #1f4fd1;
+  --font-heading: "Instrument Serif", Georgia, serif;
+  --font-body: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --step--1: clamp(0.83rem, 0.81rem + 0.12vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.32vw, 1.41rem);
+  --step-2: clamp(1.6rem, 1.4rem + 0.9vw, 2.2rem);
+  --step-3: clamp(2rem, 1.6rem + 1.8vw, 3.2rem);
+  --step-4: clamp(2.5rem, 1.8rem + 3vw, 4.4rem);
+  --step-5: clamp(3rem, 1.9rem + 5.2vw, 6.6rem);
+  --leading-tight: 0.98; --leading-body: 1.6; --tracking-tight: -0.015em; --tracking-wide: 0.1em;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --section-y: clamp(4rem, 2.4rem + 6vw, 8rem); --container: 1180px; --gutter: clamp(16px, 4vw, 32px);
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 14px; --radius-pill: 999px;
+  --shadow-1: 0 1px 1px rgb(24 23 28 / .06), 0 4px 14px rgb(24 23 28 / .07);
+  --shadow-2: 0 2px 4px rgb(24 23 28 / .08), 0 30px 60px rgb(24 23 28 / .18);
+  --border-width: 1px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms; --dur-base: 300ms; --dur-slow: 600ms;
+  --z-header: 50; --z-overlay: 80; --z-modal: 90; --z-toast: 100;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font: 400 var(--step-0)/var(--leading-body) var(--font-body); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); margin: 0; }
+h1 em, h2 em { color: var(--color-primary); }
+p { margin: 0; } a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: var(--space-4); top: var(--space-4); background: var(--color-text); color: var(--color-bg); padding: var(--space-2) var(--space-4); z-index: var(--z-modal); }
+.ruled { background-image: repeating-linear-gradient(to bottom, transparent 0 39px, var(--color-border) 39px 40px); }
+.margin-line { position: relative; }
+.margin-line::before { content: ""; position: absolute; top: 0; bottom: 0; left: clamp(8px, 3vw, 40px); width: 1px; background: var(--color-accent); opacity: .45; }
+
+.hdr { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-bg); border-bottom: var(--border-width) solid var(--color-text); }
+.hdr .wrap { display: flex; align-items: center; gap: var(--space-5); height: 64px; }
+.logo { font: 400 1.7rem/1 var(--font-heading); text-decoration: none; }
+.logo span { color: var(--color-primary); }
+.nav { display: flex; gap: var(--space-5); margin-left: auto; }
+.nav a { text-decoration: none; font-weight: 500; font-size: var(--step--1); }
+.nav a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--color-primary); }
+.menu-btn { display: none; margin-left: auto; background: none; border: var(--border-width) solid var(--color-text); border-radius: var(--radius-sm); width: 44px; height: 44px; cursor: pointer; color: var(--color-text); }
+@media (max-width: 860px) {
+  .nav { display: none; position: fixed; inset: 64px 0 0; background: var(--color-bg); flex-direction: column; padding: var(--space-6) var(--gutter); }
+  .nav.open { display: flex; } .nav a { font: 400 var(--step-3)/1.1 var(--font-heading); }
+  .menu-btn { display: inline-grid; place-items: center; } .hdr .btn { display: none; }
+}
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-5); border-radius: var(--radius-sm); border: var(--border-width) solid transparent; font: 600 var(--step--1)/1 var(--font-body); text-decoration: none; cursor: pointer; transition: background var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast) var(--ease-out); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--color-primary); color: var(--color-primary-contrast); box-shadow: 3px 3px 0 var(--color-text); }
+.btn-primary:hover { background: var(--color-primary-hover); box-shadow: 1px 1px 0 var(--color-text); }
+.btn-secondary { border-color: var(--color-text); color: var(--color-text); background: transparent; }
+.btn-secondary:hover { background: var(--color-surface); }
+.btn-ghost { background: none; color: var(--color-text); text-decoration: underline; text-underline-offset: 4px; padding-inline: var(--space-2); }
+.field { display: grid; gap: var(--space-2); } .field label { font-weight: 600; font-size: var(--step--1); }
+.input { min-height: 52px; border: 0; border-bottom: 2px solid var(--color-text); background: transparent; color: var(--color-text); padding: 0 var(--space-2); font: inherit; width: 100%; border-radius: 0; }
+.input::placeholder { color: var(--color-text-muted); }
+.input[aria-invalid="true"] { border-color: var(--color-error); }
+.err { color: var(--color-error); font-size: var(--step--1); }
+
+.hero { padding-block: var(--space-8) var(--section-y); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--space-7); align-items: start; }
+.date { font: 500 var(--step--1)/1 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); display: flex; gap: var(--space-4); border-bottom: 1px solid var(--color-text); padding-bottom: var(--space-3); margin-bottom: var(--space-6); }
+.date b { color: var(--color-primary); font-weight: 500; }
+.hero h1 { font-size: var(--step-5); }
+.hero .lead { margin-top: var(--space-6); font-size: var(--step-1); max-width: 36ch; color: var(--color-text-muted); }
+.signup { margin-top: var(--space-6); display: flex; gap: var(--space-4); align-items: end; max-width: 560px; }
+.signup .input { flex: 1; min-width: 0; }
+.micro { margin-top: var(--space-3); color: var(--color-text-muted); font-size: var(--step--1); max-width: 48ch; }
+.more { margin-top: var(--space-5); display: inline-block; font-weight: 600; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .signup { flex-direction: column; align-items: stretch; } }
+
+.stage { position: relative; min-height: 600px; }
+.phone { position: absolute; width: 268px; aspect-ratio: 9 / 19.2; border-radius: 40px; background: #18171c; padding: 9px; box-shadow: var(--shadow-2); }
+.phone .scr { height: 100%; border-radius: 32px; background: #1f1e25; color: #f4efe6; overflow: hidden; padding: 38px 16px 16px; position: relative; font-size: 12px; line-height: 1.4; }
+.phone .scr::before { content: ""; position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 84px; height: 22px; border-radius: 20px; background: #18171c; }
+.phone.front { right: 0; top: 40px; z-index: 2; }
+.phone.back { right: 34%; top: 0; rotate: -5deg; }
+.scr h4 { font: 400 22px/1 var(--font-heading); margin: 0 0 2px; }
+.scr .sub { color: #a8a3ae; font-size: 11px; margin-bottom: 12px; }
+.wave { display: flex; gap: 3px; align-items: center; height: 34px; padding: 0 10px; background: #2b2a33; border-radius: 10px; margin-bottom: 10px; }
+.wave span { flex: 1; background: #ff8a6e; border-radius: 2px; height: 30%; animation: wv 1.1s var(--ease-in-out) infinite alternate; }
+.wave span:nth-child(3n) { animation-delay: -.3s; } .wave span:nth-child(4n) { animation-delay: -.6s; } .wave span:nth-child(5n) { animation-delay: -.9s; }
+@keyframes wv { to { height: 90%; } }
+.quote { color: #a8a3ae; font-style: italic; margin-bottom: 12px; }
+.slot { display: grid; grid-template-columns: 38px 1fr; gap: 8px; margin-bottom: 6px; opacity: 0; translate: 0 8px; animation: in var(--dur-slow) var(--ease-out) forwards; }
+.slot time { font: 500 10px/1 var(--font-mono); color: #a8a3ae; padding-top: 8px; }
+.slot div { background: #2b2a33; border-left: 3px solid #f4efe6; border-radius: 6px; padding: 6px 8px; }
+.slot.hot div { border-color: #ff8a6e; }
+.slot small { display: block; color: #a8a3ae; font-size: 10px; }
+.slot:nth-of-type(1) { animation-delay: .4s; } .slot:nth-of-type(2) { animation-delay: .7s; } .slot:nth-of-type(3) { animation-delay: 1s; } .slot:nth-of-type(4) { animation-delay: 1.3s; } .slot:nth-of-type(5) { animation-delay: 1.6s; }
+@keyframes in { to { opacity: 1; translate: 0 0; } }
+.done-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #3a3842; }
+.done-row b { color: #9be3c4; font-weight: 600; }
+@media (max-width: 860px) { .stage { min-height: 0; } .phone.back { display: none; } .phone.front { position: relative; margin-inline: auto; top: 0; } }
+
+.how { padding-block: var(--section-y); border-top: var(--border-width) solid var(--color-text); }
+.how .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--space-7); }
+h2 { font-size: var(--step-4); }
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 72px 1fr; gap: var(--space-4); padding: var(--space-5) 0; border-bottom: 1px solid var(--color-border); }
+.steps li::before { content: counter(s); font: 400 var(--step-4)/.8 var(--font-heading); color: var(--color-primary); }
+.steps h3 { font-size: var(--step-2); margin-bottom: var(--space-2); }
+.steps p { color: var(--color-text-muted); }
+@media (max-width: 860px) { .how .wrap { grid-template-columns: 1fr; } }
+
+.trust { padding-block: var(--section-y); background: var(--color-surface); }
+.trust .wrap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-7); }
+.facts { margin: 0; border-top: 2px solid var(--color-text); }
+.facts div { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--color-border); }
+.facts dt { font-weight: 600; } .facts dd { margin: 0; color: var(--color-text-muted); }
+.note { margin-top: var(--space-5); font: 400 var(--step-1)/1.4 var(--font-heading); font-style: italic; color: var(--color-text-muted); max-width: 30ch; }
+@media (max-width: 860px) { .trust .wrap { grid-template-columns: 1fr; } .facts div { grid-template-columns: 1fr; gap: var(--space-1); } }
+
+.planb { padding-block: var(--section-y); }
+.planb .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); align-items: start; }
+.planb p.lead { color: var(--color-text-muted); margin: var(--space-5) 0; max-width: 40ch; }
+.day { background: var(--color-surface); border: 1px solid var(--color-text); border-radius: var(--radius-md); box-shadow: var(--shadow-1); position: relative; height: 520px; overflow: hidden; }
+.day .h { position: absolute; left: 0; right: 0; height: 52px; border-top: 1px solid var(--color-border); font: 500 11px/1 var(--font-mono); color: var(--color-text-muted); padding: 6px 10px; }
+.ev { position: absolute; left: 64px; right: 12px; border-radius: var(--radius-sm); padding: 6px 10px; font-weight: 600; font-size: var(--step--1); background: var(--color-surface-2); border-left: 3px solid var(--color-text); transition: top var(--dur-slow) var(--ease-out), height var(--dur-slow) var(--ease-out), opacity var(--dur-base), transform var(--dur-slow) var(--ease-out); overflow: hidden; }
+.ev small { font-weight: 400; color: var(--color-text-muted); margin-left: var(--space-2); }
+.ev.meet { background: var(--color-primary); color: #fff; border-color: var(--color-text); } .ev.meet small { color: #ffe9e4; }
+.ev.fixed { border-left-style: dashed; }
+.tomorrow { margin-top: var(--space-4); font-size: var(--step--1); color: var(--color-text-muted); min-height: 3em; }
+.tomorrow b { color: var(--color-primary); }
+@media (max-width: 860px) { .planb .wrap { grid-template-columns: 1fr; } }
+
+.cta { padding-block: var(--section-y); background: var(--color-dark); color: var(--color-on-dark); }
+.cta .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); align-items: end; }
+.cta h2 em { color: #ff8a6e; }
+.cta .input { color: var(--color-on-dark); border-color: var(--color-on-dark); } .cta .input::placeholder { color: #b8b2a7; }
+.cta .btn-primary { box-shadow: 3px 3px 0 var(--color-on-dark); }
+.cta .micro { color: #b8b2a7; }
+@media (max-width: 860px) { .cta .wrap { grid-template-columns: 1fr; } }
+footer { padding-block: var(--space-7); font-size: var(--step--1); color: var(--color-text-muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: space-between; align-items: center; }
+footer nav { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+
+.sys { padding-block: var(--space-8); border-top: 1px solid var(--color-text); }
+.sys h2 { font-size: var(--step-3); margin-bottom: var(--space-5); }
+.sw { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+.sw div { width: 112px; font: 500 11px/1.3 var(--font-mono); color: var(--color-text-muted); }
+.sw span { display: block; height: 56px; border-radius: var(--radius-sm); margin-bottom: var(--space-2); border: 1px solid var(--color-border); }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-5); }
+.card { background: var(--color-surface); border: 1px solid var(--color-text); border-radius: var(--radius-md); padding: var(--space-5); max-width: 300px; }
+.badge { display: inline-block; font: 500 11px/1 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--color-primary); border: 1px solid currentColor; padding: 5px 8px; border-radius: var(--radius-sm); }
+.reveal { opacity: 0; translate: 0 14px; transition: opacity var(--dur-slow) var(--ease-out), translate var(--dur-slow) var(--ease-out); }
+.reveal.on { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .slot, .reveal { opacity: 1; translate: 0 0; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#">Ogarnij<span>.</span></a>
+    <nav class="nav" id="nav" aria-label="Główna">
+      <a href="#jak">Jak działa</a><a href="#demo">Demo</a><a href="#planb">Plan B</a><a href="#prywatnosc">Prywatność</a><a href="#cennik">Cennik</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="#zapisz">Zapisz się</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menuBtn"><span aria-hidden="true">☰</span><span class="skip">Menu</span></button>
+  </div>
+</header>
+
+<main id="tresc">
+<section class="hero ruled margin-line">
+  <div class="wrap">
+    <div>
+      <p class="date"><b>Wtorek</b><span>25 listopada</span><span>Zamknięta beta: wiosna 2027</span></p>
+      <h1>Powiedz, co masz na&nbsp;głowie. <em>Ogarnij</em> ułoży z&nbsp;tego dzień.</h1>
+      <p class="lead">Nagrywasz minutę chaosu po polsku. Dostajesz plan z godzinami, pierwszymi krokami i zapasem na niespodzianki.</p>
+      <form class="signup" onsubmit="event.preventDefault()">
+        <div class="field" style="flex:1"><label for="e1">Twój e-mail</label><input class="input" id="e1" type="email" placeholder="np. ola@poczta.pl" autocomplete="email" required></div>
+        <button class="btn btn-primary">Zapisz mnie na betę</button>
+      </form>
+      <p class="micro">Jeden e-mail z potwierdzeniem, potem tylko wieści o becie. Wypisujesz się jednym kliknięciem.</p>
+      <a class="more" href="#jak">Najpierw zobacz, jak działa ↓</a>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="phone back"><div class="scr">
+        <h4>Domknięcie dnia</h4><p class="sub">Wtorek, 25 listopada</p>
+        <div class="done-row"><span>Call z klientem</span><b>zrobione</b></div>
+        <div class="done-row"><span>Prezentacja — 3 slajdy</span><b>zrobione</b></div>
+        <div class="done-row"><span>Siłownia</span><b>zrobione</b></div>
+        <div class="done-row"><span>Prezent dla Oli</span><span>→ jutro</span></div>
+      </div></div>
+      <div class="phone front"><div class="scr">
+        <h4>Dziś</h4><p class="sub">Słucham… 0:42</p>
+        <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="quote">„rano siłownia, o dziesiątej call z klientem, dokończyć prezentację na piątek…”</p>
+        <div class="slot"><time>07:30</time><div>Siłownia<small>60 min</small></div></div>
+        <div class="slot hot"><time>10:00</time><div>Call z klientem<small>stałe · 60 min</small></div></div>
+        <div class="slot"><time>11:15</time><div>Prezentacja: 3 nagłówki<small>pierwszy krok · 10 min</small></div></div>
+        <div class="slot"><time>13:00</time><div>Zadzwonić do mamy<small>15 min</small></div></div>
+        <div class="slot"><time>17:30</time><div>Prezent dla Oli<small>w drodze z pracy</small></div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="jak">
+  <div class="wrap">
+    <h2 class="reveal">Trzy kroki od chaosu do <em>planu</em>.</h2>
+    <ol class="steps">
+      <li class="reveal"><div><h3>Powiedz.</h3><p>Przytrzymaj przycisk i mów jak do przyjaciela. Bez formułek, możesz się poprawiać w trakcie.</p></div></li>
+      <li class="reveal"><div><h3>Ogarnij rozkłada.</h3><p>Zadania, terminy, osoby i czas trwania. Duże rzeczy dostają pierwszy 10-minutowy krok.</p></div></li>
+      <li class="reveal"><div><h3>Dzień sam się układa.</h3><p>Trudne zadania w Twoich godzinach energii, przerwy między spotkaniami, zapas na niespodzianki.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="trust" id="prywatnosc">
+  <div class="wrap">
+    <div>
+      <h2 class="reveal">Twój głos zostaje <em>Twój</em>.</h2>
+      <p class="note">Licznik zapisów pojawi się od 100 osób. Nie pokazujemy zmyślonych liczb ani opinii.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Nagranie znika po transkrypcji</dt><dd>Zostaje tylko tekst Twoich zadań.</dd></div>
+      <div><dt>Dane na serwerach w UE</dt><dd>Nie trenujemy modeli na Twoich planach.</dd></div>
+      <div><dt>AI proponuje, Ty decydujesz</dt><dd>Nic nie trafia do kalendarza bez Twojej zgody. AI może się pomylić — każdą propozycję poprawisz.</dd></div>
+      <div><dt>Eksport i usunięcie konta</dt><dd>Jednym przyciskiem w ustawieniach.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="planb" id="planb">
+  <div class="wrap">
+    <div>
+      <h2>Dzień się posypał? <em>Plan nie.</em></h2>
+      <p class="lead">Ogarnij przelicza resztę dnia i mówi wprost, co się nie zmieści. Ty decydujesz: przenieść, skrócić czy odpuścić.</p>
+      <button class="btn btn-secondary" id="lateBtn" aria-pressed="false">Spotkanie się przeciągnęło</button>
+      <p class="tomorrow" id="tom" aria-live="polite">Wszystko mieści się w dniu.</p>
+    </div>
+    <div class="day" id="day" aria-label="Plan dnia od 9:00 do 18:00">
+      <div class="h" style="top:0">9:00</div><div class="h" style="top:52px">10:00</div><div class="h" style="top:104px">11:00</div><div class="h" style="top:156px">12:00</div><div class="h" style="top:208px">13:00</div><div class="h" style="top:260px">14:00</div><div class="h" style="top:312px">15:00</div><div class="h" style="top:364px">16:00</div><div class="h" style="top:416px">17:00</div><div class="h" style="top:468px">18:00</div>
+      <div class="ev" style="top:4px;height:44px">Mail do klienta<small>pierwszy krok</small></div>
+      <div class="ev meet" id="meet" style="top:56px;height:74px">Spotkanie zespołu<small id="meetT">10:00–11:30</small></div>
+      <div class="ev" id="focus" style="top:134px;height:148px">Prezentacja na piątek<small>blok skupienia</small></div>
+      <div class="ev" id="shop" style="top:316px;height:40px">Zakupy<small>20 min</small></div>
+      <div class="ev fixed" style="top:368px;height:96px">Odbiór z przedszkola<small>stałe 16:00</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="zapisz">
+  <div class="wrap">
+    <h2>Dołącz, zanim dzień znowu <em>Cię wyprzedzi</em>.</h2>
+    <div>
+      <form class="signup" onsubmit="event.preventDefault()">
+        <div class="field" style="flex:1"><label for="e2">Twój e-mail</label><input class="input" id="e2" type="email" placeholder="np. ola@poczta.pl" required></div>
+        <button class="btn btn-primary">Zapisz mnie</button>
+      </form>
+      <p class="micro">Po potwierdzeniu dostajesz miejsce w kolejce i link dla znajomych.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#">Ogarnij<span>.</span></a>
+    <nav aria-label="Stopka"><a href="#">Prywatność</a><a href="#">Zasady listy</a><a href="#">Poradnik</a><a href="#">kontakt@[DO UZUPEŁNIENIA]</a></nav>
+    <p>© 2026 Ogarnij · projekt fikcyjny — strona demonstracyjna</p>
+  </div>
+</footer>
+
+<section class="sys" aria-labelledby="sysT">
+  <div class="wrap">
+    <h2 id="sysT">System</h2>
+    <div class="sw">
+      <div><span style="background:#f4efe6"></span>bg #f4efe6</div>
+      <div><span style="background:#fbf8f2"></span>surface #fbf8f2</div>
+      <div><span style="background:#18171c"></span>text #18171c<br>15,7:1</div>
+      <div><span style="background:#5c5866"></span>muted #5c5866<br>6,0:1</div>
+      <div><span style="background:#b8341d"></span>primary #b8341d<br>5,2:1 · biały 5,9:1</div>
+      <div><span style="background:#e5482f"></span>accent #e5482f<br>tylko duże / linie</div>
+    </div>
+    <p style="font:400 var(--step-4)/1 var(--font-heading)">Zażółć gęślą jaźń</p>
+    <p style="font:400 var(--step-2)/1.2 var(--font-heading);font-style:italic;margin-top:8px">Instrument Serif, także kursywa</p>
+    <p style="margin-top:8px">Geist 400 — tekst podstawowy: ąćęłńóśźż ĄĆĘŁŃÓŚŹŻ.</p>
+    <p style="font-family:var(--font-mono);font-size:var(--step--1);margin-top:8px">Geist Mono — 07:30 · 10:00–11:30</p>
+    <div class="row"><button class="btn btn-primary">Główny</button><button class="btn btn-secondary">Drugi</button><button class="btn btn-ghost">Tekstowy</button><span class="badge">beta</span></div>
+    <div class="row" style="align-items:start">
+      <div class="field" style="min-width:280px"><label for="e3">E-mail</label><input class="input" id="e3" value="ola@poczta" aria-invalid="true" aria-describedby="e3e"><span class="err" id="e3e">Wpisz pełny adres, np. ola@poczta.pl</span></div>
+      <div class="card"><span class="badge">Plus</span><h3 style="margin:12px 0 4px;font-size:var(--step-3)">19 zł / mies.</h3><p style="color:var(--color-text-muted)">Bez limitu nagrań, wszystkie kalendarze, Plan B.</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const mb = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  nav.addEventListener('click', e => { if (e.target.tagName === 'A') { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+  addEventListener('keydown', e => { if (e.key === 'Escape') { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }), { threshold: .2 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const lb = document.getElementById('lateBtn'), meet = document.getElementById('meet'), focus = document.getElementById('focus'), shop = document.getElementById('shop'), tom = document.getElementById('tom'), mt = document.getElementById('meetT');
+  let late = false;
+  lb.addEventListener('click', () => {
+    late = !late; lb.setAttribute('aria-pressed', late); lb.textContent = late ? 'Cofnij' : 'Spotkanie się przeciągnęło';
+    meet.style.height = late ? '152px' : '74px'; mt.textContent = late ? '10:00–12:45' : '10:00–11:30';
+    focus.style.top = late ? '212px' : '134px';
+    shop.style.opacity = late ? '.3' : '1'; shop.style.transform = late ? 'translateX(40%)' : 'none';
+    tom.innerHTML = late ? '<b>Jutro, 9:30:</b> Zakupy — nie było miejsca przed odbiorem z przedszkola. Prezentacja od 13:00.' : 'Wszystko mieści się w dniu.';
+  });
+</script>
+</body>
+</html>

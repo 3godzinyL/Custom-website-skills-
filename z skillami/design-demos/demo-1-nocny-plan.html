@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1 · Nocny plan</title>
+<meta name="description" content="Najbliżej inspiracji: ciemne tło, dwa telefony, koralowy przycisk akcji i miętowa oś czasu zamiast fioletowej poświaty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-bg: #0f0e17; --color-surface: #191823; --color-surface-2: #23212f;
+  --color-text: #f4f1ea; --color-text-muted: #aaa6b8; --color-border: #2f2d3d;
+  --color-primary: #ff6b4a; --color-primary-hover: #ff8466; --color-primary-contrast: #0f0e17;
+  --color-accent: #7fe0c2; --color-dark: #08070d; --color-on-dark: #f4f1ea;
+  --color-success: #7fe0c2; --color-warning: #ffc861; --color-error: #ff7a7a; --color-focus: #ffc861;
+  --font-heading: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --step--1: clamp(0.83rem, 0.81rem + 0.12vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.32vw, 1.41rem);
+  --step-2: clamp(1.44rem, 1.33rem + 0.52vw, 1.76rem);
+  --step-3: clamp(1.73rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-4: clamp(2.07rem, 1.6rem + 2.2vw, 3.4rem);
+  --step-5: clamp(2.5rem, 1.7rem + 3.8vw, 5rem);
+  --leading-tight: 1.02; --leading-body: 1.6; --tracking-tight: -0.03em; --tracking-wide: 0.08em;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --section-y: clamp(4rem, 2.4rem + 6vw, 8rem); --container: 1200px; --gutter: clamp(16px, 4vw, 32px);
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 24px; --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .4), 0 4px 12px rgb(0 0 0 / .25);
+  --shadow-2: 0 2px 4px rgb(0 0 0 / .35), 0 24px 60px rgb(0 0 0 / .45);
+  --border-width: 1px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms; --dur-base: 300ms; --dur-slow: 600ms;
+  --z-header: 50; --z-overlay: 80; --z-modal: 90; --z-toast: 100;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font: 400 var(--step-0)/var(--leading-body) var(--font-body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); margin: 0; font-weight: 800; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; border-radius: 4px; }
+.wrap { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.skip { position: absolute; left: -9999px; } .skip:focus { left: var(--space-4); top: var(--space-4); background: var(--color-text); color: var(--color-bg); padding: var(--space-2) var(--space-4); z-index: var(--z-modal); }
+
+/* header */
+.hdr { position: sticky; top: 0; z-index: var(--z-header); background: rgb(15 14 23 / .92); border-bottom: var(--border-width) solid transparent; transition: border-color var(--dur-base); }
+.hdr.scrolled { border-color: var(--color-border); }
+.hdr .wrap { display: flex; align-items: center; gap: var(--space-5); height: 68px; }
+.logo { font: 800 1.35rem/1 var(--font-heading); letter-spacing: var(--tracking-tight); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-2); }
+.logo i { width: 12px; height: 12px; border-radius: 3px; background: var(--color-primary); display: inline-block; transform: rotate(45deg); }
+.nav { display: flex; gap: var(--space-5); margin-left: auto; }
+.nav a { text-decoration: none; color: var(--color-text-muted); font-weight: 600; font-size: var(--step--1); transition: color var(--dur-fast); }
+.nav a:hover { color: var(--color-text); }
+.menu-btn { display: none; margin-left: auto; background: none; border: var(--border-width) solid var(--color-border); color: var(--color-text); border-radius: var(--radius-sm); width: 44px; height: 44px; cursor: pointer; }
+@media (max-width: 860px) {
+  .nav { display: none; position: fixed; inset: 68px 0 0; background: var(--color-bg); flex-direction: column; padding: var(--space-6) var(--gutter); gap: var(--space-5); }
+  .nav.open { display: flex; } .nav a { font-size: var(--step-2); color: var(--color-text); }
+  .menu-btn { display: inline-grid; place-items: center; } .hdr .btn { display: none; }
+}
+
+/* buttons + fields */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-5); border-radius: var(--radius-pill); border: var(--border-width) solid transparent; font: 700 var(--step--1)/1 var(--font-body); text-decoration: none; cursor: pointer; transition: background var(--dur-fast), transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast); }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--color-primary); color: var(--color-primary-contrast); }
+.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-secondary { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.btn-secondary:hover { border-color: var(--color-text-muted); }
+.btn-ghost { background: none; color: var(--color-text); padding-inline: var(--space-2); text-decoration: underline; text-underline-offset: 4px; }
+.field { display: grid; gap: var(--space-2); }
+.field label { font-weight: 600; font-size: var(--step--1); }
+.input { min-height: 52px; border-radius: var(--radius-pill); border: var(--border-width) solid var(--color-border); background: var(--color-surface); color: var(--color-text); padding: 0 var(--space-5); font: inherit; width: 100%; }
+.input::placeholder { color: var(--color-text-muted); }
+.input[aria-invalid="true"] { border-color: var(--color-error); }
+.err { color: var(--color-error); font-size: var(--step--1); }
+
+/* hero */
+.hero { padding-block: var(--space-8) var(--section-y); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--space-7); align-items: center; }
+.eyebrow { font: 500 var(--step--1)/1.3 var(--font-mono); color: var(--color-accent); letter-spacing: .02em; margin-bottom: var(--space-5); }
+.hero h1 { font-size: var(--step-5); }
+.hero h1 em { font-style: normal; color: var(--color-primary); }
+.hero .lead { margin-top: var(--space-5); color: var(--color-text-muted); font-size: var(--step-1); max-width: 34ch; line-height: 1.5; }
+.signup { margin-top: var(--space-6); display: flex; gap: var(--space-2); max-width: 520px; }
+.signup .input { flex: 1; min-width: 0; }
+.micro { margin-top: var(--space-3); color: var(--color-text-muted); font-size: var(--step--1); max-width: 46ch; }
+.hero .more { margin-top: var(--space-5); display: inline-block; color: var(--color-text); font-weight: 600; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .signup { flex-direction: column; } .hero { padding-top: var(--space-6); } }
+
+/* phones */
+.stage { position: relative; min-height: 560px; }
+.phone { position: absolute; width: 270px; aspect-ratio: 9 / 19.2; border-radius: 42px; background: var(--color-dark); padding: 10px; box-shadow: var(--shadow-2), inset 0 0 0 1px #34323f; }
+.phone .scr { height: 100%; border-radius: 33px; background: var(--color-surface); overflow: hidden; padding: 38px 16px 16px; position: relative; font-size: 12px; line-height: 1.4; }
+.phone .scr::before { content: ""; position: absolute; top: 10px; left: 50%; translate: -50% 0; width: 84px; height: 22px; border-radius: 20px; background: var(--color-dark); }
+.phone.front { right: 4%; top: 30px; z-index: 2; }
+.phone.back { left: 2%; top: 0; rotate: -6deg; opacity: .9; }
+.scr h4 { font: 700 15px/1.2 var(--font-heading); margin: 0 0 2px; }
+.scr .sub { color: var(--color-text-muted); font-size: 11px; margin-bottom: 12px; }
+.wave { display: flex; gap: 3px; align-items: center; height: 34px; padding: 0 10px; background: var(--color-surface-2); border-radius: var(--radius-md); margin-bottom: 10px; }
+.wave span { flex: 1; background: var(--color-primary); border-radius: 2px; height: 30%; animation: wv 1.1s var(--ease-in-out) infinite alternate; }
+.wave span:nth-child(3n) { animation-delay: -.3s; } .wave span:nth-child(4n) { animation-delay: -.6s; } .wave span:nth-child(5n) { animation-delay: -.9s; }
+@keyframes wv { to { height: 90%; } }
+.quote { color: var(--color-text-muted); font-style: italic; margin-bottom: 12px; }
+.slot { display: grid; grid-template-columns: 38px 1fr; gap: 8px; align-items: stretch; margin-bottom: 6px; opacity: 0; translate: 0 8px; animation: in var(--dur-slow) var(--ease-out) forwards; }
+.slot time { font: 500 10px/1 var(--font-mono); color: var(--color-text-muted); padding-top: 8px; }
+.slot div { background: var(--color-surface-2); border-left: 3px solid var(--color-accent); border-radius: 8px; padding: 6px 8px; }
+.slot.hot div { border-color: var(--color-primary); }
+.slot small { display: block; color: var(--color-text-muted); font-size: 10px; }
+.slot:nth-of-type(1) { animation-delay: .4s; } .slot:nth-of-type(2) { animation-delay: .7s; } .slot:nth-of-type(3) { animation-delay: 1s; } .slot:nth-of-type(4) { animation-delay: 1.3s; } .slot:nth-of-type(5) { animation-delay: 1.6s; }
+@keyframes in { to { opacity: 1; translate: 0 0; } }
+.done-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--color-border); }
+.done-row b { color: var(--color-accent); font-weight: 600; }
+@media (max-width: 860px) { .stage { min-height: 520px; } .phone.back { display: none; } .phone.front { position: relative; right: auto; top: 0; margin-inline: auto; } }
+
+/* how */
+.how { padding-block: var(--section-y); border-top: var(--border-width) solid var(--color-border); }
+.how h2, .cta h2, .planb h2, .trust h2 { font-size: var(--step-4); max-width: 18ch; }
+.steps { list-style: none; padding: 0; margin: var(--space-7) 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--color-text); padding-top: var(--space-5); }
+.steps li::before { content: "0" counter(s); font: 500 var(--step--1)/1 var(--font-mono); color: var(--color-primary); }
+.steps h3 { font-size: var(--step-2); margin: var(--space-3) 0 var(--space-2); }
+.steps p { color: var(--color-text-muted); }
+@media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+
+/* trust */
+.trust { padding-block: var(--section-y); background: var(--color-surface); }
+.trust .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--space-7); }
+.facts { display: grid; gap: 0; margin: 0; }
+.facts div { display: grid; grid-template-columns: 1fr; padding: var(--space-4) 0; border-bottom: var(--border-width) solid var(--color-border); }
+.facts dt { font-weight: 700; } .facts dd { margin: var(--space-1) 0 0; color: var(--color-text-muted); }
+.count { margin-top: var(--space-6); font: 700 var(--step-3)/1 var(--font-heading); font-variant-numeric: tabular-nums; }
+.count small { display: block; font: 500 var(--step--1)/1.4 var(--font-body); color: var(--color-text-muted); margin-top: var(--space-2); }
+@media (max-width: 860px) { .trust .wrap { grid-template-columns: 1fr; } }
+
+/* plan B */
+.planb { padding-block: var(--section-y); }
+.planb .head { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: end; justify-content: space-between; }
+.planb .head p { max-width: 42ch; color: var(--color-text-muted); }
+.track { margin-top: var(--space-7); display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 6px; position: relative; }
+.hours { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; font: 500 var(--step--1)/1 var(--font-mono); color: var(--color-text-muted); }
+.blk { height: 76px; border-radius: var(--radius-md); padding: var(--space-3); font-weight: 700; font-size: var(--step--1); background: var(--color-surface-2); border: var(--border-width) solid var(--color-border); transition: grid-column var(--dur-slow), transform var(--dur-slow) var(--ease-out), opacity var(--dur-base); display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; }
+.blk small { font-weight: 500; color: var(--color-text-muted); }
+.blk.meet { background: var(--color-primary); color: var(--color-primary-contrast); border-color: transparent; }
+.blk.meet small { color: inherit; opacity: .75; }
+.b1 { grid-column: 1 / 2; } .b2 { grid-column: 2 / 4; } .b3 { grid-column: 4 / 7; } .b5 { grid-column: 7 / 8; } .b4 { grid-column: 8 / 10; }
+.track.late .b2 { grid-column: 2 / 5; } .track.late .b3 { grid-column: 5 / 8; } .track.late .b5 { opacity: .35; transform: translateY(96px); }
+.tomorrow { margin-top: var(--space-4); padding: var(--space-4); border: 1px dashed var(--color-border); border-radius: var(--radius-md); color: var(--color-text-muted); font-size: var(--step--1); min-height: 56px; }
+.tomorrow b { color: var(--color-accent); }
+@media (max-width: 760px) { .track { grid-template-columns: 1fr; } .hours { display: none; } .blk { grid-column: 1 / -1 !important; height: auto; gap: var(--space-2); } .track.late .b5 { transform: none; } }
+
+/* cta + footer */
+.cta { padding-block: var(--section-y); background: var(--color-primary); color: var(--color-primary-contrast); }
+.cta .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-6); align-items: end; }
+.cta .input { background: rgb(255 255 255 / .9); color: var(--color-bg); border-color: transparent; }
+.cta .btn-primary { background: var(--color-bg); color: var(--color-text); }
+.cta .micro { color: inherit; opacity: .8; }
+@media (max-width: 860px) { .cta .wrap { grid-template-columns: 1fr; } }
+footer { padding-block: var(--space-7); color: var(--color-text-muted); font-size: var(--step--1); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: space-between; }
+footer nav { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+
+/* system strip */
+.sys { padding-block: var(--space-8); border-top: var(--border-width) solid var(--color-border); background: var(--color-dark); }
+.sys h2 { font-size: var(--step-2); margin-bottom: var(--space-5); }
+.sw { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+.sw div { width: 112px; font: 500 11px/1.3 var(--font-mono); color: var(--color-text-muted); }
+.sw span { display: block; height: 56px; border-radius: var(--radius-sm); margin-bottom: var(--space-2); border: 1px solid var(--color-border); }
+.type-s p { margin-bottom: var(--space-3); }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-5); }
+.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); max-width: 300px; }
+.badge { display: inline-block; font: 500 11px/1 var(--font-mono); padding: 6px 10px; border-radius: var(--radius-pill); background: var(--color-surface-2); color: var(--color-accent); }
+
+.reveal { opacity: 0; translate: 0 16px; transition: opacity var(--dur-slow) var(--ease-out), translate var(--dur-slow) var(--ease-out); }
+.reveal.on { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .slot { opacity: 1; translate: 0 0; } .reveal { opacity: 1; translate: 0 0; } html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#"><i aria-hidden="true"></i>Ogarnij</a>
+    <nav class="nav" id="nav" aria-label="Główna">
+      <a href="#jak">Jak działa</a><a href="#demo">Demo</a><a href="#planb">Plan B</a><a href="#prywatnosc">Prywatność</a><a href="#cennik">Cennik</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="#zapisz">Zapisz się</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav" id="menuBtn"><span aria-hidden="true">☰</span><span class="skip">Menu</span></button>
+  </div>
+</header>
+
+<main id="tresc">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Zamknięta beta · wiosna 2027 · Android i iPhone</p>
+      <h1>Powiedz, co masz na głowie. <em>Ogarnij</em> ułoży z&nbsp;tego dzień.</h1>
+      <p class="lead">Nagrywasz minutę chaosu po polsku. Dostajesz plan z godzinami, pierwszymi krokami i zapasem na niespodzianki.</p>
+      <form class="signup" onsubmit="event.preventDefault()">
+        <label class="skip" for="e1">Twój e-mail</label>
+        <input class="input" id="e1" type="email" placeholder="Twój e-mail" autocomplete="email" required>
+        <button class="btn btn-primary">Zapisz mnie na betę</button>
+      </form>
+      <p class="micro">Jeden e-mail z potwierdzeniem, potem tylko wieści o becie. Wypisujesz się jednym kliknięciem.</p>
+      <a class="more" href="#jak">Najpierw zobacz, jak działa ↓</a>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="phone back"><div class="scr">
+        <h4>Domknięcie dnia</h4><p class="sub">Wtorek, 25 listopada</p>
+        <div class="done-row"><span>Call z klientem</span><b>zrobione</b></div>
+        <div class="done-row"><span>Prezentacja — 3 slajdy</span><b>zrobione</b></div>
+        <div class="done-row"><span>Siłownia</span><b>zrobione</b></div>
+        <div class="done-row"><span>Prezent dla Oli</span><span>→ jutro</span></div>
+        <p class="sub" style="margin-top:12px">Dziś: 4 z 5 zrobione. Reszta czeka na jutro, 9:30.</p>
+      </div></div>
+      <div class="phone front"><div class="scr">
+        <h4>Dziś</h4><p class="sub">Słucham… 0:42</p>
+        <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <p class="quote">„rano siłownia, o dziesiątej call z klientem, dokończyć prezentację na piątek…”</p>
+        <div class="slot"><time>07:30</time><div>Siłownia<small>60 min</small></div></div>
+        <div class="slot hot"><time>10:00</time><div>Call z klientem<small>stałe · 60 min</small></div></div>
+        <div class="slot"><time>11:15</time><div>Prezentacja: 3 nagłówki<small>pierwszy krok · 10 min</small></div></div>
+        <div class="slot"><time>13:00</time><div>Zadzwonić do mamy<small>15 min</small></div></div>
+        <div class="slot"><time>17:30</time><div>Prezent dla Oli<small>w drodze z pracy</small></div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="jak">
+  <div class="wrap">
+    <h2 class="reveal">Trzy kroki od chaosu do planu.</h2>
+    <ol class="steps">
+      <li class="reveal"><h3>Powiedz.</h3><p>Przytrzymaj przycisk i mów jak do przyjaciela. Bez formułek, możesz się poprawiać w trakcie.</p></li>
+      <li class="reveal"><h3>Ogarnij rozkłada.</h3><p>Zadania, terminy, osoby i czas trwania. Duże rzeczy dostają pierwszy 10-minutowy krok.</p></li>
+      <li class="reveal"><h3>Dzień sam się układa.</h3><p>Trudne zadania w Twoich godzinach energii, przerwy między spotkaniami, zapas na niespodzianki.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="trust" id="prywatnosc">
+  <div class="wrap">
+    <div>
+      <h2 class="reveal">Twój głos zostaje Twój.</h2>
+      <p class="count reveal">— <small>Licznik zapisów pojawi się od 100 osób. Nie pokazujemy zmyślonych liczb ani opinii.</small></p>
+    </div>
+    <dl class="facts">
+      <div><dt>Nagranie znika po transkrypcji</dt><dd>Zostaje tylko tekst Twoich zadań.</dd></div>
+      <div><dt>Dane na serwerach w UE</dt><dd>Nie trenujemy modeli na Twoich planach.</dd></div>
+      <div><dt>AI proponuje, Ty decydujesz</dt><dd>Nic nie trafia do kalendarza bez Twojej zgody. AI może się pomylić — każdą propozycję poprawisz.</dd></div>
+      <div><dt>Eksport i usunięcie konta</dt><dd>Jednym przyciskiem w ustawieniach.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="planb" id="planb">
+  <div class="wrap">
+    <div class="head">
+      <h2>Dzień się posypał? Plan nie.</h2>
+      <p>Ogarnij przelicza resztę dnia i mówi wprost, co się nie zmieści. Ty decydujesz: przenieść, skrócić czy odpuścić.</p>
+      <button class="btn btn-secondary" id="lateBtn" aria-pressed="false">Spotkanie się przeciągnęło</button>
+    </div>
+    <div class="track" id="track">
+      <div class="hours"><span>9:00</span><span>10:00</span><span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span><span>15:00</span><span>16:00</span><span>17:00</span><span>18:00</span></div>
+      <div class="blk b1">Mail do klienta<small>pierwszy krok</small></div>
+      <div class="blk b2 meet">Spotkanie zespołu<small id="meetT">10:00–11:30</small></div>
+      <div class="blk b3">Prezentacja na piątek<small>blok skupienia</small></div>
+      <div class="blk b5">Zakupy<small>20 min</small></div>
+      <div class="blk b4">Odbiór z przedszkola<small>stałe 16:00</small></div>
+    </div>
+    <p class="tomorrow" id="tom" aria-live="polite">Wszystko mieści się w dniu.</p>
+  </div>
+</section>
+
+<section class="cta" id="zapisz">
+  <div class="wrap">
+    <h2>Dołącz, zanim dzień znowu Cię wyprzedzi.</h2>
+    <div>
+      <form class="signup" onsubmit="event.preventDefault()">
+        <label class="skip" for="e2">Twój e-mail</label>
+        <input class="input" id="e2" type="email" placeholder="Twój e-mail" required>
+        <button class="btn btn-primary">Zapisz mnie</button>
+      </form>
+      <p class="micro">Po potwierdzeniu dostajesz miejsce w kolejce i link dla znajomych.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#"><i aria-hidden="true"></i>Ogarnij</a>
+    <nav aria-label="Stopka"><a href="#">Prywatność</a><a href="#">Zasady listy</a><a href="#">Poradnik</a><a href="#">kontakt@[DO UZUPEŁNIENIA]</a></nav>
+    <p>© 2026 Ogarnij · projekt fikcyjny — strona demonstracyjna</p>
+  </div>
+</footer>
+
+<section class="sys" aria-labelledby="sysT">
+  <div class="wrap">
+    <h2 id="sysT">System</h2>
+    <div class="sw">
+      <div><span style="background:#0f0e17"></span>bg #0f0e17</div>
+      <div><span style="background:#191823"></span>surface #191823</div>
+      <div><span style="background:#f4f1ea"></span>text #f4f1ea<br>16,9:1</div>
+      <div><span style="background:#aaa6b8"></span>muted #aaa6b8<br>8,1:1</div>
+      <div><span style="background:#ff6b4a"></span>primary #ff6b4a<br>6,8:1</div>
+      <div><span style="background:#7fe0c2"></span>accent #7fe0c2<br>12:1</div>
+    </div>
+    <div class="type-s">
+      <p style="font:800 var(--step-4)/1 var(--font-heading);letter-spacing:var(--tracking-tight)">Zażółć gęślą jaźń</p>
+      <p style="font:700 var(--step-2)/1.2 var(--font-heading)">Bricolage Grotesque 800 / 700</p>
+      <p>Manrope 400 — tekst podstawowy: ąćęłńóśźż ĄĆĘŁŃÓŚŹŻ.</p>
+      <p style="font-family:var(--font-mono);font-size:var(--step--1)">JetBrains Mono — 07:30 · 10:00–11:30</p>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary">Główny</button><button class="btn btn-secondary">Drugi</button><button class="btn btn-ghost">Tekstowy</button><span class="badge">beta</span>
+    </div>
+    <div class="row" style="align-items:start">
+      <div class="field" style="min-width:280px"><label for="e3">E-mail</label><input class="input" id="e3" value="ola@poczta" aria-invalid="true" aria-describedby="e3e"><span class="err" id="e3e">Wpisz pełny adres, np. ola@poczta.pl</span></div>
+      <div class="card"><span class="badge">Plus</span><h3 style="margin:12px 0 4px;font-size:var(--step-2)">19 zł / mies.</h3><p style="color:var(--color-text-muted)">Bez limitu nagrań, wszystkie kalendarze, Plan B.</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), { passive: true });
+  const mb = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  nav.addEventListener('click', e => { if (e.target.tagName === 'A') { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+  addEventListener('keydown', e => { if (e.key === 'Escape') { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }), { threshold: .2 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const lb = document.getElementById('lateBtn'), tr = document.getElementById('track'), tom = document.getElementById('tom'), mt = document.getElementById('meetT');
+  lb.addEventListener('click', () => {
+    const late = tr.classList.toggle('late'); lb.setAttribute('aria-pressed', late);
+    lb.textContent = late ? 'Cofnij' : 'Spotkanie się przeciągnęło';
+    mt.textContent = late ? '10:00–12:45' : '10:00–11:30';
+    tom.innerHTML = late ? '<b>Jutro, 9:30:</b> Zakupy — nie było miejsca. Prezentacja przesunięta na 13:00, odbiór z przedszkola bez zmian.' : 'Wszystko mieści się w dniu.';
+  });
+</script>
+</body>
+</html>

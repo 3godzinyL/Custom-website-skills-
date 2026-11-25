@@ -1,0 +1,5 @@
+Panel: http://localhost:3700/admin
+E-mail: admin@ogarnij.local
+Hasło: T0jQLsCaF6bk4Cjl-M0_
+
+Zmień hasło po pierwszym logowaniu i usuń ten plik.
