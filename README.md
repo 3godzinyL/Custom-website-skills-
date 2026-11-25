@@ -3,18 +3,20 @@
 Cztery skille dla Claude (i innych AI), które **współpracują ze sobą** przy całym życiu
 strony: od rozmowy o pomysł, przez projekt wyglądu i budowę, po rozwój
 i bezpieczeństwo.
-https://www.youtube.com/watch?v=mE5L9HQcvWk
+
 **Instrukcje są po angielsku**, bo modele wykonują je wtedy najdokładniej. **Rozmowa
 i wyniki są po polsku:** skille rozumieją polskie polecenia (także pisane potocznie
 albo dyktowane), odpowiadają po polsku i budują strony z polskimi treściami
 i działającymi polskimi znakami. Uruchamiają się na polskie hasła, np. „zrób stronę”,
 „sprawdź bezpieczeństwo”, „czego brakuje na mojej stronie”, „zmień wygląd strony”.
 
+
 ---
 Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie) 
 https://www.youtube.com/watch?v=mE5L9HQcvWk
+Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie) 
 
-
+---
 
 
 ## Co jest w paczce
