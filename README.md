@@ -11,6 +11,11 @@ i działającymi polskimi znakami. Uruchamiają się na polskie hasła, np. „z
 „sprawdź bezpieczeństwo”, „czego brakuje na mojej stronie”, „zmień wygląd strony”.
 
 ---
+Pełny film z użycia skilli(porównanie bez i z na losowym przykładzie) 
+https://www.youtube.com/watch?v=mE5L9HQcvWk
+
+
+
 
 ## Co jest w paczce
 
