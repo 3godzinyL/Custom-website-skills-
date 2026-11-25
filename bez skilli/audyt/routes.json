@@ -1,0 +1,1601 @@
+{
+  "root": "C:\\Users\\huber\\Desktop\\skill test\\bez skilli",
+  "filesScanned": 61,
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "file": "server/app.js",
+      "line": 61,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/app.js",
+      "line": 73,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/privacy",
+      "file": "server/app.js",
+      "line": 74,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/terms",
+      "file": "server/app.js",
+      "line": 75,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/confirm",
+      "file": "server/app.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/forgot-password",
+      "file": "server/app.js",
+      "line": 77,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/reset-password",
+      "file": "server/app.js",
+      "line": 78,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/admin/login",
+      "file": "server/app.js",
+      "line": 91,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/robots.txt",
+      "file": "server/app.js",
+      "line": 101,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/sitemap.xml",
+      "file": "server/app.js",
+      "line": 104,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 20,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 39,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/password",
+      "file": "server/routes/account.js",
+      "line": 78,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/sessions",
+      "file": "server/routes/account.js",
+      "line": 92,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/sessions/:id",
+      "file": "server/routes/account.js",
+      "line": 96,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/sessions/revoke-others",
+      "file": "server/routes/account.js",
+      "line": 104,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/export",
+      "file": "server/routes/account.js",
+      "line": 108,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/delete",
+      "file": "server/routes/account.js",
+      "line": 115,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 144,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/redeem",
+      "file": "server/routes/account.js",
+      "line": 148,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/account",
+      "file": "server/routes/account.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "file": "server/routes/admin.js",
+      "line": 39,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/auth/session",
+      "file": "server/routes/admin.js",
+      "line": 61,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "file": "server/routes/admin.js",
+      "line": 65,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/overview",
+      "file": "server/routes/admin.js",
+      "line": 73,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "file": "server/routes/admin.js",
+      "line": 136,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 140,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 145,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/block",
+      "file": "server/routes/admin.js",
+      "line": 170,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/unblock",
+      "file": "server/routes/admin.js",
+      "line": 184,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/sessions/revoke",
+      "file": "server/routes/admin.js",
+      "line": 193,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 202,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access",
+      "file": "server/routes/admin.js",
+      "line": 228,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access/extend",
+      "file": "server/routes/admin.js",
+      "line": 246,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access/revoke",
+      "file": "server/routes/admin.js",
+      "line": 261,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/access",
+      "file": "server/routes/admin.js",
+      "line": 273,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/invites",
+      "file": "server/routes/admin.js",
+      "line": 295,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/invites",
+      "file": "server/routes/admin.js",
+      "line": 309,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/invites/:id",
+      "file": "server/routes/admin.js",
+      "line": 331,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/invites/:id",
+      "file": "server/routes/admin.js",
+      "line": 338,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/invites/:id/redemptions",
+      "file": "server/routes/admin.js",
+      "line": 344,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist",
+      "file": "server/routes/admin.js",
+      "line": 356,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/export.csv",
+      "file": "server/routes/admin.js",
+      "line": 360,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/waitlist/:id",
+      "file": "server/routes/admin.js",
+      "line": 366,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/purge",
+      "file": "server/routes/admin.js",
+      "line": 372,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/:id/invite",
+      "file": "server/routes/admin.js",
+      "line": 377,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/plans",
+      "file": "server/routes/admin.js",
+      "line": 403,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/plans/:id",
+      "file": "server/routes/admin.js",
+      "line": 425,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/settings",
+      "file": "server/routes/admin.js",
+      "line": 441,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PUT",
+      "path": "/settings",
+      "file": "server/routes/admin.js",
+      "line": 444,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/audit",
+      "file": "server/routes/admin.js",
+      "line": 453,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/outbox",
+      "file": "server/routes/admin.js",
+      "line": 457,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users/:id/access/current",
+      "file": "server/routes/admin.js",
+      "line": 468,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/admin",
+      "file": "server/routes/admin.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "GET",
+      "path": "/tasks",
+      "file": "server/routes/app.js",
+      "line": 40,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/history",
+      "file": "server/routes/app.js",
+      "line": 44,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 47,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks",
+      "file": "server/routes/app.js",
+      "line": 51,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 54,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/:id/complete",
+      "file": "server/routes/app.js",
+      "line": 58,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/:id/reopen",
+      "file": "server/routes/app.js",
+      "line": 62,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 66,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/projects",
+      "file": "server/routes/app.js",
+      "line": 72,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "file": "server/routes/app.js",
+      "line": 80,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 83,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 87,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/schedule",
+      "file": "server/routes/app.js",
+      "line": 95,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/plan",
+      "file": "server/routes/app.js",
+      "line": 99,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/replan",
+      "file": "server/routes/app.js",
+      "line": 103,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/blocks",
+      "file": "server/routes/app.js",
+      "line": 106,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/schedule/blocks/:id",
+      "file": "server/routes/app.js",
+      "line": 109,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/schedule/blocks/:id",
+      "file": "server/routes/app.js",
+      "line": 113,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard",
+      "file": "server/routes/app.js",
+      "line": 119,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/analytics",
+      "file": "server/routes/app.js",
+      "line": 152,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/ai/messages",
+      "file": "server/routes/app.js",
+      "line": 166,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/ai/messages",
+      "file": "server/routes/app.js",
+      "line": 169,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/command",
+      "file": "server/routes/app.js",
+      "line": 173,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/proposals/:id/apply",
+      "file": "server/routes/app.js",
+      "line": 177,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/proposals/:id/discard",
+      "file": "server/routes/app.js",
+      "line": 182,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/app",
+      "file": "server/routes/app.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "POST",
+      "path": "/signup",
+      "file": "server/routes/auth.js",
+      "line": 124,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "file": "server/routes/auth.js",
+      "line": 158,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/logout",
+      "file": "server/routes/auth.js",
+      "line": 167,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/session",
+      "file": "server/routes/auth.js",
+      "line": 177,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/forgot",
+      "file": "server/routes/auth.js",
+      "line": 182,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/reset",
+      "file": "server/routes/auth.js",
+      "line": 199,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/auth",
+      "file": "server/routes/auth.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "file": "server/routes/public.js",
+      "line": 17,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/plans",
+      "file": "server/routes/public.js",
+      "line": 23,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/token",
+      "file": "server/routes/public.js",
+      "line": 42,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist",
+      "file": "server/routes/public.js",
+      "line": 58,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/confirm",
+      "file": "server/routes/public.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/demo/parse",
+      "file": "server/routes/public.js",
+      "line": 85,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/public",
+      "file": "server/routes/public.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": false
+    }
+  ],
+  "calls": [
+    {
+      "method": "POST",
+      "url": "/api/demo/parse",
+      "file": "web/assets/js/landing.js",
+      "line": 102,
+      "via": "fetch",
+      "raw": "/api/demo/parse",
+      "path": "/api/demo/parse",
+      "external": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/plans",
+      "file": "web/assets/js/landing.js",
+      "line": 175,
+      "via": "fetch",
+      "raw": "/api/plans",
+      "path": "/api/plans",
+      "external": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/waitlist/token",
+      "file": "web/assets/js/landing.js",
+      "line": 204,
+      "via": "fetch",
+      "raw": "/api/waitlist/token",
+      "path": "/api/waitlist/token",
+      "external": false
+    }
+  ],
+  "mounts": [],
+  "globalAuthFiles": [
+    "server/app.js (prefix /api/auth)",
+    "server/routes/account.js",
+    "server/routes/admin.js",
+    "server/routes/app.js"
+  ],
+  "callsWithoutRoute": [
+    {
+      "method": "POST",
+      "url": "/api/demo/parse",
+      "file": "web/assets/js/landing.js",
+      "line": 102,
+      "via": "fetch",
+      "raw": "/api/demo/parse",
+      "path": "/api/demo/parse",
+      "external": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/plans",
+      "file": "web/assets/js/landing.js",
+      "line": 175,
+      "via": "fetch",
+      "raw": "/api/plans",
+      "path": "/api/plans",
+      "external": false
+    },
+    {
+      "method": "GET",
+      "url": "/api/waitlist/token",
+      "file": "web/assets/js/landing.js",
+      "line": 204,
+      "via": "fetch",
+      "raw": "/api/waitlist/token",
+      "path": "/api/waitlist/token",
+      "external": false
+    }
+  ],
+  "routesWithoutCall": [
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "file": "server/app.js",
+      "line": 61,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/app.js",
+      "line": 73,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/privacy",
+      "file": "server/app.js",
+      "line": 74,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/terms",
+      "file": "server/app.js",
+      "line": 75,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/confirm",
+      "file": "server/app.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/forgot-password",
+      "file": "server/app.js",
+      "line": 77,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/reset-password",
+      "file": "server/app.js",
+      "line": 78,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/admin/login",
+      "file": "server/app.js",
+      "line": 91,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/robots.txt",
+      "file": "server/app.js",
+      "line": 101,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/sitemap.xml",
+      "file": "server/app.js",
+      "line": 104,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 20,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 39,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/password",
+      "file": "server/routes/account.js",
+      "line": 78,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/sessions",
+      "file": "server/routes/account.js",
+      "line": 92,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/sessions/:id",
+      "file": "server/routes/account.js",
+      "line": 96,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/sessions/revoke-others",
+      "file": "server/routes/account.js",
+      "line": 104,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/export",
+      "file": "server/routes/account.js",
+      "line": 108,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/delete",
+      "file": "server/routes/account.js",
+      "line": 115,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "file": "server/routes/account.js",
+      "line": 144,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/redeem",
+      "file": "server/routes/account.js",
+      "line": 148,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/account",
+      "file": "server/routes/account.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "file": "server/routes/admin.js",
+      "line": 39,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/auth/session",
+      "file": "server/routes/admin.js",
+      "line": 61,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "file": "server/routes/admin.js",
+      "line": 65,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/overview",
+      "file": "server/routes/admin.js",
+      "line": 73,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "file": "server/routes/admin.js",
+      "line": 136,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 140,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 145,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/block",
+      "file": "server/routes/admin.js",
+      "line": 170,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/unblock",
+      "file": "server/routes/admin.js",
+      "line": 184,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/sessions/revoke",
+      "file": "server/routes/admin.js",
+      "line": 193,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/:id",
+      "file": "server/routes/admin.js",
+      "line": 202,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access",
+      "file": "server/routes/admin.js",
+      "line": 228,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access/extend",
+      "file": "server/routes/admin.js",
+      "line": 246,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/users/:id/access/revoke",
+      "file": "server/routes/admin.js",
+      "line": 261,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/access",
+      "file": "server/routes/admin.js",
+      "line": 273,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/invites",
+      "file": "server/routes/admin.js",
+      "line": 295,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/invites",
+      "file": "server/routes/admin.js",
+      "line": 309,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/invites/:id",
+      "file": "server/routes/admin.js",
+      "line": 331,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/invites/:id",
+      "file": "server/routes/admin.js",
+      "line": 338,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/invites/:id/redemptions",
+      "file": "server/routes/admin.js",
+      "line": 344,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist",
+      "file": "server/routes/admin.js",
+      "line": 356,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/export.csv",
+      "file": "server/routes/admin.js",
+      "line": 360,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/waitlist/:id",
+      "file": "server/routes/admin.js",
+      "line": 366,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/purge",
+      "file": "server/routes/admin.js",
+      "line": 372,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/:id/invite",
+      "file": "server/routes/admin.js",
+      "line": 377,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/plans",
+      "file": "server/routes/admin.js",
+      "line": 403,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/plans/:id",
+      "file": "server/routes/admin.js",
+      "line": 425,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/settings",
+      "file": "server/routes/admin.js",
+      "line": 441,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PUT",
+      "path": "/settings",
+      "file": "server/routes/admin.js",
+      "line": 444,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/audit",
+      "file": "server/routes/admin.js",
+      "line": 453,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/outbox",
+      "file": "server/routes/admin.js",
+      "line": 457,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/users/:id/access/current",
+      "file": "server/routes/admin.js",
+      "line": 468,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/admin",
+      "file": "server/routes/admin.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "GET",
+      "path": "/tasks",
+      "file": "server/routes/app.js",
+      "line": 40,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/history",
+      "file": "server/routes/app.js",
+      "line": 44,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 47,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks",
+      "file": "server/routes/app.js",
+      "line": 51,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 54,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/:id/complete",
+      "file": "server/routes/app.js",
+      "line": 58,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/tasks/:id/reopen",
+      "file": "server/routes/app.js",
+      "line": 62,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/tasks/:id",
+      "file": "server/routes/app.js",
+      "line": 66,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/projects",
+      "file": "server/routes/app.js",
+      "line": 72,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "file": "server/routes/app.js",
+      "line": 80,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 83,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/:id",
+      "file": "server/routes/app.js",
+      "line": 87,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/schedule",
+      "file": "server/routes/app.js",
+      "line": 95,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/plan",
+      "file": "server/routes/app.js",
+      "line": 99,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/replan",
+      "file": "server/routes/app.js",
+      "line": 103,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/schedule/blocks",
+      "file": "server/routes/app.js",
+      "line": 106,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "PATCH",
+      "path": "/schedule/blocks/:id",
+      "file": "server/routes/app.js",
+      "line": 109,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/schedule/blocks/:id",
+      "file": "server/routes/app.js",
+      "line": 113,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard",
+      "file": "server/routes/app.js",
+      "line": 119,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/analytics",
+      "file": "server/routes/app.js",
+      "line": 152,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/ai/messages",
+      "file": "server/routes/app.js",
+      "line": 166,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "DELETE",
+      "path": "/ai/messages",
+      "file": "server/routes/app.js",
+      "line": 169,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/command",
+      "file": "server/routes/app.js",
+      "line": 173,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/proposals/:id/apply",
+      "file": "server/routes/app.js",
+      "line": 177,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/ai/proposals/:id/discard",
+      "file": "server/routes/app.js",
+      "line": 182,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/app",
+      "file": "server/routes/app.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "POST",
+      "path": "/signup",
+      "file": "server/routes/auth.js",
+      "line": 124,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "file": "server/routes/auth.js",
+      "line": 158,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/logout",
+      "file": "server/routes/auth.js",
+      "line": 167,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/session",
+      "file": "server/routes/auth.js",
+      "line": 177,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/forgot",
+      "file": "server/routes/auth.js",
+      "line": 182,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/reset",
+      "file": "server/routes/auth.js",
+      "line": 199,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/auth",
+      "file": "server/routes/auth.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": true
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "file": "server/routes/public.js",
+      "line": 17,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/plans",
+      "file": "server/routes/public.js",
+      "line": 23,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "GET",
+      "path": "/waitlist/token",
+      "file": "server/routes/public.js",
+      "line": 42,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist",
+      "file": "server/routes/public.js",
+      "line": 58,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/waitlist/confirm",
+      "file": "server/routes/public.js",
+      "line": 76,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "POST",
+      "path": "/demo/parse",
+      "file": "server/routes/public.js",
+      "line": 85,
+      "kind": "router",
+      "authHint": false
+    },
+    {
+      "method": "ANY",
+      "path": "/public",
+      "file": "server/routes/public.js",
+      "line": 1,
+      "kind": "nuxt",
+      "authHint": false
+    }
+  ],
+  "externalHosts": [],
+  "skippedLarge": []
+}

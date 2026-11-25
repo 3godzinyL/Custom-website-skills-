@@ -1,0 +1,52 @@
+{
+  "surface": {
+    "storage": [],
+    "cookiesReadableByJs": [],
+    "hiddenInputs": [],
+    "forms": [
+      "GET (same page)",
+      "GET (same page)"
+    ],
+    "inlineHandlers": 0,
+    "thirdPartyScripts": [],
+    "iframes": 0
+  },
+  "demoXss": {
+    "dialogs": 0,
+    "injectedImg": 0,
+    "injectedB": 0,
+    "text": "<img src=x onerror=alert(document.domain)>\nMedium\n~45m\n><svg onload=alert(1)>\nMedium\n~45m\nCall <b>bold</b>\nHigh\n~30m\nDue Thu 26 Nov"
+  },
+  "landingConsoleErrors": [],
+  "loginWithoutJs": "http://localhost:3592/login?email=victim%40audit.test&password=Secret-Password-123",
+  "waitlistWithoutJs": "http://localhost:3592/?email=nojs%40audit.test&website=",
+  "openRedirect": [
+    {
+      "next": "https://evil.example",
+      "landed": "/app"
+    },
+    {
+      "next": "//evil.example",
+      "landed": "/app"
+    },
+    {
+      "next": "/app/../../evil",
+      "landed": "/evil"
+    },
+    {
+      "next": "/\\evil.example",
+      "landed": "/app"
+    },
+    {
+      "next": "javascript:alert(1)",
+      "landed": "/app"
+    }
+  ],
+  "appShell": {
+    "url": "/app",
+    "failedRequests": [
+      "404 /assets/js/app/main.js"
+    ],
+    "bodyText": "Skip to content"
+  }
+}

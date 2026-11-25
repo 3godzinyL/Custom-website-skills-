@@ -1,0 +1,198 @@
+@import url('./tokens.css');
+@import url('./base.css');
+@import url('./components.css');
+
+body.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(600px 360px at 50% -40px, rgba(106, 86, 245, 0.2), transparent 70%),
+    var(--bg);
+}
+.auth-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1160px, 100% - 32px);
+  height: 64px;
+  margin-inline: auto;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-weight: 650;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+}
+.brand:hover {
+  color: var(--text);
+}
+.logo-mark {
+  width: 28px;
+  height: 28px;
+}
+.auth-main {
+  display: grid;
+  place-items: center;
+  padding: 32px 16px 56px;
+}
+.auth-card {
+  width: min(420px, 100%);
+  padding: 32px;
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-3);
+  animation: modal-in var(--t-slow) var(--ease-out);
+}
+.auth-card.is-wide {
+  width: min(480px, 100%);
+}
+.auth-card h1 {
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.03em;
+}
+.auth-card .sub {
+  margin: 8px 0 24px;
+  color: var(--text-3);
+  font-size: var(--fs-md);
+}
+.auth-card form {
+  display: grid;
+  gap: 14px;
+}
+.auth-card .field + .field {
+  margin-top: 0;
+}
+.auth-card .btn-primary {
+  width: 100%;
+  margin-top: 4px;
+}
+.auth-alt {
+  margin-top: 20px;
+  text-align: center;
+  font-size: var(--fs-md);
+  color: var(--text-3);
+}
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.label-row a {
+  font-size: var(--fs-xs);
+}
+.pw-meter {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 2px;
+}
+.pw-meter i {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  transition: background var(--t) var(--ease);
+}
+.pw-meter[data-score='1'] i:nth-child(-n + 1) {
+  background: var(--danger);
+}
+.pw-meter[data-score='2'] i:nth-child(-n + 2) {
+  background: var(--warn);
+}
+.pw-meter[data-score='3'] i:nth-child(-n + 3) {
+  background: var(--violet-hi);
+}
+.pw-meter[data-score='4'] i {
+  background: var(--ok);
+}
+.auth-foot {
+  padding: 20px 16px;
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--text-4);
+}
+.auth-foot a {
+  color: var(--text-3);
+}
+
+/* ---------- Legal pages ---------- */
+.legal {
+  width: min(760px, 100% - 32px);
+  margin: 32px auto 80px;
+}
+.legal h1 {
+  font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.4rem);
+  letter-spacing: -0.035em;
+}
+.legal .meta {
+  margin: 10px 0 28px;
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+}
+.legal .notice {
+  margin-bottom: 32px;
+}
+.legal h2 {
+  margin: 36px 0 10px;
+  font-size: var(--fs-xl);
+}
+.legal p,
+.legal li {
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.legal p + p {
+  margin-top: 12px;
+}
+.legal ul {
+  padding-left: 20px;
+}
+.legal table {
+  width: 100%;
+  margin: 12px 0;
+  border-collapse: collapse;
+  font-size: var(--fs-md);
+}
+.legal th,
+.legal td {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  color: var(--text-2);
+}
+.legal th {
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+.legal-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* ---------- 404 ---------- */
+.nf {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.nf strong {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px 20px;
+  }
+}

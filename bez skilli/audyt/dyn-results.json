@@ -1,0 +1,2288 @@
+{
+  "base": "http://localhost:3592",
+  "requests": 365,
+  "results": [
+    {
+      "area": "setup",
+      "test": "admin login (admin scope)",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "admin login (app scope)",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "signup alice@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "signup bob@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "signup pending@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "signup expired@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "signup revoked@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "massassign",
+      "test": "signup with role=admin in body is ignored",
+      "pass": true,
+      "got": "user",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "grant free 30d to alice@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "grant free 30d to bob@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "grant free 30d to revoked@audit.test",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "grant expiring in 2s",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/auth/session",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/account",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest PATCH /api/account",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/account/password",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/account/sessions",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest DELETE /api/account/sessions/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/account/sessions/revoke-others",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/account/export",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/account/delete",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/access/redeem",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/tasks",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/tasks/history",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/tasks/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/tasks",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest PATCH /api/app/tasks/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/tasks/1/complete",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/tasks/1/reopen",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest DELETE /api/app/tasks/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/projects",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/projects/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/projects",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest PATCH /api/app/projects/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest DELETE /api/app/projects/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/schedule",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/schedule/plan",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/schedule/replan",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/schedule/blocks",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest PATCH /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest DELETE /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/dashboard",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/analytics",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest GET /api/app/ai/messages",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest DELETE /api/app/ai/messages",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/ai/command",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/ai/proposals/1/apply",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn",
+      "test": "guest POST /api/app/ai/proposals/1/discard",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/auth/session",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/auth/logout",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/overview",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/users",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/users/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest PATCH /api/admin/users/2",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/block",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/unblock",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/sessions/revoke",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest DELETE /api/admin/users/2",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/access/extend",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/users/2/access/revoke",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/users/2/access/current",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/invites",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/invites",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest PATCH /api/admin/invites/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest DELETE /api/admin/invites/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/invites/1/redemptions",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/waitlist",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/waitlist/export.csv",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest DELETE /api/admin/waitlist/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/waitlist/purge",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest POST /api/admin/waitlist/1/invite",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/plans",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest PATCH /api/admin/plans/free",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/settings",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest PUT /api/admin/settings",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/audit",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authn-admin",
+      "test": "guest GET /api/admin/outbox",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/auth/session",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/auth/logout",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/overview",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/users",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/users/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA PATCH /api/admin/users/2",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/block",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/unblock",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/sessions/revoke",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA DELETE /api/admin/users/2",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/access/extend",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/users/2/access/revoke",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/users/2/access/current",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/invites",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/invites",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA PATCH /api/admin/invites/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA DELETE /api/admin/invites/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/invites/1/redemptions",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/waitlist",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/waitlist/export.csv",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA DELETE /api/admin/waitlist/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/waitlist/purge",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA POST /api/admin/waitlist/1/invite",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/plans",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA PATCH /api/admin/plans/free",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/settings",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA PUT /api/admin/settings",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/audit",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "userA GET /api/admin/outbox",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/auth/session",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/overview",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/users",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/users/1",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/users/2/access/current",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/access",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/invites",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/invites/1/redemptions",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/waitlist",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/waitlist/export.csv",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/plans",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/settings",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/audit",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "authz-admin",
+      "test": "admin APP-scope cookie GET /api/admin/outbox",
+      "pass": true,
+      "got": "401",
+      "expected": "401 (separate admin session)"
+    },
+    {
+      "area": "session",
+      "test": "admin token used as app cookie",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "session",
+      "test": "user app token used as admin cookie",
+      "pass": true,
+      "got": "401",
+      "expected": "401"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/tasks",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/tasks/history",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/tasks/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/tasks",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending PATCH /api/app/tasks/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/tasks/1/complete",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/tasks/1/reopen",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending DELETE /api/app/tasks/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/projects",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/projects/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/projects",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending PATCH /api/app/projects/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending DELETE /api/app/projects/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/schedule",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/schedule/plan",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/schedule/replan",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/schedule/blocks",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending PATCH /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending DELETE /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/dashboard",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/analytics",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending GET /api/app/ai/messages",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending DELETE /api/app/ai/messages",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/ai/command",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/ai/proposals/1/apply",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "pending POST /api/app/ai/proposals/1/discard",
+      "pass": true,
+      "got": "403 access_required",
+      "expected": "403 access_required"
+    },
+    {
+      "area": "access",
+      "test": "expiring user before expiry",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "expired user after expiry (auto)",
+      "pass": true,
+      "got": "403 Your access has expired.",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "expired user POST task",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "expired state reported",
+      "pass": true,
+      "got": "expired",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "revoked user before revoke can create",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "admin revoke",
+      "pass": true,
+      "got": "200 revoked",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "revoked user immediately denied",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "scheduled (future) grant not usable yet",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "scheduled state reported",
+      "pass": true,
+      "got": "scheduled",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "admin extend +7d",
+      "pass": true,
+      "got": "200 extended",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "admin grant ending in the past rejected",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "access",
+      "test": "history records granting admin",
+      "pass": true,
+      "got": "admin@audit.test",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "mutation without X-CSRF-Token",
+      "pass": true,
+      "got": "403 csrf",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "mutation with wrong token",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "cross-site Origin with valid token",
+      "pass": true,
+      "got": "403 bad_origin",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "Sec-Fetch-Site cross-site",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "login CSRF from foreign origin",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "csrf",
+      "test": "text/plain body (simple request) not processed",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "cors",
+      "test": "no ACAO for foreign origin",
+      "pass": true,
+      "got": "none",
+      "expected": ""
+    },
+    {
+      "area": "cache",
+      "test": "API Cache-Control no-store",
+      "pass": true,
+      "got": "no-store",
+      "expected": ""
+    },
+    {
+      "area": "setup",
+      "test": "alice data created",
+      "pass": true,
+      "got": "2 1 1",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "userB GET /api/app/tasks/2",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB PATCH /api/app/tasks/2",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB POST /api/app/tasks/2/complete",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB POST /api/app/tasks/2/reopen",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB DELETE /api/app/tasks/2",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB GET /api/app/projects/1",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB PATCH /api/app/projects/1",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB DELETE /api/app/projects/1",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB PATCH /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB DELETE /api/app/schedule/blocks/1",
+      "pass": true,
+      "got": "404",
+      "expected": "404"
+    },
+    {
+      "area": "idor",
+      "test": "userB creates task in Alice project",
+      "pass": true,
+      "got": "400",
+      "expected": "400"
+    },
+    {
+      "area": "idor",
+      "test": "userB schedules Alice task",
+      "pass": true,
+      "got": "400",
+      "expected": "400"
+    },
+    {
+      "area": "idor",
+      "test": "userB schedule does not show Alice block",
+      "pass": true,
+      "got": "0",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "userB search does not see Alice tasks",
+      "pass": true,
+      "got": "0",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "userB deletes Alice session",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "Alice task untouched",
+      "pass": true,
+      "got": "Alice secret task",
+      "expected": ""
+    },
+    {
+      "area": "ai",
+      "test": "A gets demo proposal (labelled demo)",
+      "pass": true,
+      "got": "200 demo 1",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "userB applies Alice AI proposal",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "idor",
+      "test": "userB discards Alice AI proposal",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "ai",
+      "test": "apply with out-of-range index applies only valid ones",
+      "pass": true,
+      "got": "200 [{\"type\":\"create_task\",\"ok\":true,\"message\":\"Added “Send the invoice”.\",\"id\":3}]",
+      "expected": ""
+    },
+    {
+      "area": "ai",
+      "test": "double apply rejected",
+      "pass": true,
+      "got": "403 proposal_closed",
+      "expected": ""
+    },
+    {
+      "area": "ai",
+      "test": "client cannot inject actions",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "massassign",
+      "test": "PATCH account role=admin",
+      "pass": true,
+      "got": "422",
+      "expected": "422 strict"
+    },
+    {
+      "area": "massassign",
+      "test": "PATCH account extra fields",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "massassign",
+      "test": "PATCH task userId ignored (B cannot see it)",
+      "pass": true,
+      "got": "ok",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "wrong types",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "too long title",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "malformed JSON → 400 without stack",
+      "pass": true,
+      "got": "400 {\"error\":{\"code\":\"bad_json\",\"message\":\"The request body is not valid JSON.\"}}",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "200 KB body → 413",
+      "pass": true,
+      "got": "413",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "__proto__ payload harmless",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "non-numeric id",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "negative id",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "huge id",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "malformed %-encoding in API path",
+      "pass": false,
+      "got": "500 {\"error\":{\"code\":\"server_error\",\"message\":\"Something went wr",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "malformed %-encoding in page path",
+      "pass": true,
+      "got": "404 <!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "malformed %-encoding in assets",
+      "pass": true,
+      "got": "404 <!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf",
+      "expected": ""
+    },
+    {
+      "area": "errors",
+      "test": "very long URL",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "path traversal ../ in assets",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "encoded traversal to .env",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /.env",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /.git/HEAD",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /package.json",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /data/kedgely.db",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /server/config.js",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /app/index.html",
+      "pass": true,
+      "got": "302",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /admin/index.html",
+      "pass": true,
+      "got": "302",
+      "expected": ""
+    },
+    {
+      "area": "files",
+      "test": "exposed file /assets/.env",
+      "pass": true,
+      "got": "404",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "block end before start",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "logic",
+      "test": "manual block overlapping locked block → 409",
+      "pass": true,
+      "got": "409",
+      "expected": ""
+    },
+    {
+      "area": "logic",
+      "test": "plan a past day rejected",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "logic",
+      "test": "plan > 60 days ahead rejected",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "analytics huge range",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "analytics range capped by plan (free=14)",
+      "pass": true,
+      "got": "14",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "Free: 4th active project blocked (402)",
+      "pass": true,
+      "got": "402 Your Free plan allows 3 active projects.",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "archiving frees a slot",
+      "pass": true,
+      "got": "201",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "un-archiving over the limit blocked",
+      "pass": true,
+      "got": "402",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "admin lowers Free AI limit to 3",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "AI daily limit enforced server-side",
+      "pass": true,
+      "got": "402 You've used all 3 assistant requests for the last 24 hours on the Free plan.",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "Free plan: breakdown feature gated",
+      "pass": true,
+      "got": "200 Breaking projects down into steps is part of the Pro plan. Y",
+      "expected": ""
+    },
+    {
+      "area": "plans",
+      "test": "open-task limit enforced",
+      "pass": true,
+      "got": "402 (open before: 0)",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "admin plan negative limit rejected",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "admin unknown plan id",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "admin creates code (plaintext once)",
+      "pass": true,
+      "got": "KDG-8QD8…",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "admin invite list (no filter) loads",
+      "pass": false,
+      "got": "500",
+      "expected": "200"
+    },
+    {
+      "area": "invite",
+      "test": "list never returns plaintext code",
+      "pass": true,
+      "got": "hint only",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "redeem (normalised input)",
+      "pass": true,
+      "got": "200 active",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "same user reuses code",
+      "pass": true,
+      "got": "409",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "second user uses single-use code",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "6 parallel redemptions of a 2-use code",
+      "pass": true,
+      "got": "2 succeeded",
+      "expected": "2"
+    },
+    {
+      "area": "invite",
+      "test": "use_count never exceeds max_uses",
+      "pass": true,
+      "got": "2",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "expired code rejected",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "not-yet-valid code rejected",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "deactivated code rejected",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "code bound to other e-mail rejected",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "used code cannot be deleted",
+      "pass": true,
+      "got": "409",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "unused code deleted",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "redemption history lists users",
+      "pass": true,
+      "got": "2",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "signup with bad code is rolled back",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "submit faster than 2.5 s rejected",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "valid sign-up",
+      "pass": true,
+      "got": "202",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "duplicate gets identical response",
+      "pass": true,
+      "got": "202",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "honeypot submission not stored",
+      "pass": true,
+      "got": "0",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "privacy consent required",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "forged form token",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "CSV export neutralises formulas",
+      "pass": true,
+      "got": "422 n/a",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "double opt-in confirm",
+      "pass": true,
+      "got": "{\"ok\":true}",
+      "expected": ""
+    },
+    {
+      "area": "waitlist",
+      "test": "confirm token single-use",
+      "pass": true,
+      "got": "{\"ok\":false}",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "same answer for known/unknown e-mail",
+      "pass": true,
+      "got": "If an account exists for that address, a reset link is on its way.",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "reset link uses BASE_URL, not Host header",
+      "pass": true,
+      "got": "ok",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "token length ≥ 128 bit",
+      "pass": true,
+      "got": "43",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "reset works",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "reset token single-use",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "all sessions killed after reset",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "old password no longer works",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "reset",
+      "test": "new password works",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "logout clears session",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "login issues a new token (no fixation)",
+      "pass": true,
+      "got": "rotated",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "password change ok",
+      "pass": true,
+      "got": "{\"ok\":true,\"endedSessions\":2}",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "other sessions ended after password change",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "current session kept",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "blocked user loses access immediately",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "blocked user cannot log in",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "session",
+      "test": "role change ends sessions",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "cannot demote self",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "cannot block self",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "cannot delete self",
+      "pass": true,
+      "got": "400",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "last admin cannot self-delete",
+      "pass": true,
+      "got": "409",
+      "expected": ""
+    },
+    {
+      "area": "validation",
+      "test": "settings invalid type",
+      "pass": true,
+      "got": "422",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "closed registration enforced server-side",
+      "pass": true,
+      "got": "403",
+      "expected": ""
+    },
+    {
+      "area": "admin",
+      "test": "non-admin cannot log into admin panel",
+      "pass": true,
+      "got": "401",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has admin.login",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has admin.login_denied",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has access.granted",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has access.revoked",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has access.extended",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has invite.created",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has invite.deactivated",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has invite.deleted",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has user.blocked",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has user.unblocked",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has user.role_changed",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has plan.updated",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has settings.updated",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "audit",
+      "test": "audit log has waitlist.exported",
+      "pass": true,
+      "got": "true",
+      "expected": ""
+    },
+    {
+      "area": "gdpr",
+      "test": "self-delete account",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "invite",
+      "test": "personal (bound) invite unusable by others after owner deletes account",
+      "pass": false,
+      "got": "200 Team",
+      "expected": "403"
+    },
+    {
+      "area": "gdpr",
+      "test": "deleted user removed",
+      "pass": true,
+      "got": "0",
+      "expected": ""
+    },
+    {
+      "area": "gdpr",
+      "test": "deleted user e-mail not left in audit log",
+      "pass": false,
+      "got": "still present",
+      "expected": ""
+    },
+    {
+      "area": "gdpr",
+      "test": "deleted user e-mail not left in invite labels",
+      "pass": true,
+      "got": "ok",
+      "expected": ""
+    },
+    {
+      "area": "gdpr",
+      "test": "export has data, no password hash",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "pages",
+      "test": "guest /app → login redirect",
+      "pass": true,
+      "got": "302 /login?next=%2Fapp%2Ftasks",
+      "expected": ""
+    },
+    {
+      "area": "pages",
+      "test": "signed-in /app shell",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "pages",
+      "test": "app bundle exists",
+      "pass": false,
+      "got": "404",
+      "expected": "200"
+    },
+    {
+      "area": "pages",
+      "test": "guest /admin → admin login",
+      "pass": true,
+      "got": "302",
+      "expected": ""
+    },
+    {
+      "area": "pages",
+      "test": "user app session /admin → admin login",
+      "pass": true,
+      "got": "302",
+      "expected": ""
+    },
+    {
+      "area": "pages",
+      "test": "admin shell served",
+      "pass": false,
+      "got": "500 Something went wrong on our side. Please try again",
+      "expected": "200"
+    },
+    {
+      "area": "pages",
+      "test": "login page",
+      "pass": true,
+      "got": "200",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "content-security-policy",
+      "pass": true,
+      "got": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "x-frame-options",
+      "pass": true,
+      "got": "DENY",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "x-content-type-options",
+      "pass": true,
+      "got": "nosniff",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "referrer-policy",
+      "pass": true,
+      "got": "strict-origin-when-cross-origin",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "permissions-policy",
+      "pass": true,
+      "got": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "cross-origin-opener-policy",
+      "pass": true,
+      "got": "same-origin",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "no X-Powered-By",
+      "pass": true,
+      "got": "none",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "CSP has no 'unsafe-inline' / 'unsafe-eval'",
+      "pass": true,
+      "got": "strict",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "session cookie HttpOnly + SameSite",
+      "pass": true,
+      "got": "kg_sid=…; Max-Age=2592000; Path=/; Expires=Fri, 25 Dec 2026 00:48:54 GMT; HttpOnly; SameSite=Lax",
+      "expected": ""
+    },
+    {
+      "area": "headers",
+      "test": "admin cookie SameSite=Strict",
+      "pass": true,
+      "got": "checked",
+      "expected": ""
+    },
+    {
+      "area": "exposure",
+      "test": "session payload has no hash/locks",
+      "pass": true,
+      "got": "clean",
+      "expected": ""
+    },
+    {
+      "area": "exposure",
+      "test": "admin user detail has no password hash",
+      "pass": true,
+      "got": "clean",
+      "expected": ""
+    },
+    {
+      "area": "exposure",
+      "test": "admin outbox exposes e-mail bodies (dev transport)",
+      "pass": false,
+      "got": "reset links visible to admins",
+      "expected": ""
+    },
+    {
+      "area": "exposure",
+      "test": "health endpoint minimal",
+      "pass": true,
+      "got": "{\"ok\":true,\"ai\":\"demo\"}",
+      "expected": ""
+    },
+    {
+      "area": "ai",
+      "test": "injection text in a task title causes no actions (demo engine)",
+      "pass": true,
+      "got": "0",
+      "expected": ""
+    }
+  ]
+}

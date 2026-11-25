@@ -1,0 +1,97 @@
+/* Kedgely design tokens — "Dark Productivity" */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-wght-normal.woff2') format('woff2');
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces: deep navy → ink */
+  --bg: #06070d;
+  --bg-2: #090b16;
+  --surface: #0e1122;
+  --surface-2: #13172c;
+  --surface-3: #1a1f38;
+  --overlay: rgba(4, 5, 12, 0.72);
+
+  /* Lines */
+  --line: rgba(160, 170, 255, 0.09);
+  --line-2: rgba(160, 170, 255, 0.15);
+  --line-3: rgba(160, 170, 255, 0.24);
+
+  /* Text */
+  --text: #eef0fb;
+  --text-2: #b3b9d6;
+  --text-3: #7d84a8;
+  --text-4: #575e82;
+
+  /* Brand */
+  --violet: #6a56f5; /* primary action — 4.9:1 with white */
+  --violet-hi: #7d6bff;
+  --violet-soft: rgba(125, 107, 255, 0.14);
+  --violet-text: #a99eff;
+  --rose: #ff6b9a; /* signal accent */
+  --rose-soft: rgba(255, 107, 154, 0.13);
+  --rose-text: #ff8fb1;
+  --brand-gradient: linear-gradient(100deg, #8f7dff 0%, #c27cff 45%, #ff7aa4 100%);
+
+  /* Status */
+  --ok: #3ccf91;
+  --ok-soft: rgba(60, 207, 145, 0.13);
+  --warn: #f5b544;
+  --warn-soft: rgba(245, 181, 68, 0.13);
+  --danger: #ff5d6c;
+  --danger-soft: rgba(255, 93, 108, 0.13);
+  --info: #5fb4ff;
+  --info-soft: rgba(95, 180, 255, 0.13);
+
+  /* Project palette */
+  --c-violet: #8f7dff;
+  --c-rose: #ff7aa4;
+  --c-sky: #5fb4ff;
+  --c-mint: #3ccf91;
+  --c-amber: #f5b544;
+  --c-coral: #ff8a65;
+
+  /* Type */
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-md: 0.875rem;
+  --fs-base: 0.9375rem;
+  --fs-lg: 1.0625rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.625rem;
+  --fs-3xl: 2.25rem;
+
+  /* Space & shape */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  --shadow-3: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 30px 80px -20px rgba(0, 0, 0, 0.85);
+  --ring: 0 0 0 3px rgba(125, 107, 255, 0.45);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 120ms;
+  --t: 200ms;
+  --t-slow: 420ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-fast: 0ms;
+    --t: 0ms;
+    --t-slow: 0ms;
+  }
+}

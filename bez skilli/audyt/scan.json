@@ -1,0 +1,145 @@
+{
+  "target": "http://localhost:3591/",
+  "scannedAt": "2026-11-25T00:45:05.748Z",
+  "https": {
+    "httpStatus": 200,
+    "httpRedirect": ""
+  },
+  "headers": {
+    "accept-ranges": "bytes",
+    "cache-control": "no-cache",
+    "connection": "keep-alive",
+    "content-length": "43544",
+    "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'",
+    "content-type": "text/html; charset=utf-8",
+    "cross-origin-opener-policy": "same-origin",
+    "cross-origin-resource-policy": "same-origin",
+    "date": "Wed, 25 Nov 2026 00:45:05 GMT",
+    "etag": "W/\"aa18-1a20fbebef6\"",
+    "keep-alive": "timeout=5",
+    "last-modified": "Tue, 24 Nov 2026 22:48:08 GMT",
+    "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY"
+  },
+  "cookies": [],
+  "cors": {
+    "http://localhost:3591/": {
+      "acao": null,
+      "acac": null
+    },
+    "http://localhost:3591/api/demo/parse": {
+      "acao": null,
+      "acac": null
+    }
+  },
+  "tech": [],
+  "files": [
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "note": "info"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "note": "info"
+    }
+  ],
+  "scripts": [
+    {
+      "src": "http://localhost:3591/assets/js/boot.js",
+      "thirdParty": false,
+      "sri": false
+    },
+    {
+      "src": "http://localhost:3591/assets/js/landing.js",
+      "thirdParty": false,
+      "sri": false
+    }
+  ],
+  "secrets": [],
+  "endpoints": [
+    {
+      "path": "/api/demo/parse",
+      "where": "http://localhost:3591/assets/js/landing.js"
+    },
+    {
+      "path": "/api/plans",
+      "where": "http://localhost:3591/assets/js/landing.js"
+    },
+    {
+      "path": "/api/waitlist/token",
+      "where": "http://localhost:3591/assets/js/landing.js"
+    },
+    {
+      "path": "/api/waitlist",
+      "where": "http://localhost:3591/assets/js/landing.js"
+    }
+  ],
+  "forms": [
+    {
+      "page": "http://localhost:3591/",
+      "action": "(same page)",
+      "method": "GET",
+      "fields": [
+        "text"
+      ],
+      "csrfField": false,
+      "captcha": false,
+      "fileUpload": false
+    },
+    {
+      "page": "http://localhost:3591/",
+      "action": "(same page)",
+      "method": "GET",
+      "fields": [
+        "email",
+        "website",
+        "acceptPrivacy",
+        "marketing"
+      ],
+      "csrfField": false,
+      "captcha": false,
+      "fileUpload": false
+    }
+  ],
+  "links": [
+    "http://localhost:3591/",
+    "http://localhost:3591/login",
+    "http://localhost:3591/signup",
+    "http://localhost:3591/privacy",
+    "http://localhost:3591/forgot-password",
+    "http://localhost:3591/terms"
+  ],
+  "leads": [
+    {
+      "level": "high",
+      "area": "HTTPS",
+      "text": "HTTP (http://localhost:3591/) answers 200 without redirecting to HTTPS"
+    },
+    {
+      "level": "high",
+      "area": "Headers",
+      "text": "HSTS missing — add Strict-Transport-Security: max-age=31536000; includeSubDomains"
+    },
+    {
+      "level": "info",
+      "area": "Recon",
+      "text": "robots.txt reveals paths: /admin, /api — check they require auth"
+    },
+    {
+      "level": "info",
+      "area": "Recon",
+      "text": "No /.well-known/security.txt (optional, helps researchers report issues)"
+    }
+  ],
+  "finalUrl": "http://localhost:3591/",
+  "status": 200,
+  "robotsDisallow": [
+    "/app",
+    "/admin",
+    "/api"
+  ]
+}
