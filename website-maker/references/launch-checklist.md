@@ -14,6 +14,11 @@ Zrobione / Nie dotyczy / Do zrobienia.
 - [ ] Backups automatic, off-site, restore tested once.
 - [ ] Options 2–4: security pass done (website-security-checker), payments switched from
       test to live keys deliberately, webhooks registered for production.
+- [ ] Repository hygiene: `git ls-files` shows no `.env`, `data/`, databases, logs,
+      backups or first-run credential files; the repo is private unless it is meant
+      to be public — a public repo is a published website of its own.
+- [ ] Production mode checked: sandbox/test pages unreachable, first-run admin password
+      changed, credential file deleted, `security.txt` in place.
 
 ## Content and legal
 - [ ] All placeholders replaced (list in SITE-PLAN.md) — or consciously hidden.

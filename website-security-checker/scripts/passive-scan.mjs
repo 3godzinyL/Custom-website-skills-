@@ -19,6 +19,8 @@ const opt = (name, def) => {
   return i > -1 && args[i + 1] ? args[i + 1] : def;
 };
 const START = new URL(args[0].includes('://') ? args[0] : `https://${args[0]}`);
+// Local/dev targets have no TLS by design: HTTPS/HSTS leads would be noise there.
+const LOCAL = /^(localhost|127\.\d+\.\d+\.\d+|\[?::1\]?|0\.0\.0\.0|10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+|[\w-]+\.(local|test|localhost|internal))$/i.test(START.hostname);
 const OUT = opt('--out', null);
 const MAX_JS = Number(opt('--max-js', 15));
 const DELAY = Number(opt('--delay', 300));
@@ -71,9 +73,14 @@ const result = {
 
 // ---------- 1. HTTPS and redirects ----------
 async function checkHttps() {
+  if (LOCAL) {
+    lead('info', 'HTTPS', `Local target (${START.hostname}): HTTPS redirect and HSTS were not checked — check them on the production domain`);
+    return;
+  }
   const httpUrl = new URL(START.href);
   httpUrl.protocol = 'http:';
-  const r = await req(httpUrl.href, { body: false, method: 'HEAD' });
+  let r = await req(httpUrl.href, { body: false, method: 'HEAD' });
+  if (!r.error && (r.status === 405 || r.status === 501)) r = await req(httpUrl.href, { body: false, method: 'GET' });
   if (r.error) {
     result.https.http = r.error;
   } else {
@@ -87,7 +94,7 @@ async function checkHttps() {
 
 // ---------- 2. Main page: headers, cookies, tech ----------
 const SEC_HEADERS = {
-  'strict-transport-security': ['high', 'HSTS missing — add Strict-Transport-Security: max-age=31536000; includeSubDomains'],
+  'strict-transport-security': ['medium', 'HSTS missing — add Strict-Transport-Security: max-age=31536000; includeSubDomains'],
   'content-security-policy': ['medium', 'CSP missing — no second layer of protection against XSS'],
   'x-content-type-options': ['low', 'X-Content-Type-Options: nosniff missing'],
   'referrer-policy': ['low', 'Referrer-Policy missing'],
@@ -99,6 +106,7 @@ function analyzeHeaders(h) {
   h.forEach((v, k) => (all[k] = v));
   result.headers = all;
   for (const [name, [level, text]] of Object.entries(SEC_HEADERS)) {
+    if (LOCAL && name === 'strict-transport-security') continue;
     if (!h.get(name)) lead(level, 'Headers', text);
   }
   const csp = h.get('content-security-policy') || '';
@@ -200,6 +208,7 @@ function analyzeHtml(html, baseUrl) {
     const hasFile = /type=["']file/i.test(inner);
     result.forms.push({ page: baseUrl, action, method, fields, csrfField: hasCsrf, captcha: hasCaptcha, fileUpload: hasFile });
     if (method === 'POST' && !hasCaptcha) lead('info', 'Forms', `POST form → ${action} without visible captcha — verify server-side rate limiting/honeypot`);
+    if (method !== 'POST' && /type=["']?password/i.test(inner)) lead('high', 'Forms', `Form with a password field is ${method} (no method="post") on ${baseUrl} — submitted before JS loads, the password lands in the URL, browser history and proxy logs`);
     if (/^http:\/\//i.test(action)) lead('high', 'Forms', `Form submits over plain HTTP: ${action}`);
   }
 
@@ -228,6 +237,16 @@ const SECRET_PATTERNS = [
   ['critical', 'Slack token', /\bxox[abpr]-[A-Za-z0-9-]{10,}/g],
   ['high', 'Telegram bot token', /\b\d{8,10}:[A-Za-z0-9_-]{35}\b/g],
   ['critical', 'SendGrid key', /\bSG\.[A-Za-z0-9_-]{16,}\.[A-Za-z0-9_-]{16,}/g],
+  ['critical', 'Supabase secret key (new format)', /\bsb_secret_[A-Za-z0-9_-]{20,}/g],
+  ['critical', 'Stripe webhook signing secret', /\bwhsec_[A-Za-z0-9]{24,}/g],
+  ['high', 'Resend API key (likely)', /\bre_[A-Za-z0-9]{8}_[A-Za-z0-9]{16,}/g],
+  ['high', 'Mailgun API key', /\bkey-[0-9a-f]{32}\b/g],
+  ['high', 'Google OAuth client secret', /\bGOCSPX-[A-Za-z0-9_-]{24,}/g],
+  ['critical', 'npm access token', /\bnpm_[A-Za-z0-9]{36}\b/g],
+  ['high', 'Hugging Face token', /\bhf_[A-Za-z0-9]{34}\b/g],
+  ['high', 'Groq API key', /\bgsk_[A-Za-z0-9]{40,}/g],
+  ['high', 'Discord webhook URL (anyone can post as the site)', /https:\/\/(?:ptb\.|canary\.)?discord(?:app)?\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]{20,}/g],
+  ['high', 'Slack incoming webhook URL', /https:\/\/hooks\.slack\.com\/services\/T[A-Za-z0-9]+\/B[A-Za-z0-9]+\/[A-Za-z0-9]{20,}/g],
   ['critical', 'Private key', /-----BEGIN (RSA |EC |OPENSSH |)PRIVATE KEY-----/g],
   ['high', 'Hardcoded password/secret assignment', /\b(password|passwd|secret|api_?key|client_secret|crc)\s*[:=]\s*["'][^"'\s]{8,}["']/gi],
   ['high', 'DB connection string', /\b(mongodb(\+srv)?|postgres(ql)?|mysql|redis):\/\/[^\s"']+:[^\s"']+@/g],
@@ -321,6 +340,22 @@ const PROBES = [
   ['/config.json', /(password|secret|key)/i, 'medium'],
   ['/.htpasswd', /:\$?[a-z0-9]/i, 'high'],
   ['/web.config', /<configuration/i, 'medium'],
+  ['/.env.bak', /^[A-Z0-9_]+\s*=/m, 'high'],
+  ['/.env.backup', /^[A-Z0-9_]+\s*=/m, 'high'],
+  ['/.env.old', /^[A-Z0-9_]+\s*=/m, 'high'],
+  ['/.npmrc', /_authToken|registry=/i, 'high'],
+  ['/.vscode/sftp.json', /"(host|password|privateKeyPath)"/i, 'high'],
+  ['/sftp-config.json', /"(host|password)"/i, 'high'],
+  ['/.aws/credentials', /aws_secret_access_key/i, 'high'],
+  ['/storage/logs/laravel.log', /(production|local)\.(ERROR|WARNING)/, 'medium'],
+  ['/database.sqlite', /^SQLite format 3/, 'high'],
+  ['/db.sqlite', /^SQLite format 3/, 'high'],
+  ['/data/', /<title>Index of|Directory listing/i, 'high'],
+  ['/backup/', /<title>Index of|Directory listing/i, 'high'],
+  ['/uploads/', /<title>Index of|Directory listing/i, 'medium'],
+  ['/openapi.json', /"(openapi|swagger)"\s*:/, 'info'],
+  ['/swagger.json', /"(openapi|swagger)"\s*:/, 'info'],
+  ['/actuator/env', /propertySources|activeProfiles/, 'high'],
 ];
 
 const INFO_PATHS = ['/robots.txt', '/sitemap.xml', '/.well-known/security.txt', '/security.txt'];

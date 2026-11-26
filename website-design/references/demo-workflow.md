@@ -42,7 +42,9 @@ of HTML/CSS.
 - One self-contained file per demo: inline `<style>`, optional small inline `<script>`
   (menu toggle, slider), Google Fonts via the CSS2 API `<link>` with `display=swap`
   (it serves the latin-ext subset automatically through `unicode-range` when the font
-  supports Polish).
+  supports Polish). Demos only: the production site self-hosts its fonts (privacy —
+  website-maker `secure-defaults.md` §8); note the font files to download in
+  `DESIGN-SYSTEM.md`.
 - Tokens at the top as CSS custom properties using the contract names
   (`design-tokens-contract.md`), so the chosen demo's tokens can be copied straight into
   the project.
@@ -52,8 +54,10 @@ of HTML/CSS.
 - Responsive: fluid type/space, layout primitives, works at 360 and 1440 px without
   horizontal scroll.
 - Accessibility: semantic landmarks, alt texts, visible focus, `prefers-reduced-motion`.
-- Motion: one or two characteristic touches per demo (e.g. reveal, hover, slider) to show
-  the motion character — not everything.
+- Motion: each demo has its own **motion personality** (`motion-system.md` §2) and one
+  **signature moment** tied to the concept (§3) — a different one per demo, so the
+  owner chooses the feel as well as the look. Plus consistent micro-feedback on buttons
+  and links. Everything has a reduced-motion version; nothing delays the headline.
 - Name files `design-demos/demo-1-<slug>.html` … and add a `<meta name="description">`
   with the direction's one-line idea (the gallery reads titles from `<title>`).
 
@@ -69,6 +73,9 @@ For each demo, at 390 and 1440 px (screenshots via browser tool or Playwright MC
 - nothing overflows; text readable; contrast fine; Polish characters render;
 - the hero headline is visible without scrolling on mobile;
 - the menu opens and closes; focus is visible;
+- the signature moment runs smoothly, pauses if it loops, and has a reduced-motion
+  version (check with DevTools → Rendering → `prefers-reduced-motion`);
+- the craft pass (`craft-pass.md`) is clean;
 - no anti-slop hits (`critique.md`).
 Fix, re-check, then open the gallery for the user.
 
@@ -76,7 +83,8 @@ Fix, re-check, then open the gallery for the user.
 
 Open `design-demos/index.html` for the user (Windows `start "" design-demos\index.html`,
 macOS `open`, Linux `xdg-open`). In the chat, for each demo: name, idea (1 line),
-palette, fonts, feel, who it suits, what it changes vs the current site. Then ask:
+palette, fonts, motion personality and signature moment, who it suits, what it changes
+vs the current site. Then ask:
 „Który kierunek wybierasz? Możesz też połączyć, np. kolory z 2 i typografię z 3.”
 
 ## 7. After the choice

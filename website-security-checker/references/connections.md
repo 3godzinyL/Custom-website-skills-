@@ -110,11 +110,25 @@ Input JSON (from `map-routes.mjs`, the passive scan, or written by you):
 ```
 
 Run: `node scripts/endpoint-matrix.mjs matrix.json --out matrix-results.json`
-It sends only GET (and OPTIONS for CORS), sequentially with a delay, and flags:
-role allowed where `expect` says deny, objects readable by a non-owner, identical
-responses for different roles on protected routes, sensitive field names in JSON,
-reflected CORS, missing auth on everything that returns data. Treat flags as leads and
-confirm each one manually.
+It sends only GET (plus two GETs with `Origin: https://evil.example` and `Origin: null`
+for CORS), sequentially with a delay, and flags: role allowed where `expect` says deny,
+objects readable by a non-owner, identical responses for different roles on protected
+routes, sensitive field names in JSON, reflected CORS, personal data without
+`Cache-Control: no-store`. Treat flags as leads and confirm each one manually.
+
+Safety rails built in:
+- role headers go only to the origin of `base`; paths resolving elsewhere are skipped,
+- GET routes that look state-changing (`logout`, `unsubscribe`, `confirm`, `delete`,
+  `cron`, `webhook`, `pay`…) are skipped and listed — read their code, test them by hand,
+  or mark an endpoint `"safe": true` after checking it really is read-only
+  (`--include-risky` runs all of them; use it only on disposable local data),
+- HTTP 429 → waits for `Retry-After` (max 30 s), retries once and lists the URL; raise
+  `--delay` or allowlist the audit IP on staging, otherwise "deny" may be a rate limit.
+
+Quick start from code: `node scripts/map-routes.mjs . --out routes.json` →
+`node scripts/endpoint-matrix.mjs --from-routes routes.json --base http://127.0.0.1:3710
+--roles roles.json` (routes with parameters are listed for you to add to a matrix.json
+with real IDs of test objects).
 
 ## 6. Recording results
 

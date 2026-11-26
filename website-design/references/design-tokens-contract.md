@@ -53,7 +53,9 @@ instead of creating a second system (Tailwind: expose them in `theme.extend` via
 ```
 
 Optional: `--color-*-rgb` channels for alpha use, dark-mode overrides under
-`[data-theme="dark"]` and `@media (prefers-color-scheme: dark)`.
+`[data-theme="dark"]` and `@media (prefers-color-scheme: dark)`; motion extras
+`--ease-in` (exits), `--ease-spring` (a `linear()` spring curve), `--stagger`
+(see website-design `motion-system.md`).
 
 ## Rules
 
@@ -73,7 +75,7 @@ Optional: `--color-*-rgb` channels for alpha use, dark-mode overrides under
 ## Kolory (rola · hex · para kontrastu · wynik)
 ## Typografia (fonty, skala, zasady polskiej typografii)
 ## Odstępy, siatka, promienie, cienie
-## Ruch (co, czas, krzywa, reduced motion)
+## Ruch (charakter, tokeny, signature moment, warstwy, reduced motion)
 ## Ikony i zdjęcia
 ## Komponenty (lista + stany)
 ## Rytm sekcji strony głównej

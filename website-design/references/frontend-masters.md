@@ -20,7 +20,8 @@ checklist for designs that stay consistent on desktop and mobile.
 13. Lea Verou — colour on the web
 14. Steve Krug — Don't Make Me Think
 15. Addy Osmani / web.dev — performance
-16. Merged checklist
+16. Motion and interaction specialists (Tompkins, Van Damme, Evans, Drasner, Coursey, studios)
+17. Merged checklist
 
 ## 1. Adam Wathan & Steve Schoger — *Refactoring UI*
 - Hierarchy is everything: use weight and colour, not only size; de-emphasize secondary
@@ -163,7 +164,26 @@ checklist for designs that stay consistent on desktop and mobile.
 - Responsive images with `srcset`/`sizes`, AVIF/WebP; reserve space (no CLS).
 - Ship less JavaScript; INP suffers from long tasks.
 
-## 16. Merged checklist: consistent on desktop and mobile
+## 16. Motion and interaction specialists
+Details and code in `motion-system.md`.
+- **Jhey Tompkins** — creative CSS first: scroll-driven animations, `@property`,
+  playful details that degrade to a still state; prototype small, then compose.
+- **Bramus Van Damme** — scroll-driven animations and View Transitions as progressive
+  enhancement; scroll timelines run off the main thread, so prefer them to listeners.
+- **Cassie Evans & Sarah Drasner** — SVG as the animation medium: line drawing, morphs,
+  timelines; motion that explains (process, data, maps) instead of decorating.
+- **Paco Coursey** — quiet precision: fast, keyboard-first interfaces (cmdk) where
+  motion confirms, never performs.
+- **Lynn Fisher** — the layout itself can be playful at every breakpoint; responsive
+  design as a creative space, not only a constraint.
+- **Product teams (Linear, Stripe, Vercel, Raycast, Apple product pages)** — show the
+  real product moving; one cinematic moment per page; crisp micro-feedback everywhere
+  else.
+- **Studios (Lusion, Active Theory, Locomotive, darkroom.engineering, Basement,
+  Immersive Garden, Resn)** — motion designed with the concept from day one, a signature
+  moment people remember, performance budgets taken as seriously as visuals.
+
+## 17. Merged checklist: consistent on desktop and mobile
 
 System
 1. All visual values come from tokens (colour roles, fluid type steps, fluid space,

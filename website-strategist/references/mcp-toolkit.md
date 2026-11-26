@@ -7,10 +7,11 @@ when the task calls for it; never install anything yourself.
 
 ## When to suggest
 
-- Mode A (audit): after identifying the niche, before benchmarking — research and
+- Mode A (audit): after identifying the niche, before the radar — research and
   analytics MCPs.
-- Mode B (blueprint): before the niche analysis — research MCPs; for the maker handoff,
-  list build-time MCPs in SITE-BRIEF §14.
+- Mode B (idea → brief): right after decoding the idea, before the radar — research
+  MCPs (a deep radar with 10–15 sites is much cheaper with Firecrawl/Exa/Playwright);
+  for the maker handoff, list build-time MCPs in SITE-BRIEF §14.
 - One message, each with what / why / install / safe use. Skip what the session already
   has (built-in web search and fetch are often enough for 3–5 competitors).
 - Official vendor servers; confirm commands in vendor docs; read-only access to

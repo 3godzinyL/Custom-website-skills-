@@ -1,30 +1,24 @@
 # 🏗️ Website Maker
 
 Skill, który z krótkiego opisu („potrzebuję strony dla firmy, która myje kostkę”)
-robi **przemyślaną, dobrze zaprojektowaną stronę albo sklep**. Najpierw analizuje
-wymagania, potem daje do wyboru 4 warianty i dopiero po wyborze projektuje i buduje.
+albo z `SITE-BRIEF.md` od strategista robi **przemyślaną, dobrze zaprojektowaną
+i bezpieczną stronę albo sklep**. Najpierw analizuje wymagania, potem daje do wyboru
+4 warianty, a po wyborze planuje budowę tak, żeby coś działającego było widać od
+pierwszego etapu.
 
 ## Jak działa
 
 ### Część A: wymagania i propozycja
 
-1. **Czyta opis.** Wyciąga biznes, ofertę, odbiorcę, cel strony i to, co już masz.
-   Pyta tylko o brakujące rzeczy, najwyżej o 5 naraz.
-2. **Analizuje wymagania z czterech źródeł:**
-   - to, o co prosisz,
-   - to, co musi mieć **każda** profesjonalna strona (nawigacja, kontakt, SEO, szybkość,
-     dostępność, RODO, cookies),
-   - to, co musi mieć **ten typ** strony (w zestawie 20 typów: usługi lokalne, salony,
-     restauracje, sklepy różnych branż, SaaS, portfolio, nieruchomości, hotele, siłownie,
-     B2B, NGO i inne),
-   - **bestsellery i mainstream:** jeśli ma dostęp do internetu, przegląda 5–10 liderów
-     z Twojej branży i regionu i spisuje, co mają wszyscy, a czym wyróżniają się najlepsi.
-3. **Pokazuje propozycję:**
-   - **na samej górze: 🔥 Propozycje spoza Twojej listy**, czyli funkcje, których nie było
-     w opisie, a które mają najlepsze strony tego typu. Każda ma uzasadnienie, wskazaną
-     opcję i szacowany nakład pracy,
-   - fundament, który ma każda opcja,
-   - **4 opcje, każda bardziej rozbudowana:**
+1. **Czyta opis albo brief.** Z `SITE-BRIEF.md` bierze radar kategorii, standard
+   kategorii, kierunek i **Twoje decyzje**: zaakceptowane pomysły wchodzą do zakresu,
+   „później” czekają na koniec, **odrzuconych nie proponuje ponownie**. Bez briefu pyta
+   tylko o brakujące rzeczy, najwyżej o 5 naraz.
+2. **Analizuje wymagania z czterech źródeł:** Twoje życzenia, fundament każdej strony
+   (nawigacja, kontakt, SEO, szybkość, dostępność, RODO, cookies, a przy backendzie
+   bezpieczne ustawienia), wymagania tego typu strony (20 typów) i liderzy branży.
+3. **Pokazuje propozycję:** na górze **🔥 Propozycje spoza Twojej listy** (tylko nowe
+   rzeczy, których brief nie rozstrzygnął), potem fundament i **4 opcje**:
 
 | Opcja | Co to jest |
 |---|---|
@@ -33,71 +27,72 @@ wymagania, potem daje do wyboru 4 warianty i dopiero po wyborze projektuje i bud
 | **3 — Panel + płatności** | panel admina z rolami, BLIK, Przelewy24, PayU, Stripe, checkout, zamówienia, faktury, rabaty, konta klientów |
 | **4 — Tryb ostateczny** | wszystko, co ma lider branży: wiele języków, wyszukiwarka, lojalność, subskrypcje, asystent AI, integracje (Allegro, InPost, KSeF), automatyzacje, PWA, monitoring |
 
-   Wybierasz numer i możesz go dowolnie zmienić, np. „2 + płatności BLIK” albo
-   „3 bez kont klientów”.
+   Wybierasz numer i możesz go zmienić, np. „2 + płatności BLIK” albo „3 bez kont
+   klientów”.
 
-### Część B: design i budowa
+### Część B: plan, design i budowa
 
-4. **Najpierw system designu.** Koncept wzięty z Twojego biznesu (materiał, miejsce,
-   rzemiosło), a nie z szablonu „nowoczesny i czysty”. Do tego tokeny (kolory ze
-   sprawdzonym kontrastem, typografia z polskimi znakami, odstępy, ruch) i komplet
-   komponentów.
-5. **Treści po polsku.** Konkretne, bez fraz w stylu „kompleksowe rozwiązania”.
-   **Nie wymyśla opinii, liczb ani logotypów.** Miejsca do uzupełnienia są wyraźnie
-   oznaczone i trafiają na listę.
-6. **Budowa sekcja po sekcji.** Mobile-first, semantyczny HTML, animacje z sensem
-   i z obsługą `prefers-reduced-motion`. Domyślnie Node.js albo Twoja technologia.
-7. **Sprawdzenie:** 4 szerokości ekranu, zrzuty w przeglądarce (jeśli jest narzędzie),
-   dostępność, Core Web Vitals, SEO, działające formularze i płatności w sandboxie,
-   a na koniec przegląd pod kątem AI slopu.
+4. **Plan budowy w pionowych wycinkach.** Najpierw jeden kompletny przepływ (strona
+   główna → formularz → API → baza → e-mail → widok w panelu), widoczny w przeglądarce,
+   potem kolejne. Nigdy „cały backend, a front później”. Przed kodem powstaje model
+   danych i kontrakt API, więc front i backend się nie rozjeżdżają. Każdy wycinek ma
+   definicję ukończenia.
+5. **Szkielet bezpieczny od pierwszego commita:** `.gitignore` dla `.env`, `data/`, baz
+   i logów, sprawdzenie konfiguracji przy starcie (w produkcji brak klucza płatności
+   wyłącza płatności, a nie włącza sandboxa), nagłówki, limity, obsługa błędów.
+6. **Design:** dema HTML ze skilla design (każde z własnym charakterem ruchu
+   i „signature moment”) albo 2–3 dema zrobione przez makera. Potem tokeny, komponenty
+   i zasady ruchu.
+7. **Treści po polsku.** Konkretne, ze słów kluczowych i pytań odbiorców z briefu.
+   **Nie wymyśla opinii, liczb ani logotypów.** Miejsca do uzupełnienia są oznaczone.
+8. **Budowa wycinek po wycinku** z bezpiecznymi ustawieniami domyślnymi: walidacja
+   i uprawnienia na serwerze, ceny liczone przez serwer, płatność tylko z podpisanego
+   webhooka, jednorazowe kody rezerwowane atomowo, limity na IP i na konto, e-maile
+   tylko na potwierdzone adresy.
+9. **Sprawdzenie:** 4 szerokości ekranu, zrzuty w przeglądarce, dostępność, Core Web
+   Vitals, SEO, działające formularze i płatności w sandboxie, przegląd AI slopu, a przy
+   opcjach 2–4 **samokontrola bezpieczeństwa w 10 krokach** przed pełnym audytem.
+
+## Dlaczego plan i bezpieczne ustawienia
+
+Oba wynikają z testu porównawczego. Wersja „bez skilli” zbudowała kompletny backend
+(68 endpointów), po czym skończył się limit i **nie było interfejsu**: po zalogowaniu
+pusta strona, panel admina z błędem. Plan w wycinkach sprawia, że przerwanie w dowolnym
+momencie zostawia działający kawałek produktu. Plik `secure-defaults.md` powstał z 51
+problemów znalezionych w obu testach (np. płatności „na niby” bez klucza Stripe,
+podgląd danych osobowych w roli tylko do odczytu, kod 2FA działający dwa razy,
+obejście limitów przez `X-Forwarded-For`, zgoda zapisana z tekstu „false”, formularz
+logowania bez `method="post"`, plik z hasłem admina w repozytorium).
 
 ## Współpraca z innymi skillami
 
 | Skąd → dokąd | Jak to działa |
 |---|---|
-| 🧭 **strategist → maker** | strategist po rozmowie i lekkim audycie przygotowuje `SITE-BRIEF.md`: wymagania, trendy z dowodami, propozycje, rekomendowaną opcję i specyfikację kluczowych stron. Maker czyta go jako brief, nie pyta drugi raz o to samo i wypełnia z niego 4 opcje. Bez briefu może użyć strategista do researchu rynku |
-| 🎨 **design ↔ maker** | wspólne tokeny i pliki (`DESIGN-SYSTEM.md`, `tokens.css`). W fazie designu maker korzysta z dem HTML ze skilla design, a bez niego robi 2–3 dema sam. Wybrany wygląd od razu pasuje do budowanej strony |
-| 🛡️ **maker → security** | przy opcjach 2–4 audyt bezpieczeństwa przed publikacją |
+| 🧭 **strategist → maker** | `SITE-BRIEF.md` z radarem, decyzjami i specyfikacją stron. Maker nie powtarza researchu ani pytań, a decyzje traktuje jako wiążące |
+| 🎨 **design ↔ maker** | wspólne tokeny i pliki (`DESIGN-SYSTEM.md`, `tokens.css`), także tokeny ruchu |
+| 🛡️ **maker → security** | samokontrola przy budowie, pełny audyt przed publikacją (opcje 2–4) |
 | 🧭 **maker → strategist** | miesiąc po starcie audyt rozwoju na prawdziwych danych |
 
 ## Co jeszcze potrafi
 
-- **`SITE-PLAN.md`, czyli pamięć projektu:** zakres, mapa strony z postępem, decyzje,
-  lista placeholderów i otwarte pytania. Dzięki temu budowa może trwać kilka sesji
-  i nic się nie gubi.
-- **MCP do budowy:** po wyborze opcji proponuje w jednej wiadomości narzędzia, które
-  przyspieszą pracę i zaoszczędzą tokeny. Playwright pozwala samemu obejrzeć stronę na
-  telefonie i komputerze, Context7 daje aktualną dokumentację frameworków, Stripe
-  i Supabase są dostępne w trybie testowym, do tego Figma, shadcn, Vercel i Netlify.
-  Nic nie instaluje samodzielnie.
-- **Pakiet treści dla właściciela:** lista tekstów i danych do dostarczenia oraz
-  **lista zdjęć do zrobienia** (co, w jakim kadrze, ile sztuk).
-- **Checklista publikacji:** domena, SSL, przekierowania 301 ze starej strony, Search
-  Console, Google Business Profile, analityka ze zgodą, kopie zapasowe, 2FA, SPF/DMARC,
-  przełączenie płatności na produkcję i monitoring.
-
-## Plusy
-
-- **Nie zapomina o niczym ważnym.** Must-have dla każdej strony i dla każdego typu jest
-  wpisany na stałe.
-- **Podpowiada więcej, niż prosisz.** Propozycje spoza listy pochodzą z liderów branży,
-  a nie z wyobraźni.
-- **Zero AI slopu.** Lista zakazanych wzorców obejmuje fioletowe gradienty, emoji jako
-  ikony, trzy identyczne karty, szare teksty i frazy w stylu „Odkryj”, „Pasja
-  i profesjonalizm”, a obok niej są wzorce, które warto stosować zamiast nich.
-- **Wzorce od najlepszych:** Dieter Rams, Refactoring UI, Laws of UX, Baymard, Emil
-  Kowalski (animacje), sklepy Apple, Bellroy, Aesop, Teenage Engineering, Glossier,
-  Our Place i inne, z opisem, czego się od każdego uczyć.
-- **Polski rynek:** BLIK, P24, PayU, InPost, Omnibus, GPSR, KSeF, Europejski Akt
-  o Dostępności, regulamin i 14 dni na odstąpienie.
-- **Uczciwość:** żadnych fałszywych opinii ani statystyk.
+- **`SITE-PLAN.md`, czyli pamięć projektu:** wycinki ze statusami, kontrakt API, model
+  danych, decyzje, placeholdery, wyniki samokontroli i zawsze aktualna linia
+  **„Następny krok”**. Nowa sesja zaczyna dokładnie tam, gdzie skończyła poprzednia.
+- **MCP do budowy:** Playwright (podgląd na telefonie i komputerze), Context7 (aktualna
+  dokumentacja frameworków), Stripe i Supabase w trybie testowym, Figma, shadcn, Vercel,
+  Netlify. Proponuje, nie instaluje.
+- **Pakiet treści dla właściciela** z listą zdjęć do zrobienia.
+- **Checklista publikacji:** domena, SSL, przekierowania 301, Search Console, Google
+  Business Profile, analityka ze zgodą, kopie, 2FA, SPF/DMARC, **higiena repozytorium**,
+  tryb produkcyjny, przełączenie płatności na produkcję.
 
 ## Przykładowe polecenia
 
 - „Zrób stronę dla firmy myjącej kostkę brukową w Trójmieście”
+- „Mam SITE-BRIEF.md od strategista, buduj opcję 3”
 - „Potrzebuję sklepu z kawą speciality, mam logo i zdjęcia”
 - „Stwórz stronę dla salonu fryzjerskiego z rezerwacjami”
-- „Landing page dla mojej aplikacji do nauki angielskiego”
+- „Landing page z listą oczekujących dla mojej aplikacji”
 
 ## Struktura
 
@@ -108,11 +103,11 @@ website-maker/
     ├── requirements.md           # pytania, must-have każdej strony, prawo PL/UE, research rynku
     ├── site-types.md             # 20 typów stron: must-have + trendy
     ├── tiers.md                  # 4 opcje szczegółowo, technologie, przykłady
+    ├── build-plan.md             # wycinki, kontrakty, definicja ukończenia, wznawianie pracy
+    ├── secure-defaults.md        # bezpieczne ustawienia z prawdziwych audytów + samokontrola
     ├── design-playbook.md        # proces designu, anty-slop, typografia, kolor, ruch, QA
     ├── inspiration.md            # styliści, studia, galerie, najlepsze sklepy
     ├── design-tokens-contract.md # wspólne tokeny z website-design
     ├── mcp-toolkit.md            # MCP przydatne przy budowie
     └── launch-checklist.md       # checklista publikacji
 ```
-
-> 💡 Przy opcjach 2–4 przed publikacją warto puścić **website-security-checker**.

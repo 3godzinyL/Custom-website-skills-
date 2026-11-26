@@ -1,5 +1,10 @@
 # Discovery interview (Mode B)
 
+The radar answers many of these questions before you ask them (category, competitors,
+conventions). Ask only what research cannot know: the business's facts, assets,
+constraints and preferences. The first open questions travel with the idea board
+(at most 5); later rounds follow only if needed.
+
 Ask in rounds, 3–6 questions per message, in the user's language. Skip what is already
 known. After each round, summarise in bullets ("Jak rozumiem: …") and continue. Offer
 typical answers when the user hesitates ("W tej branży zwykle…").

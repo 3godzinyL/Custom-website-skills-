@@ -1,7 +1,8 @@
 # Trends 2026: what is worth it
 
-Built-in knowledge as of late 2026. Trends move fast, so confirm with live research
-when tools allow and cite what you saw. Status:
+Built-in baseline as of late 2026. This file is the starting point, not the answer:
+the category radar (`trend-radar.md`) confirms, updates or overrides every row with
+live, dated sources for *this* category. Status:
 **Sprawdzone** (proven, converts) · **Rosnące** (emerging, worth testing) ·
 **Ryzyko mody** (fad or easily misused). Recommend a trend only with a reason tied to
 the audience.
@@ -49,6 +50,7 @@ the audience.
 | InPost lockers as default delivery (PL) | Sprawdzone | show delivery date ("dostawa jutro") |
 | Easy returns, clear return costs | Sprawdzone | fashion especially |
 | Marketplace + own shop (Allegro, Google Merchant, Ceneo) | Sprawdzone | product feeds from one source of truth |
+| Shopping through AI assistants (agentic commerce: checkout inside ChatGPT and similar, Google's agent payment protocols) | Rosnące, zależne od rynku | clean product data (feeds, schema.org `Product`/`Offer`, stock, delivery, returns) makes the shop readable for AI agents; check availability in the target country before promising it |
 | Resale/repair programs, sustainability info | Rosnące | fashion, outdoor, electronics |
 | Live/social commerce | Rosnące, zależne od kanału | check platform availability in the market |
 | B2B self-service portals | Rosnące | wholesale prices, reorders, invoices |

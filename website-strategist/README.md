@@ -1,89 +1,79 @@
 # 🧭 Website Strategist
 
-Skill-strateg: mówi, **czego brakuje stronie, żeby wygrywała w swojej branży**, albo po
-rozmowie pisze **bardzo dokładny prompt, z którym inne AI zbuduje stronę**.
-Nie zajmuje się zabezpieczeniami. Od tego jest website-security-checker.
+Skill-strateg z nawykiem dziennikarza. Z jednego zdania („strona dla mojej aplikacji
+do planowania dnia”) albo z przykładowej strony **dochodzi do tego, o czym naprawdę
+jest strona**, sprawdza, **co jest teraz na topie w tej kategorii** i jak wyglądają
+strony liderów, a potem pokazuje Ci pomysły i kierunki **do zaakceptowania**. Dopiero
+z Twoimi decyzjami pisze `SITE-BRIEF.md` dla website-makera (albo długi prompt dla
+innego AI). Nie zajmuje się zabezpieczeniami. Od tego jest website-security-checker.
 
-## Dwa tryby
+## Radar kategorii — jak dochodzi do wniosków
 
-### Tryb A: audyt rozwoju istniejącej strony
+| Krok | Co robi |
+|---|---|
+| **1. Rozszyfrowanie pomysłu** | teza strony w jednym zdaniu, kategoria po polsku i po angielsku (prowadzą do innych źródeł), kupujący i użytkownik, rynek, model biznesowy, **typ kategorii**: nowa (trzeba pokazać problem i demo), zatłoczona (trzeba pokazać różnicę), usługa lokalna (obszar, cena, dowody), sklep, wysokie zaufanie |
+| **2. Mapa słów kluczowych** | cztery kręgi: nazwa kategorii, ból klienta, rozwiązanie, porównania („najlepszy…”, „alternatywa dla…”, „cennik”, „opinie”, miasto). Podpowiedzi Google, „Ludzie pytają też”, Google Trends, fora. Każda fraza ma przypisane miejsce na stronie |
+| **3. Liderzy** | 5–10 stron: liderzy rynku (G2, App Store, Trustpilot, Allegro, Mapy Google), **szybko rosnący** (Product Hunt, informacje o inwestycjach), najlepiej zaprojektowane w kategorii (Awwwards, Godly, Land-book). Przy każdej: dlaczego jest na liście |
+| **4. Puls — co się teraz dzieje** | newsy z ostatnich 3–6 miesięcy: premiery, zmiany cen i funkcji liderów, prawo (AI Act, EAA, Omnibus, KSeF), zmiany platform (Google AI Mode, BLIK), wpadki konkurencji. Każdy sygnał: źródło, data, status (sprawdzone / rosnące / moda / gaśnie) i decyzja: **wykorzystać / odpowiedzieć na obawę / unikać** |
+| **5. Rozbiórka stron konkurencji** | prawdziwe strony liderów (główna, cennik, produkt, rejestracja), na komputerze i telefonie: obietnica w hero, kolejność sekcji, oferta i ceny, dowody, CTA, interakcje, treści, język designu, co robią najlepiej i gdzie są słabi. Do tego macierz funkcji i **opinie 1–3★ o liderach**, czyli najtańsze źródło przewag |
+| **6. Wnioski** | **standard kategorii** (to, co ma 60–70% liderów: bez tego strona traci zaufanie), **wyróżniki** najlepszych, **luki**, których nikt nie zajął, **pytania odbiorców** (do FAQ i poradników), konwencje kategorii |
 
-1. **Spisuje wszystko, co jest na stronie:** strony, sekcje, oferta, opinie, ścieżka
-   do kontaktu lub zakupu, treści, SEO, wersja mobilna, integracje, analityka.
-2. **Ustala dokładnie, w jakiej branży i podniszy działa strona**, jaki ma model
-   biznesowy, rynek, odbiorcę i poziom cen. Rekomendacje dla fotografa ślubnego premium
-   i dla wypożyczalni fotobudki różnią się, choć obie branże „robią zdjęcia”.
-3. **Porównuje z liderami:** przegląda 5–10 najlepszych stron w branży i regionie
-   (konkurencja lokalna, bestsellery w e-commerce, wzorce zagraniczne) i składa
-   z tego macierz funkcji.
-4. **Sprawdza wymagania nieodłączne i warunkowe.** Nieodłączne to rzeczy, bez których
-   strona tego typu traci klientów. Warunkowe wynikają z tego, co strona robi, np.
-   „pokazujesz promocje → potrzebna najniższa cena z 30 dni (Omnibus)”,
-   „przyjmujesz rezerwacje → polityka odwołań i przypomnienia”.
-5. **Raport po polsku:** ocena 10 obszarów na tle branży, tabela porównania
-   z liderami, braki krytyczne, słabe elementy, szanse i trendy (tylko te, które mają
-   uzasadnienie), szybkie wygrane i plan „Teraz / Następnie / Później” z priorytetami
-   ICE.
+Każde twierdzenie ma źródło i datę. Liczby nie są zmyślane; szacunki są oznaczone.
+Bez dostępu do internetu skill to mówi i oznacza wnioski jako „do weryfikacji”.
 
-### Tryb B: rozmowa, lekki audyt i prompt albo brief dla website-makera
+## Tablica pomysłów i kierunki — decydujesz Ty
 
-1. **Rozmowa w rundach:** biznes i cel, pozycjonowanie i konkurencja, treści i marka,
-   funkcje, ograniczenia. Po każdej rundzie podsumowuje, jak zrozumiał odpowiedzi.
-   Na początku pyta, czy wynik ma być dla website-makera, dla innego AI, czy dla obu.
-2. **Lekki audyt:** jeśli masz już stronę, wypisuje jej 5–10 największych braków
-   i mocnych stron. Jeśli nie masz, porównuje 3–5 stron konkurencji w krótkiej tabeli
-   (co mają wszyscy, czym wyróżniają się najlepsi, gdzie mają słabe punkty).
-3. **Analiza typu strony, a nie Twojej strony:** co ten typ musi mieć, co wyzwalają
-   planowane funkcje, co mają bestsellery, **co jest teraz w trendach** (z oceną:
-   sprawdzone, rosnące albo chwilowa moda), jaka kolejność sekcji sprzedaje i dlaczego.
-4. **`SITE-BRIEF.md` dla website-makera.** Ma stały układ, który maker rozumie:
-   biznes, rekomendowana opcja 1–4 z uzasadnieniem, lekki audyt, wymagania, trendy
-   z dowodami, propozycje spoza listy, mapa strony, specyfikacja kluczowych stron
-   sekcja po sekcji, kierunek designu (z którego skill design zrobi dema), funkcje,
-   lista treści i zdjęć, prawo, SEO, MCP przydatne przy budowie, założenia. Potem
-   wystarczy napisać: „Uruchom website-maker i wskaż SITE-BRIEF.md”.
-5. **Albo długi prompt dla dowolnego AI (zwykle 3–8 tys. słów)**, w którym jest:
-   - rola i zasady pracy dla AI wykonawcy,
-   - kierunek designu z kolorami w hex, parami kontrastu, fontami z polskimi znakami,
-     skalą odstępów i zasadami ruchu,
-   - lista zakazów AI slopu,
-   - mapa strony, header, menu mobile i stopka,
-   - **specyfikacja sekcja po sekcji**: położenie na desktopie, tablecie i telefonie,
-     szkic tekstów po polsku, komponenty, animacje, stany i kryteria akceptacji,
-   - funkcje, model danych, integracje, SEO, dostępność, wydajność, minimum
-     bezpieczeństwa, prawo, analityka,
-   - checklista QA, kolejność pracy z punktami kontrolnymi, założenia i pytania otwarte.
-6. Cały dokument dostajesz **w czacie, gotowy do skopiowania**, a dodatkowo zapisany
-   jako `SITE-BRIEF.md` albo `PROMPT-<nazwa>.md`.
+Po radarze dostajesz jedną wiadomość:
 
-### MCP do researchu
+- **W pakiecie:** standard kategorii, który i tak trafi na stronę (możesz coś skreślić),
+- **Pomysły do decyzji** (do ~15): z 10 perspektyw (dowód, „wypróbuj przed zakupem”,
+  jasne ceny, szybkość, zaufanie, treści i wyszukiwarki AI, społeczność,
+  personalizacja, powroty klientów, „signature moment”). Każdy ma dowód, typ
+  (Standard / Fala / Wyróżnik / Odważne), opcję makera, nakład i wpływ. 3–5 oznaczonych
+  ★ jako rekomendowane,
+- **2–3 kierunki strony**, np. „premium ekspert”, „najszybciej i najprościej”, „lokalny
+  bohater”. Przy każdym: kogo wygrywa, kogo traci, co zmienia na stronie i przykład
+  z radaru. Jeśli radar pokaże szansę dla samego produktu (nowy segment, inny model
+  cen), dostajesz też **kierunki rozwoju produktu**,
+- najwyżej 5 pytań, na które radar nie odpowiedział.
 
-Gdy analiza wymaga faktów, skill proponuje narzędzia: Firecrawl albo Exa (przejrzenie
-wielu stron konkurencji), Playwright (zrzuty na telefonie i komputerze), Chrome
-DevTools (wydajność), DataForSEO, Ahrefs albo Semrush (prawdziwe dane o wyszukiwaniach)
-i Google Analytics (ruch na Twojej stronie). Nic nie instaluje samodzielnie. Bez tych
-narzędzi korzysta z wbudowanego wyszukiwania i mówi, na jak dużej próbce oparł analizę.
+Odpisujesz np. „TAK 1, 2, 5; NIE 3; MOŻE 6; kierunek B” albo „bierz rekomendowane”.
 
-## Plusy
+## Połączenie z website-makerem
 
-- **Najpierw rozumie branżę, potem ocenia.** Każda rada jest dopasowana do niszy
-  i rynku.
-- **Rady mają uzasadnienie:** konkurencję, badania (Baymard, NN/g, Google) albo zasadę
-  UX. Nie podaje zmyślonych statystyk z blogów o trendach.
-- **Reguły warunkowe:** ponad 25 zasad typu „jeśli strona robi X, musi mieć Y”, w tym
-  polskie i unijne prawo (RODO, Omnibus, GPSR, EAA, KSeF, prawo konsumenckie).
-- **15 nisz w zestawie:** must-have, wyróżniki, trendy, dźwignie wzrostu, KPI
-  i typowe braki.
-- **Prompt na poziomie specyfikacji agencyjnej.** Inne AI nie musi o nic dopytywać,
-  bo położenie, teksty i kryteria akceptacji są rozpisane.
-- **Priorytety ICE:** wiesz, co zrobić dziś, a co za kwartał.
+`SITE-BRIEF.md` (wersja 2) zawiera tezę i słowa kluczowe, radar ze źródłami, standard
+kategorii, puls, **Twoje decyzje** (zaakceptowane / później / odrzucone), wybrany
+kierunek, mapę strony, specyfikację kluczowych stron sekcja po sekcji, kierunek
+designu z kandydatem na „signature moment” i plan treści z pytań odbiorców.
+
+Maker traktuje decyzje jako wiążące: **odrzuconych pomysłów nie proponuje ponownie**,
+a jego „🔥 Propozycje” zawierają tylko nowe rzeczy. Podział pracy jest jasny: strategist
+odpowiada za *co i dlaczego*, maker za *jak* i za fundament każdej strony (prawo,
+kontakt, podstawy SEO, szybkość, dostępność, bezpieczne ustawienia), design za wygląd
+i ruch, security za dowód przed startem. Dlatego brief nie powtarza fundamentu makera.
+
+## Tryb A: audyt rozwoju istniejącej strony
+
+Inwentaryzacja strony, dokładne określenie niszy, radar kategorii z Twoją stroną jako
+jedną z kolumn macierzy, wymagania nieodłączne i warunkowe (ponad 25 reguł typu
+„pokazujesz promocje → potrzebna najniższa cena z 30 dni”), analiza braków w 11
+obszarach, tablica pomysłów z priorytetami ICE i raport „Teraz / Następnie / Później”.
+
+## MCP do researchu
+
+Firecrawl albo Exa (wiele stron konkurencji naraz), Playwright (zrzuty na telefonie
+i komputerze), Chrome DevTools (wydajność), DataForSEO, Ahrefs albo Semrush
+(prawdziwe dane o wyszukiwaniach), Google Analytics (ruch na Twojej stronie). Głęboki
+radar z 10–15 stronami jest z nimi dużo tańszy w tokenach. Skill je proponuje, ale nic
+nie instaluje sam.
 
 ## Przykładowe polecenia
 
+- „Mam pomysł na aplikację do planowania dnia głosem, przygotuj radar i brief strony”
+- „Zrób stronę w stylu https://… dla mojej firmy sprzątającej — co musi na niej być?”
+- „Co jest teraz na topie w sklepach z kosmetykami naturalnymi i co dodać do mojego?”
 - „Przeanalizuj moją stronę https://… i powiedz, czego brakuje, żeby sprzedawała lepiej”
-- „Co dodać do mojego sklepu z kosmetykami, żeby dogonić konkurencję?”
-- „Porozmawiajmy o stronie dla mojej szkoły tańca, a potem napisz prompt dla AI”
-- „Przygotuj brief strony dla gabinetu fizjoterapii”
+- „Napisz prompt dla innego AI na stronę szkoły tańca”
 
 ## Struktura
 
@@ -91,15 +81,14 @@ narzędzi korzysta z wbudowanego wyszukiwania i mówi, na jak dużej próbce opa
 website-strategist/
 ├── SKILL.md                         # instrukcje dla AI (po angielsku)
 └── references/
+    ├── trend-radar.md               # radar: teza, słowa kluczowe, liderzy, puls, rozbiórka, wnioski
+    ├── idea-board.md                # 10 perspektyw, karty pomysłów, kierunki, runda akceptacji
+    ├── maker-handoff.md             # SITE-BRIEF.md v2 + podział pracy między skillami
     ├── audit-method.md              # inwentaryzacja, ocena, ICE, szablon raportu
-    ├── niche-benchmarks.md          # 15 nisz: must-have, wyróżniki, trendy, KPI
+    ├── niche-benchmarks.md          # 15 nisz: punkt wyjścia dla radaru
     ├── conditional-requirements.md  # reguły „jeśli X, to musi być Y”
-    ├── discovery-interview.md       # pytania do rozmowy w rundach
-    ├── trends-2026.md               # trendy według obszarów: sprawdzone / rosnące / moda
-    ├── maker-handoff.md             # format SITE-BRIEF.md dla website-maker
-    ├── build-prompt-template.md     # szablon promptu + przykład szczegółowości
+    ├── discovery-interview.md       # pytania, których research nie zastąpi
+    ├── trends-2026.md               # trendy bazowe (radar je potwierdza albo zmienia)
+    ├── build-prompt-template.md     # szablon promptu dla innego AI
     └── mcp-toolkit.md               # MCP do researchu i analityki
 ```
-
-> 💡 `SITE-BRIEF.md` z trybu B przekazujesz skillowi **website-maker**, a prompt
-> dowolnemu AI.

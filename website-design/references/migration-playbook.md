@@ -42,8 +42,13 @@ Build a mapping table and apply it systematically:
 5. **Sections**: hero, offer, trust, process, gallery, CTA bands, FAQ — using components.
 6. **Pages**: apply sections and templates page by page; special pages too (404, search
    results, cart, checkout, account, legal pages, thank-you pages, e-mails if in scope).
-7. **Cleanup**: remove old styles, unused classes, inline styles, duplicate rules,
-   unnecessary `!important`; one icon set (replace mixed icons).
+7. **Motion layer** (`motion-system.md`): micro-feedback in components first, then
+   section reveals and page transitions, then the signature moment; reduced-motion
+   versions and the performance gate for each.
+8. **Cleanup**: remove old styles, unused classes, inline styles, duplicate rules,
+   unnecessary `!important`, old animation libraries no longer used; one icon set
+   (replace mixed icons).
+9. **Craft pass** (`craft-pass.md`) on the real pages.
 
 ## 4. Rules while migrating
 

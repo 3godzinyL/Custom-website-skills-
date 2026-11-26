@@ -7,8 +7,16 @@ Do not reduce it to highlights. If it gets very large, split it into
 `ZALACZNIKI-<domena>-<data>.md` (section 13). In the chat give: section 1, the findings
 table from section 4, the top findings in full, and the file paths.
 
+Create the file in Phase 0 with the header and the `Stan audytu` block, then fill the
+sections as the phases finish. Sections not reached yet stay as `(w toku)`.
+
 ````markdown
 # Raport z audytu bezpieczeństwa i jakości — <domena / projekt>
+
+> **Stan audytu** (aktualizowany po każdej fazie)
+> Ukończone fazy: 0, 1, 1b, 1c … · Następny krok: <faza i konkretne zadanie>
+> Serwery testowe: <porty, katalogi danych — zatrzymane: tak/nie>
+> Pytania do właściciela: <…>
 
 Data: <RRRR-MM-DD> · Wersja: <commit / data wdrożenia> · Tryb: <white / black / grey-box>
 Środowiska: <produkcja / staging / lokalnie> · Konta testowe: <role>
@@ -28,20 +36,28 @@ Błędy logiczne i funkcjonalne: <n> · Rozbieżności front↔back: <n>
 
 **Co jest zrobione dobrze:** <konkretnie>
 
+## 1b. Szybki triaż (20 najczęstszych wpadek)
+| # | Sprawdzenie | Wynik | Problem # |
+|---|---|---|---|
+| T1 | Sekrety we froncie | OK / Trafienie / N/D / Nie sprawdzono (powód) | |
+| … | … | … | |
+| T20 | Kopie zapasowe i odtwarzanie | … | |
+
 ## 2. Zakres i metoda
-<fazy 0–8, co wykonano w każdej, ile żądań, jakie konta, jakie ograniczenia>
+<fazy 0–8b, co wykonano w każdej, ile żądań, jakie konta, jakie konfiguracje (dev / produkcja / produkcja bez klucza / za proxy), jakie ograniczenia>
 
 ## 3. Mapa strony (inwentaryzacja)
 <tabela z fazy 1 + architektura w 3–6 zdaniach: jak płyną dane między frontem, backendem, bazą i usługami zewnętrznymi>
 
 ## 4. Wszystkie problemy
-| # | Ważność | Typ | Problem | Miejsce | Status |
-|---|---|---|---|---|---|
-| S1 | Krytyczne | Bezpieczeństwo | … | … | Otwarte |
-| B1 | Średnie | Błąd logiczny | … | … | Otwarte |
-| M1 | Niskie | Rozbieżność front↔back | … | … | Otwarte |
+| # | Ważność | Typ | Problem | Miejsce | Dowód | Status |
+|---|---|---|---|---|---|---|
+| S1 | Krytyczne | Bezpieczeństwo | … | … | Potwierdzone | Otwarte |
+| B1 | Średnie | Błąd logiczny | … | … | Potwierdzone | Otwarte |
+| M1 | Niskie | Rozbieżność front↔back | … | … | Do potwierdzenia | Otwarte |
 
 Typy: Bezpieczeństwo (S) · Błąd logiczny/kodu (B) · Rozbieżność front↔back (M) · Przepływ biznesowy (F) · Konfiguracja (C)
+Dowód: **Potwierdzone** (odtworzone: żądanie i odpowiedź albo linia kodu + uruchomienie) · **Do potwierdzenia** (rozumowanie; w szczegółach: czego brakuje do potwierdzenia)
 
 ## 5. Połączenia i endpointy
 Podsumowanie: <n> połączeń w katalogu · <n> przetestowanych w pełni · <n> wzorcem · <n> nietestowanych (powód).
@@ -67,6 +83,16 @@ Najważniejsze wnioski: <…>
 ## 10. Płatności, triale, subskrypcje i inne przepływy
 | Przepływ | Podłączone | Logiczne | Bezpieczne | Jak sprawdzono | Problemy |
 |---|---|---|---|---|---|
+
+## 10b. Konfiguracja produkcyjna i drugie przejście
+| Konfiguracja / próba | Oczekiwane | Wynik | Problem # |
+|---|---|---|---|
+| Produkcja, wszystkie klucze | debug wył., HTTPS, HSTS, Secure | | |
+| Produkcja bez klucza płatności / maila / AI | funkcja wyłączona, nic „na niby” | | |
+| Za proxy, fałszywy `X-Forwarded-For` | limit nadal działa | | |
+| `Host: evil.example` | linki i canonical bez zmian | | |
+| Zniekształcone dane wejściowe | 4xx, bez zapisu stosu | | |
+| Nadużycie zwykłych funkcji | <maile, kody, zdarzenia, wyścigi> | | |
 
 ## 11. Szczegóły problemów
 ### [S1] <Tytuł> — <Ważność>

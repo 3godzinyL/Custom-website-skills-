@@ -40,6 +40,15 @@ Polish diacritics.
 - Konkurencja i wzorce: <strony + co z nich bierzemy / czego unikamy>
 - Mierniki sukcesu: <np. 30 zapytań/mies., konwersja 2%>
 
+## 1b. Kategoria teraz (z radaru, stan na <RRRR-MM-DD>)
+- Teza strony: <jedno zdanie>
+- Standard kategorii (musi być): <lista — każda strona tego typu to ma>
+- Fala (sygnały ostatnich miesięcy) i jak je wykorzystujemy: <sygnał → sekcja/funkcja/treść>
+- Luki, które zajmujemy: <…>
+- Wybrany kierunek: <nazwa i obietnica> · Zaakceptowane pomysły: <#…> · Odrzucone (nie dodawaj): <#…>
+- Słowa kluczowe → strony: <fraza → gdzie>
+- Pytania odbiorców → FAQ / poradniki: <…>
+
 ## 2. Język i ton
 - Ton: <np. rzeczowy, ciepły, pewny siebie; na „Ty” / „Państwo”>
 - Zasady: konkrety zamiast przymiotników; krótkie zdania; liczby tylko prawdziwe;

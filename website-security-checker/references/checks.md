@@ -28,6 +28,9 @@ OWASP Cheat Sheet Series.
 16. Privacy and GDPR (RODO) technical side
 17. AI features (chatbots, LLM endpoints)
 18. Infrastructure and backups
+19. Production configuration, proxies and repository hygiene
+20. Framework and platform pitfalls (2025–2026)
+21. Robustness and abuse of legitimate features
 
 ---
 
@@ -114,6 +117,11 @@ This is the #1 real-world problem. Test with two normal accounts (A, B) and a gu
 - Workflow skipping: go straight to `/checkout/success`, `/order/confirm`, step 3 of a
   wizard without step 2.
 - Multi-tenant: one client's data visible to another (shared panels, SaaS).
+- Least privilege inside the panel: a read-only/"viewer" role sees masked personal data
+  (e-mail, phone, tax id) unless the job needs it; check the JSON API, not only the CSV
+  export or the UI (a blocked export with an open JSON list is the same leak).
+- Data tied to a deleted account: codes, links, files or referral rewards that belonged
+  to a deleted user must not become public or claimable by anyone.
 
 **Fix**: authorization check on the server for every request, by ownership
 (`WHERE id = ? AND user_id = ?`), deny by default, allowlist of writable fields (DTOs),
@@ -137,6 +145,16 @@ central middleware, non-guessable ids are a bonus, not the fix.
 - OAuth/social login: `state` parameter, exact redirect_uri matching.
 - Admin panel: 2FA, not on a predictable URL with default creds, ideally IP-restricted
   or behind an extra auth layer.
+- 2FA (TOTP): a code works **once** (store the last used time step per account); the
+  attempt limit is per account as well as per IP; backup codes are hashed and single-use;
+  disabling 2FA requires the password or a current code.
+- Lockout without denial of service: "5 bad passwords → account locked" lets anyone lock
+  the admin out and reveals which e-mails exist. Prefer per-account + per-IP throttling
+  with growing delays, captcha after a few failures, and a notification to the owner.
+- Recovery: if the only owner loses the password or the 2FA phone, is there a documented,
+  server-side recovery path (console script with an audit entry)? None = business risk.
+- Sessions: admin cookie `__Host-` prefixed, `HttpOnly`, `Secure`, `SameSite=Strict`,
+  separate from the customer session, shorter idle timeout.
 
 ## 6. Data exposure and secrets [A01, A04, A02]
 
@@ -184,6 +202,15 @@ private storage with signed URLs, disable production source maps or restrict the
   consent).
 - Booking: double booking (two requests at the same time), booking in the past,
   negative duration.
+- Forms that make the site e-mail an address typed by the visitor (order reminders,
+  "send to a friend", quote copies) without that address being confirmed: the site
+  becomes a harassment and spam tool, and its domain reputation drops. Limit per
+  recipient, or send only to confirmed addresses.
+- Booleans and consent parsed from strings: `"false"`, `"0"`, `"no"` must not become
+  `true` (`Boolean("false") === true`). Consent is valid only if it is literally `true`
+  from a checkbox the user ticked.
+- Login forms and any form with a password: `method="post"` in the HTML itself, so a
+  submit before JavaScript loads does not put the password into the URL.
 - **Fix**: rate limiting per IP + per account (e.g. `express-rate-limit`, Cloudflare
   rules), honeypot field + Turnstile/hCaptcha/reCAPTCHA, schema validation on server.
 
@@ -287,3 +314,98 @@ block private/loopback/link-local ranges after DNS resolution, no redirects, tim
   tested.
 - Separate staging with its own credentials and no real customer data, or anonymised.
 - Monitoring/alerts: uptime, error rate, unusual admin logins.
+
+## 19. Production configuration, proxies and repository hygiene [A02, A05]
+
+Many real incidents are not bugs in code paths that were tested, but in how the app
+behaves with **production settings**. Run the app locally (isolated data) at least in
+these configurations and compare:
+
+| Configuration | What to look for |
+|---|---|
+| development defaults | baseline |
+| `NODE_ENV=production` (or framework equivalent), all keys set to test values | debug off, errors generic, cookies `Secure`, HSTS, redirects to HTTPS |
+| production **with a key missing** (payment, mail, AI) | fail closed: the feature is disabled with a clear message, never a silent fallback to sandbox, "paid", "allow" or "send to log" |
+| behind a reverse proxy (`TRUST_PROXY` on) | client IP taken from the right hop, HTTPS detection, `Host` not trusted for links |
+
+Checks:
+- **Fail-open fallbacks**: sandbox payment page reachable in production; missing SMTP →
+  password-reset links written to logs or an admin inbox; missing AI key → demo mode that
+  still accepts paid actions; missing `BASE_URL` → `localhost` links in e-mails.
+- **Startup validation**: production refuses to start with missing/weak secrets
+  (`SESSION_SECRET`, admin password, webhook secret) instead of running insecurely.
+- **Trusted proxy / `X-Forwarded-For`**: the app uses the address added by *its own*
+  proxy (the last hop, or a configured number of hops), never the first value the client
+  can write. Test: 20 login attempts each with a different `X-Forwarded-For` — does the
+  rate limit still trigger?
+- **Host header**: `Host: evil.example` must not change canonical URLs, Open Graph
+  tags, password-reset or confirmation links, or redirects.
+- **Repository hygiene** (public repo = published): `git ls-files` and history for
+  `.env*`, `data/`, `*.sqlite*`, `*.db*`, WAL/SHM files, logs, backups, exported CSVs,
+  first-run credential files (`PIERWSZE-LOGOWANIE.txt`, `admin-credentials.txt`),
+  private keys, `.npmrc` with tokens. `.gitignore` covers them *before* the first commit.
+  Leaked secrets are rotated, not only deleted.
+- **First-run credentials**: printed once to the server console, or written to a
+  git-ignored file with restrictive permissions, and the user is forced to change them.
+- **Service worker**: cache-first for HTML/JS/CSS without versioned file names keeps old
+  code after a deploy (front↔back mismatch); authenticated API responses or pages with
+  personal data must never be cached by the service worker.
+- **CDN and caches**: pages with personal data have `Cache-Control: private, no-store`;
+  web cache deception (`/account/profile.css` or `/account;x.js` served cached with the
+  user's data); cache poisoning through unkeyed headers (`X-Forwarded-Host`).
+- `security.txt` at `/.well-known/security.txt` with a contact and expiry (optional,
+  cheap, helps people report problems).
+
+## 20. Framework and platform pitfalls (2025–2026)
+
+Check versions against current advisories (`npm audit`, GitHub advisories, vendor
+blogs); the list below is what repeatedly hurt real sites.
+- **Next.js**: middleware is not an auth boundary — CVE-2025-29927 let requests with
+  `x-middleware-subrequest` skip middleware (fixed in 15.2.3 / 14.2.25 / 13.5.9 /
+  12.3.5); every route handler, Server Action and data fetch checks the session itself.
+  Server Actions are public POST endpoints. `NEXT_PUBLIC_*` values are public.
+  React Server Components RCE CVE-2025-55182 ("React2Shell", December 2025): confirm
+  `react-server-dom-*` and Next.js versions are patched.
+- **Vite / CRA / Astro / SvelteKit**: `VITE_*`, `REACT_APP_*`, `PUBLIC_*` variables end
+  up in the bundle; source maps on production; SvelteKit `+page.server` load functions
+  check authorization per request.
+- **Supabase**: RLS enabled on every table *and* policies that use `auth.uid()`;
+  storage bucket policies; RPC functions with `security definer` checked for
+  authorization; new-format secret keys (`sb_secret_…`) and legacy `service_role` never
+  in the client. AI app builders (Lovable, Bolt, v0 and similar) shipped many apps with
+  RLS missing (CVE-2025-48757 for Lovable) — treat any generated Supabase app as
+  untrusted until every table is tested with the public key.
+- **Firebase**: Firestore/RTDB/Storage rules not `if true`; App Check optional, not a
+  replacement for rules.
+- **WordPress/WooCommerce**: plugins are the attack surface — inventory versions, remove
+  unused ones, check each against WPScan; XML-RPC and user enumeration.
+- **Express 4→5, Fastify, Hono**: error handlers that leak stack traces; body size
+  limits; `trust proxy` setting; static file serving from the project root (serves
+  `.env`, `data/`).
+- **npm supply chain**: 2025 brought self-spreading malware in popular packages
+  ("Shai-Hulud" waves) and hijacked maintainer accounts. Lockfile committed, `npm ci`,
+  no blind `npm update` before release, review new install scripts, `npm audit
+  signatures` where available, minimal dependencies for auth and payments.
+
+## 21. Robustness and abuse of legitimate features [A10, A06]
+
+- **Malformed input must give 4xx, never 500**: broken percent-encoding in the path
+  (`/x/%E0%A4%A`, `%ZZ` → `URIError` in `decodeURIComponent`), invalid JSON, wrong
+  types, arrays instead of strings, very long strings, Unicode edge cases, a 2 MB body
+  (expect 413, not a dropped connection).
+- **Error logging that can be flooded**: every anonymous request that causes an error
+  writes a row/stack trace → disk fills, real errors drown; cap error logging per day or
+  per source, and don't log 4xx as server errors.
+- **Client-sent events that should be server-only**: analytics or A/B "conversions",
+  "payment succeeded", "signup confirmed" events accepted from the browser let anyone
+  fake funnels and test results. Server-side events are recorded by the server.
+- **Guessable codes**: discount/invite/gift codes short enough to enumerate (< 6–8
+  characters) — rate limiting slows one IP, not a botnet. Single-use codes: random,
+  ≥ 10 characters, reserved atomically while an order is open.
+- **Races on limited things**: single-use coupon, last item in stock, one trial per
+  person, booking slot — 5–10 parallel requests (local/staging) must not all succeed.
+- **Unlimited growth**: anonymous uploads, error reports, drafts, carts, sessions
+  without cleanup.
+- **Permanent private links**: links to orders/queues/unsubscribe built from a static
+  HMAC of the ID cannot be revoked if leaked — acceptable when documented; better with
+  expiry or rotation for sensitive data.
